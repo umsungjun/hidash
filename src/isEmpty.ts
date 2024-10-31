@@ -1,6 +1,6 @@
 import {isArrayLike} from './internal'
 
-export default function isEmpty(value: unknown): boolean {
+export function isEmpty(value: unknown): boolean {
     if (value == null) {
         return true
     }
@@ -26,3 +26,5 @@ export default function isEmpty(value: unknown): boolean {
 
     return false
 }
+
+export default isEmpty
