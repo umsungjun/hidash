@@ -1,0 +1,2 @@
+# hidash
+improved lodash
