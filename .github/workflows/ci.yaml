@@ -37,6 +37,8 @@ jobs:
               run: pnpm run build
             - name: Test
               run: pnpm run test
+            - name: Benchmark
+              run: pnpm run bench
 
     lint:
         needs: setup
