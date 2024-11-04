@@ -1,60 +1,91 @@
 {
     "name": "@naverpay/hidash",
     "version": "0.0.3",
-    "type": "module",
     "description": "improved lodash",
-    "files": [
-        "dist"
-    ],
     "sideEffects": false,
+    "files": [
+        "*.js",
+        "*.mjs",
+        "*.d.ts",
+        "*.d.mts"
+    ],
     "exports": {
         "./isEmpty": {
             "import": {
-                "types": "./dist/isEmpty.d.ts",
-                "default": "./dist/isEmpty.js"
+                "types": "./isEmpty.d.mts",
+                "default": "./isEmpty.mjs"
+            },
+            "require": {
+                "types": "./isEmpty.d.ts",
+                "default": "./isEmpty.js"
             }
         },
         "./size": {
             "import": {
-                "types": "./dist/size.d.ts",
-                "default": "./dist/size.js"
+                "types": "./size.d.mts",
+                "default": "./size.mjs"
+            },
+            "require": {
+                "types": "./size.d.ts",
+                "default": "./size.js"
             }
         },
         "./keys": {
             "import": {
-                "types": "./dist/keys.d.ts",
-                "default": "./dist/keys.js"
+                "types": "./keys.d.mts",
+                "default": "./keys.mjs"
+            },
+            "require": {
+                "types": "./keys.d.ts",
+                "default": "./keys.js"
             }
         },
         "./isNil": {
             "import": {
-                "types": "./dist/isNil.d.ts",
-                "default": "./dist/isNil.js"
+                "types": "./isNil.d.mts",
+                "default": "./isNil.mjs"
+            },
+            "require": {
+                "types": "./isNil.d.ts",
+                "default": "./isNil.js"
             }
         },
         "./isArray": {
             "import": {
-                "types": "./dist/isArray.d.ts",
-                "default": "./dist/isArray.js"
+                "types": "./isArray.d.mts",
+                "default": "./isArray.mjs"
+            },
+            "require": {
+                "types": "./isArray.d.ts",
+                "default": "./isArray.js"
             }
         },
         "./isObject": {
             "import": {
-                "types": "./dist/isObject.d.ts",
-                "default": "./dist/isObject.js"
+                "types": "./isObject.d.mts",
+                "default": "./isObject.mjs"
+            },
+            "require": {
+                "types": "./isObject.d.ts",
+                "default": "./isObject.js"
             }
         },
         "./has": {
             "import": {
-                "types": "./dist/has.d.ts",
-                "default": "./dist/has.js"
+                "types": "./has.d.mts",
+                "default": "./has.mjs"
+            },
+            "require": {
+                "types": "./has.d.ts",
+                "default": "./has.js"
             }
         }
     },
     "scripts": {
         "prepare": "lefthook install -f",
-        "build": "pnpm run clean && vite build --config vite.config.ts",
+        "build": "pnpm run clean && vite build --config vite.config.mts && pnpm run build:dts",
         "release": "changeset publish",
+        "build:dts": "tsup --config tsup.config.ts",
         "clean": "rm -rf dist",
         "lint": "eslint '**/*.{js,jsx,ts,tsx}'",
         "lint:fix": "eslint '**/*.{js,jsx,ts,tsx}' --fix",
@@ -65,7 +96,9 @@
         "test": "vitest run",
         "bench": "vitest bench --run",
         "coverage": "vitest run --coverage",
-        "changeset-version": "changeset version && pnpm run md:fix"
+        "changeset-version": "changeset version && pnpm run md:fix",
+        "prepublish": "node scripts/pre-build.mjs",
+        "postpublish": "rimraf ./*.js ./*.mjs ./*.d.ts ./*.d.mts"
     },
     "author": "yc.effort@navercorp.com",
     "license": "MIT",
@@ -86,10 +119,11 @@
         "browserslist-to-esbuild": "^2.1.1",
         "lefthook": "^1.8.2",
         "lodash": "^4.17.21",
+        "rimraf": "^6.0.1",
         "rollup": "^4.24.3",
         "rollup-preserve-directives": "^1.1.2",
+        "tsup": "^8.3.5",
         "vite": "^5.4.10",
-        "vite-plugin-dts": "^4.3.0",
         "vite-tsconfig-paths": "^5.0.1",
         "vitest": "^2.1.4"
     },

@@ -2,20 +2,11 @@ import {babel} from '@rollup/plugin-babel'
 import browserslistToEsbuild from 'browserslist-to-esbuild'
 import preserveDirectives from 'rollup-preserve-directives'
 import {defineConfig} from 'vite'
-import dts from 'vite-plugin-dts'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
-const SUPPORT_TARGETS = browserslistToEsbuild()
+import moduleMap from './index'
 
-const moduleMap = {
-    isEmpty: './src/isEmpty.ts',
-    size: './src/size.ts',
-    keys: './src/keys.ts',
-    isNil: './src/isNil.ts',
-    isArray: './src/isArray.ts',
-    isObject: './src/isObject.ts',
-    has: './src/has.ts',
-} as const
+const SUPPORT_TARGETS = browserslistToEsbuild()
 
 export default defineConfig({
     plugins: [
@@ -37,11 +28,9 @@ export default defineConfig({
             extensions: ['.js', '.jsx', '.ts', '.tsx'],
             exclude: 'node_modules/**',
         }),
-        dts({
-            rollupTypes: true,
-        }),
     ],
     build: {
+        minify: false,
         outDir: 'dist',
         lib: {
             entry: moduleMap,
@@ -55,6 +44,10 @@ export default defineConfig({
             output: [
                 {
                     format: 'es',
+                    dir: 'dist',
+                },
+                {
+                    format: 'cjs',
                     dir: 'dist',
                 },
             ],
