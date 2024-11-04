@@ -1,3 +1,4 @@
 {
-    "extends": "@naverpay/markdown-lint"
+    "extends": "@naverpay/markdown-lint",
+    "MD030": false
 }
