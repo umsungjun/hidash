@@ -2,10 +2,13 @@
     "name": "@naverpay/hidash",
     "version": "0.0.3",
     "description": "improved lodash",
-    "files": [
-        "dist"
-    ],
     "sideEffects": false,
+    "files": [
+        "*.js",
+        "*.mjs",
+        "*.d.ts",
+        "*.d.mts"
+    ],
     "exports": {
         "./isEmpty": {
             "import": {
@@ -93,7 +96,9 @@
         "test": "vitest run",
         "bench": "vitest bench --run",
         "coverage": "vitest run --coverage",
-        "changeset-version": "changeset version && pnpm run md:fix"
+        "changeset-version": "changeset version && pnpm run md:fix",
+        "prepublish": "node scripts/pre-build.mjs",
+        "postpublish": "rimraf ./*.js ./*.mjs ./*.d.ts ./*.d.mts"
     },
     "author": "yc.effort@navercorp.com",
     "license": "MIT",
@@ -114,6 +119,7 @@
         "browserslist-to-esbuild": "^2.1.1",
         "lefthook": "^1.8.2",
         "lodash": "^4.17.21",
+        "rimraf": "^6.0.1",
         "rollup": "^4.24.3",
         "rollup-preserve-directives": "^1.1.2",
         "tsup": "^8.3.5",
