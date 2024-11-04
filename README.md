@@ -13,8 +13,6 @@ A modern, performance-focused alternative to Lodash.
 -   0️⃣ **Zero Dependencies**: No external runtime dependencies, keeping your bundle lean
 -   ✅ **Proven Reliability**: Used in production at NAVER Pay
 
-[나머지 내용 동일...]
-
 ## Installation
 
 ```bash
