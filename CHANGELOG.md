@@ -1,5 +1,11 @@
 # @naverpay/hidash
 
+## 0.0.3
+
+### Patch Changes
+
+-   b24e7c0: 🚀 has
+
 ## 0.0.2
 
 ### Patch Changes
