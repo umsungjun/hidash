@@ -71,7 +71,7 @@ const testCases = [
 const ITERATIONS = 1000
 
 describe('keys performance', () => {
-    bench('hidash keys', () => {
+    bench('hidash', () => {
         for (let i = 0; i < ITERATIONS; i++) {
             testCases.forEach((testCase) => {
                 keys(testCase)
@@ -79,7 +79,7 @@ describe('keys performance', () => {
         }
     })
 
-    bench('lodash keys', () => {
+    bench('lodash', () => {
         for (let i = 0; i < ITERATIONS; i++) {
             testCases.forEach((testCase) => {
                 _keys(testCase)
