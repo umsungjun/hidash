@@ -5,11 +5,19 @@ export function isEmpty(value: unknown): boolean {
         return true
     }
 
+    const typeOf = typeof value
+    if (typeOf === 'number' || typeOf === 'boolean' || typeOf === 'function') {
+        return true
+    }
     if (isArrayLike(value)) {
         return !(value as ArrayLike<unknown>).length
     }
 
     const type = Object.prototype.toString.call(value)
+
+    if (type === '[object Date]') {
+        return true
+    }
 
     if (type === '[object Map]' || type === '[object Set]') {
         return !(value as Map<unknown, unknown> | Set<unknown>).size
