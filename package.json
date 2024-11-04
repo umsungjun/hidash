@@ -33,6 +33,12 @@
                 "types": "./dist/isArray.d.ts",
                 "default": "./dist/isArray.js"
             }
+        },
+        "./isObject": {
+            "import": {
+                "types": "./dist/isObject.d.ts",
+                "default": "./dist/isObject.js"
+            }
         }
     },
     "scripts": {
