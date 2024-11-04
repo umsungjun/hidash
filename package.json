@@ -1,7 +1,6 @@
 {
     "name": "@naverpay/hidash",
     "version": "0.0.3",
-    "type": "module",
     "description": "improved lodash",
     "files": [
         "dist"
@@ -10,78 +9,78 @@
     "exports": {
         "./isEmpty": {
             "import": {
-                "types": "./dist/esm/isEmpty.d.ts",
-                "default": "./dist/esm/isEmpty.js"
+                "types": "./dist/esm/isEmpty.d.mts",
+                "default": "./dist/esm/isEmpty.mjs"
             },
             "require": {
-                "types": "./dist/cjs/isEmpty.d.cts",
-                "default": "./dist/cjs/isEmpty.cjs"
+                "types": "./dist/cjs/isEmpty.d.ts",
+                "default": "./dist/cjs/isEmpty.js"
             }
         },
         "./size": {
             "import": {
-                "types": "./dist/esm/size.d.ts",
-                "default": "./dist/esm/size.js"
+                "types": "./dist/esm/size.d.mts",
+                "default": "./dist/esm/size.mjs"
             },
             "require": {
-                "types": "./dist/cjs/size.d.cts",
-                "default": "./dist/cjs/size.cjs"
+                "types": "./dist/cjs/size.d.ts",
+                "default": "./dist/cjs/size.js"
             }
         },
         "./keys": {
             "import": {
-                "types": "./dist/esm/keys.d.ts",
-                "default": "./dist/esm/keys.js"
+                "types": "./dist/esm/keys.d.mts",
+                "default": "./dist/esm/keys.mjs"
             },
             "require": {
-                "types": "./dist/cjs/keys.d.cts",
-                "default": "./dist/cjs/keys.cjs"
+                "types": "./dist/cjs/keys.d.ts",
+                "default": "./dist/cjs/keys.js"
             }
         },
         "./isNil": {
             "import": {
-                "types": "./dist/esm/isNil.d.ts",
-                "default": "./dist/esm/isNil.js"
+                "types": "./dist/esm/isNil.d.mts",
+                "default": "./dist/esm/isNil.mjs"
             },
             "require": {
-                "types": "./dist/cjs/isNil.d.cts",
-                "default": "./dist/cjs/isNil.cjs"
+                "types": "./dist/cjs/isNil.d.ts",
+                "default": "./dist/cjs/isNil.js"
             }
         },
         "./isArray": {
             "import": {
-                "types": "./dist/esm/isArray.d.ts",
-                "default": "./dist/esm/isArray.js"
+                "types": "./dist/esm/isArray.d.mts",
+                "default": "./dist/esm/isArray.mjs"
             },
             "require": {
-                "types": "./dist/cjs/isArray.d.cts",
-                "default": "./dist/cjs/isArray.cjs"
+                "types": "./dist/cjs/isArray.d.ts",
+                "default": "./dist/cjs/isArray.js"
             }
         },
         "./isObject": {
             "import": {
-                "types": "./dist/esm/isObject.d.ts",
-                "default": "./dist/esm/isObject.js"
+                "types": "./dist/esm/isObject.d.mts",
+                "default": "./dist/esm/isObject.mjs"
             },
             "require": {
-                "types": "./dist/cjs/isObject.d.cts",
-                "default": "./dist/cjs/isObject.cjs"
+                "types": "./dist/cjs/isObject.d.ts",
+                "default": "./dist/cjs/isObject.js"
             }
         },
         "./has": {
             "import": {
-                "types": "./dist/esm/has.d.ts",
-                "default": "./dist/esm/has.js"
+                "types": "./dist/esm/has.d.mts",
+                "default": "./dist/esm/has.mjs"
             },
             "require": {
-                "types": "./dist/cjs/has.d.cts",
-                "default": "./dist/cjs/has.cjs"
+                "types": "./dist/cjs/has.d.ts",
+                "default": "./dist/cjs/has.js"
             }
         }
     },
     "scripts": {
         "prepare": "lefthook install -f",
-        "build": "pnpm run clean && vite build --config vite.config.ts && pnpm run build:dts",
+        "build": "pnpm run clean && vite build --config vite.config.mts && pnpm run build:dts",
         "release": "changeset publish",
         "build:dts": "tsup --config tsup.config.ts",
         "clean": "rm -rf dist",
