@@ -54,6 +54,7 @@
         "md:fix": "markdownlint --fix '*.md'",
         "test": "vitest run",
         "bench": "vitest bench --run",
+        "coverage": "vitest run --coverage",
         "changeset-version": "changeset version && pnpm run md:fix"
     },
     "author": "yc.effort@navercorp.com",
@@ -70,6 +71,8 @@
         "@rollup/plugin-babel": "^6.0.4",
         "@types/lodash": "^4.17.13",
         "@types/node": "^20.17.6",
+        "@vitest/coverage-istanbul": "2.1.4",
+        "@vitest/ui": "^2.1.4",
         "browserslist-to-esbuild": "^2.1.1",
         "lefthook": "^1.8.2",
         "lodash": "^4.17.21",
