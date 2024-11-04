@@ -30,6 +30,7 @@ export default defineConfig({
         }),
     ],
     build: {
+        minify: false,
         outDir: 'dist',
         lib: {
             entry: moduleMap,
@@ -43,7 +44,11 @@ export default defineConfig({
             output: [
                 {
                     format: 'es',
-                    dir: 'dist',
+                    dir: 'dist/esm',
+                },
+                {
+                    format: 'cjs',
+                    dir: 'dist/cjs',
                 },
             ],
         },

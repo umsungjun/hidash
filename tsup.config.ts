@@ -2,9 +2,18 @@ import {defineConfig} from 'tsup'
 
 import moduleMap from './index'
 
-export default defineConfig({
+import type {Format, Options} from 'tsup'
+
+const sharedConfig: Options = {
     entry: moduleMap,
     dts: {only: true},
-    format: 'esm',
-    outDir: './dist',
-})
+} as const
+
+const createConfig = (format: Exclude<Format, 'iife'>) =>
+    defineConfig({
+        ...sharedConfig,
+        format: [format],
+        outDir: `./dist/${format}`,
+    })
+
+export default [createConfig('esm'), createConfig('cjs')]

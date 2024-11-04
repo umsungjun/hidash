@@ -5,6 +5,9 @@ const moduleMap = {
     size: './src/size.ts',
     keys: './src/keys.ts',
     isNil: './src/isNil.ts',
+    isArray: './src/isArray.ts',
+    isObject: './src/isObject.ts',
+    has: './src/has.ts',
 } as const
 
 export default moduleMap

@@ -10,44 +10,72 @@
     "exports": {
         "./isEmpty": {
             "import": {
-                "types": "./dist/isEmpty.d.ts",
-                "default": "./dist/isEmpty.js"
+                "types": "./dist/esm/isEmpty.d.ts",
+                "default": "./dist/esm/isEmpty.js"
+            },
+            "require": {
+                "types": "./dist/cjs/isEmpty.d.cts",
+                "default": "./dist/cjs/isEmpty.cjs"
             }
         },
         "./size": {
             "import": {
-                "types": "./dist/size.d.ts",
-                "default": "./dist/size.js"
+                "types": "./dist/esm/size.d.ts",
+                "default": "./dist/esm/size.js"
+            },
+            "require": {
+                "types": "./dist/cjs/size.d.cts",
+                "default": "./dist/cjs/size.cjs"
             }
         },
         "./keys": {
             "import": {
-                "types": "./dist/keys.d.ts",
-                "default": "./dist/keys.js"
+                "types": "./dist/esm/keys.d.ts",
+                "default": "./dist/esm/keys.js"
+            },
+            "require": {
+                "types": "./dist/cjs/keys.d.cts",
+                "default": "./dist/cjs/keys.cjs"
             }
         },
         "./isNil": {
             "import": {
-                "types": "./dist/isNil.d.ts",
-                "default": "./dist/isNil.js"
+                "types": "./dist/esm/isNil.d.ts",
+                "default": "./dist/esm/isNil.js"
+            },
+            "require": {
+                "types": "./dist/cjs/isNil.d.cts",
+                "default": "./dist/cjs/isNil.cjs"
             }
         },
         "./isArray": {
             "import": {
-                "types": "./dist/isArray.d.ts",
-                "default": "./dist/isArray.js"
+                "types": "./dist/esm/isArray.d.ts",
+                "default": "./dist/esm/isArray.js"
+            },
+            "require": {
+                "types": "./dist/cjs/isArray.d.cts",
+                "default": "./dist/cjs/isArray.cjs"
             }
         },
         "./isObject": {
             "import": {
-                "types": "./dist/isObject.d.ts",
-                "default": "./dist/isObject.js"
+                "types": "./dist/esm/isObject.d.ts",
+                "default": "./dist/esm/isObject.js"
+            },
+            "require": {
+                "types": "./dist/cjs/isObject.d.cts",
+                "default": "./dist/cjs/isObject.cjs"
             }
         },
         "./has": {
             "import": {
-                "types": "./dist/has.d.ts",
-                "default": "./dist/has.js"
+                "types": "./dist/esm/has.d.ts",
+                "default": "./dist/esm/has.js"
+            },
+            "require": {
+                "types": "./dist/cjs/has.d.cts",
+                "default": "./dist/cjs/has.cjs"
             }
         }
     },
