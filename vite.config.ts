@@ -12,6 +12,7 @@ const moduleMap = {
     size: './src/size.ts',
     keys: './src/keys.ts',
     isNil: './src/isNil.ts',
+    isArray: './src/isArray.ts',
 } as const
 
 export default defineConfig({

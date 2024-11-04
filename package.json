@@ -21,6 +21,18 @@
                 "types": "./dist/keys.d.ts",
                 "default": "./dist/keys.js"
             }
+        },
+        "./isNil": {
+            "import": {
+                "types": "./dist/isNil.d.ts",
+                "default": "./dist/isNil.js"
+            }
+        },
+        "./isArray": {
+            "import": {
+                "types": "./dist/isArray.d.ts",
+                "default": "./dist/isArray.js"
+            }
         }
     },
     "scripts": {
