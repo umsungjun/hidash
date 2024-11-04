@@ -4,11 +4,16 @@ A modern, performance-focused alternative to Lodash.
 
 ## Features
 
-- 🚀 **ES Module Only**: Built for modern JavaScript, optimized for tree-shaking
-- ⚡️ **High Performance**: Consistently faster than Lodash in benchmarks (verified with Vitest)
-- 🔄 **Drop-in Replacement**: 100% compatible with Lodash's interface and behavior
-- 🎯 **Type Safety**: Written in TypeScript with complete type definitions
-- 📦 **Subpath Imports**: Granular imports for minimal bundle size
+-   🚀 **ES Module Only**: Built for modern JavaScript, optimized for tree-shaking
+-   ⚡️ **High Performance**: Consistently faster than Lodash in benchmarks (verified with Vitest)
+-   🔄 **Drop-in Replacement**: 100% compatible with Lodash's interface and behavior
+-   🎯 **Type Safety**: Written in TypeScript with complete type definitions
+-   📦 **Subpath Imports**: Granular imports for minimal bundle size
+-   🧪 **Test Coverage**: Every function has test cases that match Lodash's behavior exactly
+-   0️⃣ **Zero Dependencies**: No external runtime dependencies, keeping your bundle lean
+-   ✅ **Proven Reliability**: Used in production at NAVER Pay
+
+[나머지 내용 동일...]
 
 ## Installation
 
@@ -44,10 +49,39 @@ import {has, isEmpty} from '@naverpay/hidash'
 
 ## Why hidash?
 
-- **Modern**: Built specifically for ES modules with subpath imports for optimal tree-shaking
-- **Performance**: Optimized implementations that outperform Lodash in most scenarios
-- **Compatibility**: Designed as a drop-in replacement with identical interfaces and behavior
-- **Tested**: Comprehensive test suite ensuring Lodash compatibility and performance benchmarks
+-   **Modern**: Built specifically for ES modules with subpath imports for optimal tree-shaking
+-   **Performance**: Optimized implementations that outperform Lodash in most scenarios
+-   **Compatibility**: Designed as a drop-in replacement with identical interfaces and behavior
+-   **Tested**: Comprehensive test suite ensuring Lodash compatibility and performance benchmarks
+
+## Benchmarks (2024.11.04)
+
+```bash
+✓ src/isEmpty.bench.ts (2) 1323ms
+  ✓ isEmpty performance (2) 1322ms
+    · hidash   324.23 ops/sec ±0.40% (0 samples) fastest
+    · lodash  35.6400 ops/sec ±0.42% (0 samples)
+✓ src/keys.bench.ts (2) 3031ms
+  ✓ keys performance (2) 3030ms
+    · hidash  27.6429 ops/sec ±0.38% (0 samples) fastest
+    · lodash   7.5177 ops/sec ±0.47% (0 samples)
+✓ src/size.bench.ts (2) 1265ms
+  ✓ size performance (2) 1263ms
+    · hidash  119.83 ops/sec ±1.05% (0 samples) fastest
+    · lodash  114.94 ops/sec ±1.65% (0 samples)
+
+
+BENCH  Summary
+
+ hidash - src/isEmpty.bench.ts > isEmpty performance
+   9.10x faster than lodash
+
+ hidash - src/keys.bench.ts > keys performance
+   3.68x faster than lodash
+
+ hidash - src/size.bench.ts > size performance
+   1.04x faster than lodash
+```
 
 ## Available Functions
 
@@ -138,9 +172,9 @@ Contributions are welcome!
 
 Want additional Lodash methods to be implemented? Please create an issue with:
 
-- The method name
-- Use case description
-- Current workaround (if any)
+-   The method name
+-   Use case description
+-   Current workaround (if any)
 
 We prioritize implementing new methods based on community needs.
 
@@ -148,10 +182,10 @@ We prioritize implementing new methods based on community needs.
 
 Feel free to submit PRs for:
 
-- Bug fixes
-- Performance improvements
-- New utility methods
-- Documentation improvements
+-   Bug fixes
+-   Performance improvements
+-   New utility methods
+-   Documentation improvements
 
 Please read our contributing guidelines before submitting PRs.
 
