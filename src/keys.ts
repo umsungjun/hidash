@@ -1,4 +1,4 @@
-import {isArrayLike} from './internal'
+import {isArrayLike} from './internal/array'
 
 const nativeKeys = Object.keys
 const isArray = Array.isArray

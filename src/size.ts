@@ -1,4 +1,4 @@
-import {isArrayLike} from './internal'
+import {isArrayLike} from './internal/array'
 
 export function size(collection: unknown): number {
     if (collection == null) {

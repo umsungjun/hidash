@@ -1,4 +1,4 @@
-import {isArrayLike} from './internal'
+import {isArrayLike} from './internal/array'
 
 export function isEmpty(value: unknown): boolean {
     if (value == null) {
