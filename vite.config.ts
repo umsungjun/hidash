@@ -4,6 +4,8 @@ import preserveDirectives from 'rollup-preserve-directives'
 import {defineConfig} from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
+import moduleMap from './index'
+
 const SUPPORT_TARGETS = browserslistToEsbuild()
 
 export default defineConfig({
@@ -30,9 +32,7 @@ export default defineConfig({
     build: {
         outDir: 'dist',
         lib: {
-            entry: {
-                isEmpty: './src/isEmpty.ts',
-            },
+            entry: moduleMap,
         },
         rollupOptions: {
             // if neccessary

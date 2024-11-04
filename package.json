@@ -9,6 +9,18 @@
                 "types": "./dist/isEmpty.d.ts",
                 "default": "./dist/isEmpty.js"
             }
+        },
+        "./size": {
+            "import": {
+                "types": "./dist/size.d.ts",
+                "default": "./dist/size.js"
+            }
+        },
+        "./keys": {
+            "import": {
+                "types": "./dist/keys.d.ts",
+                "default": "./dist/keys.js"
+            }
         }
     },
     "scripts": {
