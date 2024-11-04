@@ -3,6 +3,10 @@
     "version": "0.0.1",
     "type": "module",
     "description": "improved lodash",
+    "files": [
+        "dist"
+    ],
+    "sideEffects": false,
     "exports": {
         "./isEmpty": {
             "import": {
