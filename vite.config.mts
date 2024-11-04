@@ -44,11 +44,11 @@ export default defineConfig({
             output: [
                 {
                     format: 'es',
-                    dir: 'dist/esm',
+                    dir: 'dist',
                 },
                 {
                     format: 'cjs',
-                    dir: 'dist/cjs',
+                    dir: 'dist',
                 },
             ],
         },

@@ -13,7 +13,7 @@ const createConfig = (format: Exclude<Format, 'iife'>) =>
     defineConfig({
         ...sharedConfig,
         format: [format],
-        outDir: `./dist/${format}`,
+        outDir: `./dist`,
     })
 
 export default [createConfig('esm'), createConfig('cjs')]
