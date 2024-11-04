@@ -28,6 +28,8 @@ const testCases = [
 
     // Array-like objects
     {length: 2, 0: 'a', 1: 'b'},
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     {length: 1000, ...Array(1000).fill(1)},
 
     // String objects
@@ -84,41 +86,4 @@ describe('keys performance', () => {
             })
         }
     })
-
-    // // 특정 케이스들에 대한 세부 벤치마크
-    // bench('array-like objects', () => {
-    //     const arrayLike = {length: 1000, ...Array(1000).fill(1)}
-    //     for (let i = 0; i < ITERATIONS; i++) {
-    //         keys(arrayLike)
-    //     }
-    // })
-
-    // bench('large objects', () => {
-    //     const largeObj = Object.fromEntries(
-    //         Array(1000)
-    //             .fill(0)
-    //             .map((_, i) => [`key${i}`, i]),
-    //     )
-    //     for (let i = 0; i < ITERATIONS; i++) {
-    //         keys(largeObj)
-    //     }
-    // })
-
-    // bench('sparse arrays', () => {
-    //     const sparseArray = Object.assign(Array(1000), {1: 'a', 500: 'b', 999: 'c'})
-    //     for (let i = 0; i < ITERATIONS; i++) {
-    //         keys(sparseArray)
-    //     }
-    // })
-
-    // bench('prototype chain', () => {
-    //     const proto = {inherited1: true, inherited2: true}
-    //     const obj = Object.create(proto, {
-    //         own1: {value: true, enumerable: true},
-    //         own2: {value: true, enumerable: true},
-    //     })
-    //     for (let i = 0; i < ITERATIONS; i++) {
-    //         keys(obj)
-    //     }
-    // })
 })
