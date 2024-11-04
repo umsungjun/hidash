@@ -41,3 +41,5 @@ export function keys(object: unknown): string[] {
 
     return nativeKeys(obj)
 }
+
+export default keys
