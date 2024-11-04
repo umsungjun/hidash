@@ -1,5 +1,11 @@
 # @naverpay/hidash
 
+## 0.0.4
+
+### Patch Changes
+
+-   a855eb0: - support commonjs, esmodule
+
 ## 0.0.3
 
 ### Patch Changes
