@@ -30,7 +30,7 @@ const testCases = [
 
 const ITERATIONS = 10000
 
-describe('size', () => {
+describe('size performance', () => {
     bench('hidash', () => {
         for (let i = 0; i < ITERATIONS; i++) {
             testCases.forEach((testCase) => {

@@ -25,7 +25,7 @@ const testCases = [
 
 const ITERATIONS = 10000
 
-describe('isEmpty', () => {
+describe('isEmpty performance', () => {
     bench('hidash', () => {
         for (let i = 0; i < ITERATIONS; i++) {
             testCases.forEach((testCase) => {
