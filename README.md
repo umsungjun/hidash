@@ -4,7 +4,7 @@ A modern, performance-focused alternative to Lodash.
 
 ## Features
 
--   🚀 **ES Module Only**: Built for modern JavaScript, optimized for tree-shaking
+-   🚀 **Dual Package Support (CJS, ESM)**: Built for modern JavaScript, optimized for tree-shaking
 -   ⚡️ **High Performance**: Consistently faster than Lodash in benchmarks (verified with Vitest)
 -   🔄 **Drop-in Replacement**: 100% compatible with Lodash's interface and behavior
 -   🎯 **Type Safety**: Written in TypeScript with complete type definitions
@@ -47,7 +47,7 @@ import {has, isEmpty} from '@naverpay/hidash'
 
 ## Why hidash?
 
--   **Modern**: Built specifically for ES modules with subpath imports for optimal tree-shaking
+-   **Modern**: Built specifically for subpath imports for optimal tree-shaking
 -   **Performance**: Optimized implementations that outperform Lodash in most scenarios
 -   **Compatibility**: Designed as a drop-in replacement with identical interfaces and behavior
 -   **Tested**: Comprehensive test suite ensuring Lodash compatibility and performance benchmarks
