@@ -8,6 +8,7 @@ const moduleMap = {
     isArray: './src/isArray.ts',
     isObject: './src/isObject.ts',
     has: './src/has.ts',
+    throttle: './src/throttle.ts',
     memoize: './src/memoize.ts',
     sum: './src/sum.ts',
 } as const

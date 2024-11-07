@@ -80,6 +80,16 @@
                 "default": "./has.js"
             }
         },
+        "./throttle": {
+            "import": {
+                "types": "./throttle.d.mts",
+                "default": "./throttle.mjs"
+            },
+            "require": {
+                "types": "./throttle.d.ts",
+                "default": "./throttle.js"
+            }
+        },
         "./memoize": {
             "import": {
                 "types": "./memoize.d.mts",
