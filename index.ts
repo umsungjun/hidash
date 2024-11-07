@@ -13,6 +13,7 @@ const moduleMap = {
     memoize: './src/memoize.ts',
     sum: './src/sum.ts',
     sumBy: './src/sumBy.ts',
+    clamp: './src/clamp.ts',
 } as const
 
 export default moduleMap
