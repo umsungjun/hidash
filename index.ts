@@ -12,6 +12,7 @@ const moduleMap = {
     throttle: './src/throttle.ts',
     memoize: './src/memoize.ts',
     sum: './src/sum.ts',
+    sumBy: './src/sumBy.ts',
 } as const
 
 export default moduleMap
