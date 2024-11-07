@@ -1,0 +1,5 @@
+---
+"@naverpay/hidash": patch
+---
+
+🚀 clamp
