@@ -80,6 +80,16 @@
                 "default": "./has.js"
             }
         },
+        "./debounce": {
+            "import": {
+                "types": "./debounce.d.mts",
+                "default": "./debounce.mjs"
+            },
+            "require": {
+                "types": "./debounce.d.ts",
+                "default": "./debounce.js"
+            }
+        },
         "./throttle": {
             "import": {
                 "types": "./throttle.d.mts",
