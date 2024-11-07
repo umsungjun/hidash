@@ -89,6 +89,16 @@
                 "types": "./memoize.d.ts",
                 "default": "./memoize.js"
             }
+        },
+        "./sum": {
+            "import": {
+                "types": "./sum.d.mts",
+                "default": "./sum.mjs"
+            },
+            "require": {
+                "types": "./sum.d.ts",
+                "default": "./sum.js"
+            }
         }
     },
     "scripts": {
