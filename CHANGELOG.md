@@ -1,5 +1,16 @@
 # @naverpay/hidash
 
+## 0.0.5
+
+### Patch Changes
+
+-   c5510ae: 🚀 clamp
+-   bb4a757: 🚀 memoize
+-   fba610b: 🚀 throttle
+-   4c276c9: 🚀 sumBy
+-   edf84ed: 🚀 debounce
+-   7054450: 🚀 sum
+
 ## 0.0.4
 
 ### Patch Changes
