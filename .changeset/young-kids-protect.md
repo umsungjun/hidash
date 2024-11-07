@@ -1,5 +1,0 @@
----
-"@naverpay/hidash": patch
----
-
-🚀 sum
