@@ -10,6 +10,9 @@ interface MemoizedFunction<T extends AnyFunc> {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 class MemoizeCache<T> extends Map<any, T> {}
 
+/**
+ * @descriptoin https://unpkg.com/browse/lodash.memoize@4.1.2/index.js
+ */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function memoize<T extends AnyFunc>(func: T, resolver?: (...args: Parameters<T>) => any): MemoizedFunction<T> {
     if (typeof func !== 'function' || (resolver != null && typeof resolver !== 'function')) {

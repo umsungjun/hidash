@@ -1,5 +1,8 @@
 import {isArrayLike} from './internal/array'
 
+/**
+ * @description https://unpkg.com/lodash.size@4.2.0/index.js
+ */
 export function size(collection: unknown): number {
     if (collection == null) {
         return 0
