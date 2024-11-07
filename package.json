@@ -129,6 +129,16 @@
                 "types": "./sumBy.d.ts",
                 "default": "./sumBy.js"
             }
+        },
+        "./clamp": {
+            "import": {
+                "types": "./clamp.d.mts",
+                "default": "./clamp.mjs"
+            },
+            "require": {
+                "types": "./clamp.d.ts",
+                "default": "./clamp.js"
+            }
         }
     },
     "scripts": {
