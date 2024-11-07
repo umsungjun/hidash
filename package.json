@@ -80,6 +80,16 @@
                 "default": "./has.js"
             }
         },
+        "./memoize": {
+            "import": {
+                "types": "./memoize.d.mts",
+                "default": "./memoize.mjs"
+            },
+            "require": {
+                "types": "./memoize.d.ts",
+                "default": "./memoize.js"
+            }
+        },
         "./sum": {
             "import": {
                 "types": "./sum.d.mts",
