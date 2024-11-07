@@ -3,6 +3,9 @@ import {isArrayLike} from './internal/array'
 const nativeKeys = Object.keys
 const isArray = Array.isArray
 
+/**
+ * @description https://unpkg.com/browse/lodash.keys@4.2.0/index.js
+ */
 export function keys(object: unknown): string[] {
     if (object == null) {
         return []

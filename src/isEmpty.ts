@@ -1,5 +1,8 @@
 import {isArrayLike} from './internal/array'
 
+/**
+ * @description hhttps://unpkg.com/browse/lodash.isempty@4.4.0/index.js
+ */
 export function isEmpty(value: unknown): boolean {
     if (value == null) {
         return true

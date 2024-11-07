@@ -4,6 +4,9 @@ interface DebounceOptions {
     trailing?: boolean // 마지막 호출을 실행할지 여부
 }
 
+/**
+ * @description https://unpkg.com/lodash.debounce@4.0.8/index.js
+ */
 export function debounce<Args extends unknown[]>(
     func: (...args: Args) => unknown,
     waitMilliseconds = 0,
