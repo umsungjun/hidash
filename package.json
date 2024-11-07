@@ -79,6 +79,16 @@
                 "types": "./has.d.ts",
                 "default": "./has.js"
             }
+        },
+        "./throttle": {
+            "import": {
+                "types": "./throttle.d.mts",
+                "default": "./throttle.mjs"
+            },
+            "require": {
+                "types": "./throttle.d.ts",
+                "default": "./throttle.js"
+            }
         }
     },
     "scripts": {

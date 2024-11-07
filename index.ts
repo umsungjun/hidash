@@ -8,6 +8,7 @@ const moduleMap = {
     isArray: './src/isArray.ts',
     isObject: './src/isObject.ts',
     has: './src/has.ts',
+    throttle: './src/throttle.ts',
 } as const
 
 export default moduleMap
