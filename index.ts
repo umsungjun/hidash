@@ -8,6 +8,7 @@ const moduleMap = {
     isArray: './src/isArray.ts',
     isObject: './src/isObject.ts',
     has: './src/has.ts',
+    memoize: './src/memoize.ts',
 } as const
 
 export default moduleMap

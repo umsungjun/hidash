@@ -79,6 +79,16 @@
                 "types": "./has.d.ts",
                 "default": "./has.js"
             }
+        },
+        "./memoize": {
+            "import": {
+                "types": "./memoize.d.mts",
+                "default": "./memoize.mjs"
+            },
+            "require": {
+                "types": "./memoize.d.ts",
+                "default": "./memoize.js"
+            }
         }
     },
     "scripts": {
