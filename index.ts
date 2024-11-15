@@ -17,6 +17,7 @@ const moduleMap = {
     eq: './src/eq.ts',
     includes: './src/includes.ts',
     every: './src/every.ts',
+    isNull: './src/isNull.ts',
 } as const
 
 export default moduleMap

@@ -169,6 +169,16 @@
                 "types": "./every.d.ts",
                 "default": "./every.js"
             }
+        },
+        "./isNull": {
+            "import": {
+                "types": "./isNull.d.mts",
+                "default": "./isNull.mjs"
+            },
+            "require": {
+                "types": "./isNull.d.ts",
+                "default": "./isNull.js"
+            }
         }
     },
     "scripts": {

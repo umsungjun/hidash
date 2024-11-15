@@ -2,5 +2,4 @@
 "@naverpay/hidash": patch
 ---
 
-
-:rocket: `eq` `every` `includes`
+:rocket: `eq` `every` `includes` `isNull`
