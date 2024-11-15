@@ -139,6 +139,16 @@
                 "types": "./clamp.d.ts",
                 "default": "./clamp.js"
             }
+        },
+        "./groupBy": {
+            "import": {
+                "types": "./groupBy.d.mts",
+                "default": "./groupBy.mjs"
+            },
+            "require": {
+                "types": "./groupBy.d.ts",
+                "default": "./groupBy.js"
+            }
         }
     },
     "scripts": {
