@@ -22,6 +22,7 @@ export default defineConfig({
                         method: 'usage-pure',
                         version: '3.38.1',
                         proposals: true,
+                        exclude: ['es.array.push'],
                     },
                 ],
             ],
