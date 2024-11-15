@@ -16,6 +16,7 @@ const moduleMap = {
     clamp: './src/clamp.ts',
     eq: './src/eq.ts',
     includes: './src/includes.ts',
+    every: './src/every.ts',
 } as const
 
 export default moduleMap

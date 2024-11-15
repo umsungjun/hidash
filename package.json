@@ -159,6 +159,16 @@
                 "types": "./includes.d.ts",
                 "default": "./includes.js"
             }
+        },
+        "./every": {
+            "import": {
+                "types": "./every.d.mts",
+                "default": "./every.mjs"
+            },
+            "require": {
+                "types": "./every.d.ts",
+                "default": "./every.js"
+            }
         }
     },
     "scripts": {
