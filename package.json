@@ -139,6 +139,16 @@
                 "types": "./clamp.d.ts",
                 "default": "./clamp.js"
             }
+        },
+        "./eq": {
+            "import": {
+                "types": "./eq.d.mts",
+                "default": "./eq.mjs"
+            },
+            "require": {
+                "types": "./eq.d.ts",
+                "default": "./eq.js"
+            }
         }
     },
     "scripts": {
