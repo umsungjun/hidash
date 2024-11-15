@@ -3,4 +3,4 @@
 ---
 
 
-:rocket: eq
+:rocket: `eq` `every` `includes`
