@@ -54,7 +54,7 @@ const testCases = [
 const ITERATIONS = 1000
 
 describe('clamp performance', () => {
-    bench('hidash clamp', () => {
+    bench('hidash', () => {
         for (let i = 0; i < ITERATIONS; i++) {
             testCases.forEach(([num, lower, upper]) => {
                 clamp(num, lower, upper)
@@ -62,7 +62,7 @@ describe('clamp performance', () => {
         }
     })
 
-    bench('lodash clamp', () => {
+    bench('lodash', () => {
         for (let i = 0; i < ITERATIONS; i++) {
             testCases.forEach(([num, lower, upper]) => {
                 _clamp(num, lower, upper)
