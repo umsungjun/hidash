@@ -149,6 +149,16 @@
                 "types": "./eq.d.ts",
                 "default": "./eq.js"
             }
+        },
+        "./includes": {
+            "import": {
+                "types": "./includes.d.mts",
+                "default": "./includes.mjs"
+            },
+            "require": {
+                "types": "./includes.d.ts",
+                "default": "./includes.js"
+            }
         }
     },
     "scripts": {

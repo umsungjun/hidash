@@ -15,6 +15,7 @@ const moduleMap = {
     sumBy: './src/sumBy.ts',
     clamp: './src/clamp.ts',
     eq: './src/eq.ts',
+    includes: './src/includes.ts',
 } as const
 
 export default moduleMap
