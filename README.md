@@ -54,61 +54,77 @@ import {has, isEmpty} from '@naverpay/hidash'
 
 ## Benchmarks (2024.11.04)
 
-<https://github.com/NaverPayDev/hidash/actions/runs/11722817696/job/32653182268>
+<https://github.com/NaverPayDev/hidash/actions/runs/11855420278/job/33039613302>
 
 ```bash
-✓ src/sumBy.bench.ts > sumBy performance 1270ms
-    name         hz      min      max     mean      p75      p99     p995     p999     rme  samples
-  · hidash   302.92   3.1237   6.2324   3.3012   3.3401   4.9049   6.2324   6.2324  ±1.40%      152   fastest
-  · lodash  84.6955  11.4229  19.5812  11.8070  11.5609  19.5812  19.5812  19.5812  ±3.42%       43
-✓ src/keys.bench.ts > keys performance 4305ms
-    name         hz      min      max     mean      p75      p99     p995     p999     rme  samples
-  · hidash  15.6756  63.2317  64.5926  63.7935  63.9407  64.5926  64.5926  64.5926  ±0.40%       10   fastest
-  · lodash   5.3226   185.72   197.35   187.88   187.64   197.35   197.35   197.35  ±1.33%       10
-✓ src/has.bench.ts > has performance 1246ms
-    name        hz     min     max    mean     p75     p99    p995    p999     rme  samples
-  · hidash  500.06  1.9612  2.5553  1.9997  1.9987  2.2186  2.2419  2.5553  ±0.31%      251   fastest
-  · lodash  198.12  4.9729  5.5811  5.0474  5.0686  5.4542  5.5811  5.5811  ±0.34%      100
-✓ src/sum.bench.ts > sum performance 1280ms
-    name         hz      min      max     mean      p75      p99     p995     p999     rme  samples
-  · hidash   152.93   6.3510  11.9313   6.5388   6.4970  11.9313  11.9313  11.9313  ±2.25%       77   fastest
-  · lodash  60.1007  16.4401  19.4118  16.6387  16.5817  19.4118  19.4118  19.4118  ±1.16%       31
-✓ src/clamp.bench.ts > clamp performance 1286ms
-    name               hz      min      max     mean      p75      p99     p995     p999     rme  samples
-  · hidash clamp   113.61   8.7456   8.9181   8.8024   8.8269   8.9181   8.9181   8.9181  ±0.12%       57   fastest
-  · lodash clamp  49.0610  19.4046  24.2990  20.3828  20.1330  24.2990  24.2990  24.2990  ±3.16%       25
-✓ src/size.bench.ts > size performance 1290ms
-    name         hz      min      max     mean      p75      p99     p995     p999     rme  samples
-  · hidash  71.2244  13.7929  14.3049  14.0401  14.1059  14.3049  14.3049  14.3049  ±0.26%       36
-  · lodash  71.4762  13.6747  15.3879  13.9907  14.0141  15.3879  15.3879  15.3879  ±0.71%       36   fastest
-✓ src/isEmpty.bench.ts > isEmpty performance 1555ms
-    name         hz      min      max     mean      p75      p99     p995     p999     rme  samples
-  · hidash   211.80   4.5947   4.9616   4.7215   4.7627   4.9552   4.9616   4.9616  ±0.31%      106   fastest
-  · lodash  20.0165  49.2660  51.2919  49.9587  50.3341  51.2919  51.2919  51.2919  ±0.78%       11
-
-
-BENCH  Summary
-
- hidash clamp - src/clamp.bench.ts > clamp performance
-   2.32x faster than lodash clamp
-
- hidash - src/has.bench.ts > has performance
-   2.52x faster than lodash
-
- hidash - src/isEmpty.bench.ts > isEmpty performance
-   10.58x faster than lodash
-
- hidash - src/keys.bench.ts > keys performance
-   2.95x faster than lodash
-
- lodash - src/size.bench.ts > size performance
-   1.00x faster than hidash
-
- hidash - src/sum.bench.ts > sum performance
-   2.54x faster than lodash
-
- hidash - src/sumBy.bench.ts > sumBy performance
-   3.58x faster than lodash
+ RUN  v2.1.4 /home/runner/work/hidash/hidash
+ ✓ src/sumBy.bench.ts > sumBy performance 1267ms
+     name         hz      min      max     mean      p75      p99     p995     p999     rme  samples
+   · hidash   304.80   3.1214   4.4432   3.2809   3.3526   3.5577   4.4432   4.4432  ±0.69%      153   fastest
+   · lodash  86.5900  11.4434  12.4117  11.5487  11.5666  12.4117  12.4117  12.4117  ±0.41%       44
+ ✓ src/groupBy.bench.ts > groupBy basic performance 1236ms
+     name                hz     min     max    mean     p75     p99    p995    p999     rme  samples
+   · hidash groupBy  612.65  1.5787  2.6086  1.6323  1.6632  1.7710  1.7835  2.6086  ±0.48%      307   fastest
+   · lodash groupBy  311.76  3.1278  3.7181  3.2076  3.2371  3.4148  3.7181  3.7181  ±0.33%      156
+ ✓ src/groupBy.bench.ts > groupBy complex performance 1481ms
+     name                 hz      min      max     mean      p75      p99     p995     p999     rme  samples
+   · hidash groupBy  37.5238  26.5137  27.0285  26.6497  26.6829  27.0285  27.0285  27.0285  ±0.21%       19   fastest
+   · lodash groupBy  28.4671  34.8767  35.8927  35.1283  35.2423  35.8927  35.8927  35.8927  ±0.47%       15
+ ✓ src/groupBy.bench.ts > groupBy large array performance (simple key) 1209ms
+     name                  hz     min     max    mean     p75     p99    p995    p999     rme  samples
+   · hidash groupBy  3,391.48  0.2690  0.7011  0.2949  0.2937  0.4287  0.5341  0.5727  ±0.52%     1696   fastest
+   · lodash groupBy  2,878.71  0.3191  0.5625  0.3474  0.3484  0.4545  0.4744  0.5401  ±0.35%     1440
+ ✓ src/groupBy.bench.ts > groupBy large array performance (complex operations) 1209ms
+     name                  hz     min     max    mean     p75     p99    p995    p999     rme  samples
+   · hidash groupBy  2,938.49  0.3031  1.6135  0.3403  0.3368  0.5341  0.5620  0.6222  ±0.82%     1470   fastest
+   · lodash groupBy  2,376.62  0.4019  0.7727  0.4208  0.4169  0.6286  0.6578  0.7624  ±0.52%     1189
+ ✓ src/keys.bench.ts > keys performance 4339ms
+     name         hz      min      max     mean      p75      p99     p995     p999     rme  samples
+   · hidash  15.5929  62.8146  70.0485  64.1319  64.3186  70.0485  70.0485  70.0485  ±2.40%       10   fastest
+   · lodash   5.2733   186.37   192.80   189.63   191.65   192.80   192.80   192.80  ±0.82%       10
+ ✓ src/has.bench.ts > has performance 1245ms
+     name        hz     min     max    mean     p75     p99    p995    p999     rme  samples
+   · hidash  500.10  1.9561  2.3719  1.9996  1.9986  2.1787  2.1793  2.3719  ±0.30%      251   fastest
+   · lodash  209.38  4.7039  5.4860  4.7761  4.7751  5.0803  5.4860  5.4860  ±0.39%      105
+ ✓ src/sum.bench.ts > sum performance 1281ms
+     name         hz      min      max     mean      p75      p99     p995     p999     rme  samples
+   · hidash   155.03   6.3301   7.2167   6.4504   6.5047   7.2167   7.2167   7.2167  ±0.62%       78   fastest
+   · lodash  58.5221  16.6437  18.2681  17.0876  17.1916  18.2681  18.2681  18.2681  ±0.80%       30
+ ✓ src/clamp.bench.ts > clamp performance 1298ms
+     name               hz      min      max     mean      p75      p99     p995     p999     rme  samples
+   · hidash clamp   113.51   8.7395   9.0345   8.8100   8.8311   9.0345   9.0345   9.0345  ±0.17%       57   fastest
+   · lodash clamp  51.8345  19.1934  19.4928  19.2922  19.3263  19.4928  19.4928  19.4928  ±0.14%       26
+ ✓ src/size.bench.ts > size performance 1307ms
+     name         hz      min      max     mean      p75      p99     p995     p999     rme  samples
+   · hidash  71.6480  13.7911  14.4221  13.9571  13.9957  14.4221  14.4221  14.4221  ±0.29%       36
+   · lodash  72.0733  13.7034  14.4779  13.8748  13.9075  14.4779  14.4779  14.4779  ±0.30%       37   fastest
+ ✓ src/isEmpty.bench.ts > isEmpty performance 1489ms
+     name         hz      min      max     mean      p75      p99     p995     p999     rme  samples
+   · hidash   208.23   4.6614   5.5675   4.8024   4.8284   4.9761   5.5675   5.5675  ±0.39%      105   fastest
+   · lodash  19.8324  49.9678  50.8518  50.4226  50.6739  50.8518  50.8518  50.8518  ±0.41%       10
+ BENCH  Summary
+  hidash clamp - src/clamp.bench.ts > clamp performance
+    2.19x faster than lodash clamp
+  hidash groupBy - src/groupBy.bench.ts > groupBy basic performance
+    1.97x faster than lodash groupBy
+  hidash groupBy - src/groupBy.bench.ts > groupBy complex performance
+    1.32x faster than lodash groupBy
+  hidash groupBy - src/groupBy.bench.ts > groupBy large array performance (simple key)
+    1.18x faster than lodash groupBy
+  hidash groupBy - src/groupBy.bench.ts > groupBy large array performance (complex operations)
+    1.24x faster than lodash groupBy
+  hidash - src/has.bench.ts > has performance
+    2.39x faster than lodash
+  hidash - src/isEmpty.bench.ts > isEmpty performance
+    10.50x faster than lodash
+  hidash - src/keys.bench.ts > keys performance
+    2.96x faster than lodash
+  lodash - src/size.bench.ts > size performance
+    1.01x faster than hidash
+  hidash - src/sum.bench.ts > sum performance
+    2.65x faster than lodash
+  hidash - src/sumBy.bench.ts > sumBy performance
+    3.52x faster than lodash
 ```
 
 ## Available Functions

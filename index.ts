@@ -14,6 +14,7 @@ const moduleMap = {
     sum: './src/sum.ts',
     sumBy: './src/sumBy.ts',
     clamp: './src/clamp.ts',
+    groupBy: './src/groupBy.ts',
     eq: './src/eq.ts',
     includes: './src/includes.ts',
     every: './src/every.ts',
