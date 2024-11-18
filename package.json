@@ -149,6 +149,46 @@
                 "types": "./groupBy.d.ts",
                 "default": "./groupBy.js"
             }
+        },
+        "./eq": {
+            "import": {
+                "types": "./eq.d.mts",
+                "default": "./eq.mjs"
+            },
+            "require": {
+                "types": "./eq.d.ts",
+                "default": "./eq.js"
+            }
+        },
+        "./includes": {
+            "import": {
+                "types": "./includes.d.mts",
+                "default": "./includes.mjs"
+            },
+            "require": {
+                "types": "./includes.d.ts",
+                "default": "./includes.js"
+            }
+        },
+        "./every": {
+            "import": {
+                "types": "./every.d.mts",
+                "default": "./every.mjs"
+            },
+            "require": {
+                "types": "./every.d.ts",
+                "default": "./every.js"
+            }
+        },
+        "./isNull": {
+            "import": {
+                "types": "./isNull.d.mts",
+                "default": "./isNull.mjs"
+            },
+            "require": {
+                "types": "./isNull.d.ts",
+                "default": "./isNull.js"
+            }
         }
     },
     "scripts": {
