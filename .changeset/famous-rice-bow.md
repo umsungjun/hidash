@@ -1,5 +1,0 @@
----
-"@naverpay/hidash": minor
----
-
-🚀 groupBy
