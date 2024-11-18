@@ -1,5 +1,15 @@
 # @naverpay/hidash
 
+## 0.1.0
+
+### Minor Changes
+
+-   4514c5f: 🚀 groupBy
+
+### Patch Changes
+
+-   5a2febe: :rocket: `eq` `every` `includes` `isNull`
+
 ## 0.0.5
 
 ### Patch Changes
