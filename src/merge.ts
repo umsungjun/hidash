@@ -104,3 +104,5 @@ export function merge<TObject extends object, TSource extends object>(
 
     return result as TObject & TSource
 }
+
+export default merge
