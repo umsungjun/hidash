@@ -1,6 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import isObject from './isObject'
 
+const toString = Object.prototype.toString
+const getType = toString.call.bind(toString)
+
+const DATE_TYPE = '[object Date]'
+const REGEXP_TYPE = '[object RegExp]'
+
 export function merge<TObject extends object, TSource extends object>(
     object: TObject,
     ...sources: TSource[]
@@ -10,75 +16,78 @@ export function merge<TObject extends object, TSource extends object>(
         return object as TObject & TSource
     }
 
-    function cloneSpecialObject(obj: any): any {
-        const type = Object.prototype.toString.call(obj)
-        if (type === '[object Date]') {
-            return new Date(obj)
-        }
-        if (type === '[object RegExp]') {
-            return new RegExp(obj)
-        }
-        return obj
+    function cloneSpecialObject(obj: any, type: string): any {
+        return type === DATE_TYPE ? new Date(obj) : new RegExp(obj)
     }
 
     function baseMerge(target: any, source: any): any {
-        // 특수 객체 처리
-        const sourceType = Object.prototype.toString.call(source)
-        if (sourceType === '[object Date]' || sourceType === '[object RegExp]') {
-            return cloneSpecialObject(source)
+        if (source === null || source === undefined) {
+            return target
         }
 
-        const targetIsArray = Array.isArray(target)
-        const sourceIsArray = Array.isArray(source)
+        const sourceType = getType(source)
+        if (sourceType === DATE_TYPE || sourceType === REGEXP_TYPE) {
+            return cloneSpecialObject(source, sourceType)
+        }
 
-        if (targetIsArray && sourceIsArray) {
-            const targetLength = target.length
+        if (Array.isArray(source)) {
+            const targetIsArray = Array.isArray(target)
+            if (!targetIsArray) {
+                return source.slice()
+            }
+
             const sourceLength = source.length
-            const maxLength = Math.max(targetLength, sourceLength)
 
-            if (targetLength < sourceLength) {
+            if (target.length < sourceLength) {
                 target.length = sourceLength
             }
 
-            for (let i = 0; i < maxLength; i++) {
+            for (let i = 0; i < sourceLength; i++) {
                 if (i in source) {
-                    const valueType = Object.prototype.toString.call(source[i])
-                    if (valueType === '[object Date]' || valueType === '[object RegExp]') {
-                        target[i] = cloneSpecialObject(source[i])
-                    } else if (isObject(source[i])) {
-                        target[i] = isObject(target[i]) ? target[i] : {}
-                        baseMerge(target[i], source[i])
-                    } else {
-                        target[i] = source[i]
+                    const value = source[i]
+                    if (value === null || value === undefined) {
+                        target[i] = value
+                        continue
                     }
+
+                    const valueType = getType(value)
+                    target[i] =
+                        valueType === DATE_TYPE || valueType === REGEXP_TYPE
+                            ? cloneSpecialObject(value, valueType)
+                            : isObject(value)
+                            ? baseMerge(isObject(target[i]) ? target[i] : {}, value)
+                            : value
                 }
             }
             return target
         }
 
-        // 객체 처리 최적화
-        if (!sourceIsArray && isObject(source)) {
+        if (isObject(source)) {
             const keys = Object.keys(source)
+            const keysLength = keys.length
 
-            // eslint-disable-next-line @typescript-eslint/prefer-for-of
-            for (let i = 0; i < keys.length; i++) {
-                const key = keys[i]
-                const sourceValue = source[key]
+            let key: string
 
-                if (sourceValue !== undefined) {
-                    const valueType = Object.prototype.toString.call(sourceValue)
-                    if (valueType === '[object Date]' || valueType === '[object RegExp]') {
-                        target[key] = cloneSpecialObject(sourceValue)
-                    } else if (isObject(sourceValue)) {
-                        if (!Object.hasOwn(target, key)) {
-                            target[key] = {}
-                        } else if (!isObject(target[key])) {
-                            target[key] = {}
-                        }
-                        baseMerge(target[key], sourceValue)
+            for (let i = 0; i < keysLength; i++) {
+                key = keys[i]
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
+                const value = source[key]
+
+                if (value === undefined) {
+                    continue
+                }
+
+                if (value !== null && typeof value === 'object') {
+                    const valueType = getType(value)
+                    if (valueType === DATE_TYPE || valueType === REGEXP_TYPE) {
+                        target[key] = cloneSpecialObject(value, valueType)
                     } else {
-                        target[key] = sourceValue
+                        const currentTarget = target[key]
+                        target[key] = isObject(currentTarget) ? baseMerge(currentTarget, value) : baseMerge({}, value)
                     }
+                } else {
+                    target[key] = value
                 }
             }
             return target
@@ -87,13 +96,10 @@ export function merge<TObject extends object, TSource extends object>(
         return source
     }
 
-    // sources 순회 처리
     let result = object
+
     for (let i = 0; i < length; i++) {
-        const source = sources[i]
-        if (source !== undefined) {
-            result = baseMerge(result, source)
-        }
+        result = baseMerge(result, sources[i])
     }
 
     return result as TObject & TSource
