@@ -21,6 +21,8 @@ const moduleMap = {
     isNull: './src/isNull.ts',
     merge: './src/merge.ts',
     isNumber: './src/isNumber.ts',
+    once: './src/once.ts',
+    before: './src/before.ts',
 } as const
 
 export default moduleMap

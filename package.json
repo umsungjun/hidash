@@ -209,6 +209,26 @@
                 "types": "./isNumber.d.ts",
                 "default": "./isNumber.js"
             }
+        },
+        "./once": {
+            "import": {
+                "types": "./once.d.mts",
+                "default": "./once.mjs"
+            },
+            "require": {
+                "types": "./once.d.ts",
+                "default": "./once.js"
+            }
+        },
+        "./before": {
+            "import": {
+                "types": "./before.d.mts",
+                "default": "./before.mjs"
+            },
+            "require": {
+                "types": "./before.d.ts",
+                "default": "./before.js"
+            }
         }
     },
     "scripts": {
