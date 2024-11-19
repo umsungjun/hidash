@@ -23,6 +23,7 @@ const moduleMap = {
     isNumber: './src/isNumber.ts',
     once: './src/once.ts',
     before: './src/before.ts',
+    omit: './src/omit.ts',
 } as const
 
 export default moduleMap

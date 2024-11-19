@@ -229,6 +229,16 @@
                 "types": "./before.d.ts",
                 "default": "./before.js"
             }
+        },
+        "./omit": {
+            "import": {
+                "types": "./omit.d.mts",
+                "default": "./omit.mjs"
+            },
+            "require": {
+                "types": "./omit.d.ts",
+                "default": "./omit.js"
+            }
         }
     },
     "scripts": {
