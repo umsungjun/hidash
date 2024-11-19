@@ -1,24 +1,24 @@
 // only for vite, tsup
 // remember, this is not barrel file.
 const moduleMap = {
-    isEmpty: './src/isEmpty.ts',
-    size: './src/size.ts',
-    keys: './src/keys.ts',
-    isNil: './src/isNil.ts',
-    isArray: './src/isArray.ts',
-    isObject: './src/isObject.ts',
-    has: './src/has.ts',
+    clamp: './src/clamp.ts',
     debounce: './src/debounce.ts',
-    throttle: './src/throttle.ts',
+    eq: './src/eq.ts',
+    every: './src/every.ts',
+    groupBy: './src/groupBy.ts',
+    has: './src/has.ts',
+    includes: './src/includes.ts',
+    isArray: './src/isArray.ts',
+    isEmpty: './src/isEmpty.ts',
+    isNil: './src/isNil.ts',
+    isNull: './src/isNull.ts',
+    isObject: './src/isObject.ts',
+    keys: './src/keys.ts',
     memoize: './src/memoize.ts',
+    size: './src/size.ts',
     sum: './src/sum.ts',
     sumBy: './src/sumBy.ts',
-    clamp: './src/clamp.ts',
-    groupBy: './src/groupBy.ts',
-    eq: './src/eq.ts',
-    includes: './src/includes.ts',
-    every: './src/every.ts',
-    isNull: './src/isNull.ts',
+    throttle: './src/throttle.ts',
 } as const
 
 export default moduleMap

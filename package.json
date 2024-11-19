@@ -10,74 +10,14 @@
         "*.d.mts"
     ],
     "exports": {
-        "./isEmpty": {
+        "./clamp": {
             "import": {
-                "types": "./isEmpty.d.mts",
-                "default": "./isEmpty.mjs"
+                "types": "./clamp.d.mts",
+                "default": "./clamp.mjs"
             },
             "require": {
-                "types": "./isEmpty.d.ts",
-                "default": "./isEmpty.js"
-            }
-        },
-        "./size": {
-            "import": {
-                "types": "./size.d.mts",
-                "default": "./size.mjs"
-            },
-            "require": {
-                "types": "./size.d.ts",
-                "default": "./size.js"
-            }
-        },
-        "./keys": {
-            "import": {
-                "types": "./keys.d.mts",
-                "default": "./keys.mjs"
-            },
-            "require": {
-                "types": "./keys.d.ts",
-                "default": "./keys.js"
-            }
-        },
-        "./isNil": {
-            "import": {
-                "types": "./isNil.d.mts",
-                "default": "./isNil.mjs"
-            },
-            "require": {
-                "types": "./isNil.d.ts",
-                "default": "./isNil.js"
-            }
-        },
-        "./isArray": {
-            "import": {
-                "types": "./isArray.d.mts",
-                "default": "./isArray.mjs"
-            },
-            "require": {
-                "types": "./isArray.d.ts",
-                "default": "./isArray.js"
-            }
-        },
-        "./isObject": {
-            "import": {
-                "types": "./isObject.d.mts",
-                "default": "./isObject.mjs"
-            },
-            "require": {
-                "types": "./isObject.d.ts",
-                "default": "./isObject.js"
-            }
-        },
-        "./has": {
-            "import": {
-                "types": "./has.d.mts",
-                "default": "./has.mjs"
-            },
-            "require": {
-                "types": "./has.d.ts",
-                "default": "./has.js"
+                "types": "./clamp.d.ts",
+                "default": "./clamp.js"
             }
         },
         "./debounce": {
@@ -90,14 +30,114 @@
                 "default": "./debounce.js"
             }
         },
-        "./throttle": {
+        "./eq": {
             "import": {
-                "types": "./throttle.d.mts",
-                "default": "./throttle.mjs"
+                "types": "./eq.d.mts",
+                "default": "./eq.mjs"
             },
             "require": {
-                "types": "./throttle.d.ts",
-                "default": "./throttle.js"
+                "types": "./eq.d.ts",
+                "default": "./eq.js"
+            }
+        },
+        "./every": {
+            "import": {
+                "types": "./every.d.mts",
+                "default": "./every.mjs"
+            },
+            "require": {
+                "types": "./every.d.ts",
+                "default": "./every.js"
+            }
+        },
+        "./groupBy": {
+            "import": {
+                "types": "./groupBy.d.mts",
+                "default": "./groupBy.mjs"
+            },
+            "require": {
+                "types": "./groupBy.d.ts",
+                "default": "./groupBy.js"
+            }
+        },
+        "./has": {
+            "import": {
+                "types": "./has.d.mts",
+                "default": "./has.mjs"
+            },
+            "require": {
+                "types": "./has.d.ts",
+                "default": "./has.js"
+            }
+        },
+        "./includes": {
+            "import": {
+                "types": "./includes.d.mts",
+                "default": "./includes.mjs"
+            },
+            "require": {
+                "types": "./includes.d.ts",
+                "default": "./includes.js"
+            }
+        },
+        "./isArray": {
+            "import": {
+                "types": "./isArray.d.mts",
+                "default": "./isArray.mjs"
+            },
+            "require": {
+                "types": "./isArray.d.ts",
+                "default": "./isArray.js"
+            }
+        },
+        "./isEmpty": {
+            "import": {
+                "types": "./isEmpty.d.mts",
+                "default": "./isEmpty.mjs"
+            },
+            "require": {
+                "types": "./isEmpty.d.ts",
+                "default": "./isEmpty.js"
+            }
+        },
+        "./isNil": {
+            "import": {
+                "types": "./isNil.d.mts",
+                "default": "./isNil.mjs"
+            },
+            "require": {
+                "types": "./isNil.d.ts",
+                "default": "./isNil.js"
+            }
+        },
+        "./isNull": {
+            "import": {
+                "types": "./isNull.d.mts",
+                "default": "./isNull.mjs"
+            },
+            "require": {
+                "types": "./isNull.d.ts",
+                "default": "./isNull.js"
+            }
+        },
+        "./isObject": {
+            "import": {
+                "types": "./isObject.d.mts",
+                "default": "./isObject.mjs"
+            },
+            "require": {
+                "types": "./isObject.d.ts",
+                "default": "./isObject.js"
+            }
+        },
+        "./keys": {
+            "import": {
+                "types": "./keys.d.mts",
+                "default": "./keys.mjs"
+            },
+            "require": {
+                "types": "./keys.d.ts",
+                "default": "./keys.js"
             }
         },
         "./memoize": {
@@ -108,6 +148,16 @@
             "require": {
                 "types": "./memoize.d.ts",
                 "default": "./memoize.js"
+            }
+        },
+        "./size": {
+            "import": {
+                "types": "./size.d.mts",
+                "default": "./size.mjs"
+            },
+            "require": {
+                "types": "./size.d.ts",
+                "default": "./size.js"
             }
         },
         "./sum": {
@@ -130,64 +180,14 @@
                 "default": "./sumBy.js"
             }
         },
-        "./clamp": {
+        "./throttle": {
             "import": {
-                "types": "./clamp.d.mts",
-                "default": "./clamp.mjs"
+                "types": "./throttle.d.mts",
+                "default": "./throttle.mjs"
             },
             "require": {
-                "types": "./clamp.d.ts",
-                "default": "./clamp.js"
-            }
-        },
-        "./groupBy": {
-            "import": {
-                "types": "./groupBy.d.mts",
-                "default": "./groupBy.mjs"
-            },
-            "require": {
-                "types": "./groupBy.d.ts",
-                "default": "./groupBy.js"
-            }
-        },
-        "./eq": {
-            "import": {
-                "types": "./eq.d.mts",
-                "default": "./eq.mjs"
-            },
-            "require": {
-                "types": "./eq.d.ts",
-                "default": "./eq.js"
-            }
-        },
-        "./includes": {
-            "import": {
-                "types": "./includes.d.mts",
-                "default": "./includes.mjs"
-            },
-            "require": {
-                "types": "./includes.d.ts",
-                "default": "./includes.js"
-            }
-        },
-        "./every": {
-            "import": {
-                "types": "./every.d.mts",
-                "default": "./every.mjs"
-            },
-            "require": {
-                "types": "./every.d.ts",
-                "default": "./every.js"
-            }
-        },
-        "./isNull": {
-            "import": {
-                "types": "./isNull.d.mts",
-                "default": "./isNull.mjs"
-            },
-            "require": {
-                "types": "./isNull.d.ts",
-                "default": "./isNull.js"
+                "types": "./throttle.d.ts",
+                "default": "./throttle.js"
             }
         }
     },
@@ -209,7 +209,8 @@
         "coverage": "vitest run --coverage",
         "changeset-version": "changeset version && pnpm run md:fix",
         "prepublish": "node scripts/pre-build.mjs",
-        "postpublish": "rimraf ./*.js ./*.mjs ./*.d.ts ./*.d.mts"
+        "postpublish": "rimraf ./*.js ./*.mjs ./*.d.ts ./*.d.mts",
+        "generate": "node ./scripts/generate-utils.mjs"
     },
     "author": "yc.effort@navercorp.com",
     "license": "MIT",
