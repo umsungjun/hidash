@@ -6,6 +6,7 @@ on:
             - 'src/**'
             - 'index.ts'
             - 'package.json'
+    workflow_dispatch:
 
 jobs:
     check-utils:
