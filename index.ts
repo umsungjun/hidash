@@ -20,6 +20,7 @@ const moduleMap = {
     every: './src/every.ts',
     isNull: './src/isNull.ts',
     merge: './src/merge.ts',
+    isNumber: './src/isNumber.ts',
 } as const
 
 export default moduleMap

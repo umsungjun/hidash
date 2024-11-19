@@ -199,6 +199,16 @@
                 "types": "./merge.d.ts",
                 "default": "./merge.js"
             }
+        },
+        "./isNumber": {
+            "import": {
+                "types": "./isNumber.d.mts",
+                "default": "./isNumber.mjs"
+            },
+            "require": {
+                "types": "./isNumber.d.ts",
+                "default": "./isNumber.js"
+            }
         }
     },
     "scripts": {
