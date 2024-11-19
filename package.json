@@ -189,6 +189,16 @@
                 "types": "./isNull.d.ts",
                 "default": "./isNull.js"
             }
+        },
+        "./merge": {
+            "import": {
+                "types": "./merge.d.mts",
+                "default": "./merge.mjs"
+            },
+            "require": {
+                "types": "./merge.d.ts",
+                "default": "./merge.js"
+            }
         }
     },
     "scripts": {
