@@ -39,12 +39,11 @@ describe('before', () => {
 
     it('should handle decimal numbers by flooring them', () => {
         const spy = vi.fn()
-        const limited = before(1.9, spy)
+        const limited = before(2.9, spy) // 2.9 -> 2
 
-        limited()
-        expect(spy).toHaveBeenCalledTimes(1)
-
-        limited()
+        limited() // n:2 -> 1, 실행됨
+        limited() // n:1 -> 0, 실행 안됨
+        limited() // n:0 -> -1, 실행 안됨
         expect(spy).toHaveBeenCalledTimes(1)
     })
 })
