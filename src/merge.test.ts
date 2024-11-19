@@ -4,8 +4,7 @@ import {describe, expect, it} from 'vitest'
 import {merge} from './merge'
 
 describe('merge', () => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const testCases: [any, ...any[]][] = [
+    const testCases = [
         // Basic object merging
         [{a: 1}, {b: 2}],
         [{a: 1}, {a: 2}],
@@ -64,7 +63,7 @@ describe('merge', () => {
             {a: 1, b: 'string', c: true},
             {a: '1', b: 2, c: false},
         ],
-    ]
+    ] as const
 
     it.each(testCases)('should match lodash behavior for case %#', (object, ...sources) => {
         const expected = _merge({...object}, ...sources.map((s) => ({...s})))
@@ -98,9 +97,11 @@ describe('merge', () => {
         const source: DeepObj = {a: {b: {d: 2}}}
 
         const result = merge({}, obj, source)
+        const lodashResult = _merge({}, obj, source)
         obj.a.b.c = 999 // Modify original
 
         expect(result.a.b.c).toBe(1) // Should not be affected
+        expect(lodashResult.a.b.c).toBe(1)
     })
 
     it('should handle array-like objects', () => {
@@ -123,6 +124,7 @@ describe('merge', () => {
         const source: CircularObj = {a: 2}
 
         expect(() => merge({...obj}, source)).not.toThrow()
+        expect(() => _merge({...obj}, source)).not.toThrow()
     })
 
     it('should merge arrays by index', () => {
@@ -134,7 +136,9 @@ describe('merge', () => {
         const source: ArrayObj = {arr: [4, {y: 2}, 6]}
 
         const result = merge(obj, source)
+        const lodashResult = _merge(obj, source)
         expect(result.arr[1]).toEqual({x: 1, y: 2})
+        expect(lodashResult.arr[1]).toEqual({x: 1, y: 2})
     })
 
     it('should handle undefined source values', () => {
@@ -168,5 +172,6 @@ describe('merge', () => {
         const source = createNestedObject(50)
 
         expect(() => merge(obj, source)).not.toThrow()
+        expect(() => _merge(obj, source)).not.toThrow()
     })
 })
