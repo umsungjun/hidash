@@ -1,20 +1,8 @@
 import isObject from './isObject'
 import isSymbol from './isSymbol'
 
-const reTrimStart = /^\s+/
-const reWhitespace = /\s/
-
-function trimmedEndIndex(string: string) {
-    let index = string.length
-
-    while (index-- && reWhitespace.test(string.charAt(index))) {
-        // nothing to do
-    }
-    return index
-}
-
 function baseTrim(string: string) {
-    return string ? string.slice(0, trimmedEndIndex(string) + 1).replace(reTrimStart, '') : string
+    return string ? string.trim() : string
 }
 
 const NAN = NaN // Number.isNaN(0/0) true
