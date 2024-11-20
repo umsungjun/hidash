@@ -37,6 +37,7 @@ jobs:
             - name: Convert benchmark results to markdown
               run: |
                   node ./scripts/benchmark-to-md.mjs benchmark-result.json ${{ github.sha }} true > BENCHMARK.md
+                  pnpm run md:fix
 
             - name: Commit benchmark results
               run: |
