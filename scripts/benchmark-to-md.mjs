@@ -56,7 +56,9 @@ function formatBenchmarkResults(benchmarkData, commitId, isMainBranch = false) {
         }),
         '',
         '> Note: Higher operations per second (ops/sec) numbers are better. Each test compares hidash vs lodash implementation.',
+        '> ',
         '> ⚠️ indicates where hidash is slower than lodash.',
+        '> ',
         '> 🏆 indicates the faster implementation.',
     ]
 
