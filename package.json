@@ -10,6 +10,16 @@
         "*.d.mts"
     ],
     "exports": {
+        "./before": {
+            "import": {
+                "types": "./before.d.mts",
+                "default": "./before.mjs"
+            },
+            "require": {
+                "types": "./before.d.ts",
+                "default": "./before.js"
+            }
+        },
         "./clamp": {
             "import": {
                 "types": "./clamp.d.mts",
@@ -120,6 +130,16 @@
                 "default": "./isNull.js"
             }
         },
+        "./isNumber": {
+            "import": {
+                "types": "./isNumber.d.mts",
+                "default": "./isNumber.mjs"
+            },
+            "require": {
+                "types": "./isNumber.d.ts",
+                "default": "./isNumber.js"
+            }
+        },
         "./isObject": {
             "import": {
                 "types": "./isObject.d.mts",
@@ -148,6 +168,36 @@
             "require": {
                 "types": "./memoize.d.ts",
                 "default": "./memoize.js"
+            }
+        },
+        "./merge": {
+            "import": {
+                "types": "./merge.d.mts",
+                "default": "./merge.mjs"
+            },
+            "require": {
+                "types": "./merge.d.ts",
+                "default": "./merge.js"
+            }
+        },
+        "./omit": {
+            "import": {
+                "types": "./omit.d.mts",
+                "default": "./omit.mjs"
+            },
+            "require": {
+                "types": "./omit.d.ts",
+                "default": "./omit.js"
+            }
+        },
+        "./once": {
+            "import": {
+                "types": "./once.d.mts",
+                "default": "./once.mjs"
+            },
+            "require": {
+                "types": "./once.d.ts",
+                "default": "./once.js"
             }
         },
         "./size": {
