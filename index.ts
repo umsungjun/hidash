@@ -15,6 +15,7 @@ const moduleMap = {
     isNull: './src/isNull.ts',
     isNumber: './src/isNumber.ts',
     isObject: './src/isObject.ts',
+    isSymbol: './src/isSymbol.ts',
     keys: './src/keys.ts',
     memoize: './src/memoize.ts',
     merge: './src/merge.ts',
@@ -24,6 +25,7 @@ const moduleMap = {
     sum: './src/sum.ts',
     sumBy: './src/sumBy.ts',
     throttle: './src/throttle.ts',
+    toNumber: './src/toNumber.ts',
 } as const
 
 export default moduleMap
