@@ -1,5 +1,13 @@
 # @naverpay/hidash
 
+## 0.1.2
+
+### Patch Changes
+
+-   d1dcd07: 🚀 `toNumber`, `isSymbol`
+
+    [🚀 toNumber, isSymbol](https://github.com/NaverPayDev/hidash/pull/113)
+
 ## 0.1.1
 
 ### Patch Changes
