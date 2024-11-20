@@ -21,6 +21,16 @@ jobs:
         steps:
             - id: check
               run: echo "should_run=true" >> $GITHUB_OUTPUT
+            - name: Add reaction to comment
+              uses: actions/github-script@v6
+              with:
+                  script: |
+                      await github.rest.reactions.createForIssueComment({
+                        owner: context.repo.owner,
+                        repo: context.repo.repo,
+                        comment_id: context.payload.comment.id,
+                        content: '+1'
+                      });
 
     benchmark:
         needs: [check_comment]
@@ -71,3 +81,21 @@ jobs:
                         ...context.repo,
                         issue_number: prNumber,
                       });
+
+                      const existingComment = comments.find(comment =>
+                        comment.body.includes('### Benchmark Results')
+                      );
+
+                      if (existingComment) {
+                        await github.rest.issues.updateComment({
+                          ...context.repo,
+                          comment_id: existingComment.id,
+                          body: finalContent,
+                        });
+                      } else {
+                        await github.rest.issues.createComment({
+                          ...context.repo,
+                          issue_number: prNumber,
+                          body: finalContent,
+                        });
+                      }
