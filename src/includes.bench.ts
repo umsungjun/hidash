@@ -41,7 +41,7 @@ const testCases = [
     [{a: 1, b: '2', c: true}, true],
     [{a: [], b: {}, c: new Date()}, []],
 
-    // With fromIndex
+    // With from Index
     [{0: 'a', 1: 'b', 2: 'a', length: 3}, 'a', 1],
     [{0: 1, 1: 2, 2: 1, length: 3}, 1, 2],
 ] as const

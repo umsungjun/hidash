@@ -50,5 +50,5 @@ jobs:
                     exit 0
                   fi
 
-                  git commit -m "📝 docs: update benchmark results [skip ci]"
+                  git commit -m "📝 docs: update benchmark results [skip ci]" --no-verify
                   git push
