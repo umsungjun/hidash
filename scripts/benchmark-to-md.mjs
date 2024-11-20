@@ -30,8 +30,8 @@ function formatBenchmarkResults(benchmarkData, commitId, isMainBranch = false) {
                     winner: isHidashFaster ? 'hidash' : 'lodash',
                     ratio,
                     loser: isHidashFaster ? 'lodash' : 'hidash',
-                    fasterHz: Math.max(hidashBench.hz, lodashBench.hz).toFixed(2),
-                    slowerHz: Math.min(hidashBench.hz, lodashBench.hz).toFixed(2),
+                    hidashHz: hidashBench.hz.toFixed(2),
+                    lodashHz: lodashBench.hz.toFixed(2),
                     warningEmoji,
                 })
             }
@@ -42,22 +42,22 @@ function formatBenchmarkResults(benchmarkData, commitId, isMainBranch = false) {
         ? `https://github.com/${process.env.GITHUB_REPOSITORY}`
         : 'https://github.com/NaverPayDev/hidash'
 
-    const title = isMainBranch
-        ? '# Benchmark Results\n\nLatest benchmark results comparing hidash vs lodash performance.'
-        : '### Benchmark Results'
-
     const markdownParts = [
-        title,
+        isMainBranch
+            ? '# Benchmark Results\n\nLatest benchmark results comparing hidash vs lodash performance.'
+            : '### Benchmark Results',
         '',
-        '| Method | Test | Performance Comparison | Operations/sec |',
-        '|--------|------|----------------------|----------------|',
-        ...results.map(
-            (result) =>
-                `| [${result.method}](${repoUrl}/blob/${commitId}/src/${result.method}.ts)${result.warningEmoji} | ${result.fullName} | ${result.winner} is ${result.ratio}x faster than ${result.loser} | ${result.fasterHz} vs ${result.slowerHz} ops/sec |`,
-        ),
+        '| Method | Test | Performance Comparison | hidash ops/sec | lodash ops/sec |',
+        '|--------|------|----------------------|----------------|----------------|',
+        ...results.map((result) => {
+            const hidashCol = result.isHidashFaster ? `${result.hidashHz} 🏆` : result.hidashHz
+            const lodashCol = !result.isHidashFaster ? `${result.lodashHz} 🏆` : result.lodashHz
+            return `| [${result.method}](${repoUrl}/blob/${commitId}/src/${result.method}.ts)${result.warningEmoji} | ${result.fullName} | ${result.winner} is ${result.ratio}x faster | ${hidashCol} | ${lodashCol} |`
+        }),
         '',
         '> Note: Higher operations per second (ops/sec) numbers are better. Each test compares hidash vs lodash implementation.',
         '> ⚠️ indicates where hidash is slower than lodash.',
+        '> 🏆 indicates the faster implementation.',
     ]
 
     if (isMainBranch) {
@@ -78,19 +78,18 @@ function formatBenchmarkResults(benchmarkData, commitId, isMainBranch = false) {
     return markdownParts.join('\n')
 }
 
-// CLI에서 실행할 경우
-const [, , inputFile, commitId = 'main', isMain] = process.argv
+const [, , inputFile, commitId = 'main', isMain = 'false'] = process.argv
 
 if (!inputFile) {
     // eslint-disable-next-line no-console
-    console.error('Usage: benchmark-to-md.mjs <benchmark-result.json> [commit-id]')
+    console.error('Usage: benchmark-to-md.mjs <benchmark-result.json> [commit-id] [is-main]')
     process.exit(1)
 }
 
 try {
     const input = await readFile(inputFile, 'utf8')
     const benchmarkData = JSON.parse(input)
-    const output = formatBenchmarkResults(benchmarkData, commitId)
+    const output = formatBenchmarkResults(benchmarkData, commitId, isMain === 'true')
     // eslint-disable-next-line no-console
     console.log(output)
 } catch (error) {
