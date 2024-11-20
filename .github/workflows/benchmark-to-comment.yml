@@ -17,8 +17,7 @@ permissions:
 jobs:
     check_comment:
         if: |
-            (github.event_name == 'issue_comment' &&
-            github.event.issue.pull_request &&
+            (github.event.issue.pull_request &&
             github.event.comment.body == '/benchmark')
         runs-on: ubuntu-latest
         outputs:
