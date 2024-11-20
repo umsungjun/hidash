@@ -2,12 +2,36 @@ name: Benchmark Comment on PR
 
 on:
     pull_request:
+        paths:
+            - 'src/**'
+            - '!src/**/*.test.ts'
+            - '!src/**/*.spec.ts'
+    issue_comment:
+        types: [created]
+
+permissions:
+    pull-requests: write
 
 jobs:
+    check_comment:
+        if: github.event_name == 'issue_comment' && github.event.issue.pull_request && github.event.comment.body == '/benchmark'
+        runs-on: ubuntu-latest
+        outputs:
+            should_run: ${{ steps.check.outputs.should_run }}
+        steps:
+            - id: check
+              run: echo "should_run=true" >> $GITHUB_OUTPUT
+
     benchmark:
+        needs: [check_comment]
+        if: |
+            github.event_name == 'pull_request' ||
+            (github.event_name == 'issue_comment' && needs.check_comment.outputs.should_run == 'true')
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
+              with:
+                  ref: ${{ github.event.pull_request.head.sha || github.event.pull_request.head.ref }}
 
             - uses: pnpm/action-setup@v4
 
@@ -24,7 +48,8 @@ jobs:
               run: pnpm bench
 
             - name: Convert benchmark results to markdown
-              run: node ./scripts/benchmark-to-md.mjs benchmark-result.json ${{ github.event.pull_request.head.sha }} > benchmark-results.md
+              run: |
+                  node ./scripts/benchmark-to-md.mjs benchmark-result.json ${{ github.event.pull_request.head.sha || github.sha }} > benchmark-results.md
 
             - name: Create PR comment
               uses: actions/github-script@v6
@@ -38,25 +63,11 @@ jobs:
                         process.env.GITHUB_REPOSITORY + '/actions/runs/' +
                         process.env.GITHUB_RUN_ID + ')*';
 
+                      const prNumber = context.eventName === 'issue_comment'
+                        ? context.payload.issue.number
+                        : context.payload.pull_request.number;
+
                       const { data: comments } = await github.rest.issues.listComments({
                         ...context.repo,
-                        issue_number: context.payload.pull_request.number,
+                        issue_number: prNumber,
                       });
-
-                      const existingComment = comments.find(comment =>
-                        comment.body.includes('### Benchmark Results')
-                      );
-
-                      if (existingComment) {
-                        await github.rest.issues.updateComment({
-                          ...context.repo,
-                          comment_id: existingComment.id,
-                          body: finalContent,
-                        });
-                      } else {
-                        await github.rest.issues.createComment({
-                          ...context.repo,
-                          issue_number: context.payload.pull_request.number,
-                          body: finalContent,
-                        });
-                      }

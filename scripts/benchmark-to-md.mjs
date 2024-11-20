@@ -9,25 +9,31 @@ function getMethodName(filePath) {
 function formatBenchmarkResults(benchmarkData, commitId) {
     const results = []
 
-    // JSON 데이터 파싱
     for (const file of benchmarkData.files) {
         const methodName = getMethodName(file.filepath)
 
         for (const group of file.groups) {
-            // 두 개의 벤치마크를 비교하는 경우만 처리
             if (group.benchmarks.length === 2) {
                 const [bench1, bench2] = group.benchmarks
-                const fasterBench = bench1.hz > bench2.hz ? bench1 : bench2
-                const slowerBench = bench1.hz > bench2.hz ? bench2 : bench1
-                const ratio = (fasterBench.hz / slowerBench.hz).toFixed(2)
+                // hidash를 기준으로 비교
+                const hidashBench = bench1.name.includes('hidash') ? bench1 : bench2
+                const lodashBench = bench1.name.includes('lodash') ? bench1 : bench2
+                const isHidashFaster = hidashBench.hz > lodashBench.hz
+                const ratio = (
+                    Math.max(hidashBench.hz, lodashBench.hz) / Math.min(hidashBench.hz, lodashBench.hz)
+                ).toFixed(2)
+                const warningEmoji = !isHidashFaster ? ' ⚠️' : ''
 
                 results.push({
                     method: methodName,
-                    winner: fasterBench.name,
-                    ratio: ratio,
-                    loser: slowerBench.name,
-                    fasterHz: fasterBench.hz.toFixed(2),
-                    slowerHz: slowerBench.hz.toFixed(2),
+                    fullName: group.fullName,
+                    isHidashFaster,
+                    winner: isHidashFaster ? 'hidash' : 'lodash',
+                    ratio,
+                    loser: isHidashFaster ? 'lodash' : 'hidash',
+                    fasterHz: Math.max(hidashBench.hz, lodashBench.hz).toFixed(2),
+                    slowerHz: Math.min(hidashBench.hz, lodashBench.hz).toFixed(2),
+                    warningEmoji,
                 })
             }
         }
@@ -40,14 +46,15 @@ function formatBenchmarkResults(benchmarkData, commitId) {
     return [
         '### Benchmark Results',
         '',
-        '| Method | Performance Comparison | Operations/sec |',
-        '|--------|----------------------|----------------|',
+        '| Method | Test | Performance Comparison | Operations/sec |',
+        '|--------|------|----------------------|----------------|',
         ...results.map(
             (result) =>
-                `| [${result.method}](${repoUrl}/blob/${commitId}/src/${result.method}.ts) | ${result.winner} is ${result.ratio}x faster than ${result.loser} | ${result.fasterHz} vs ${result.slowerHz} ops/sec |`,
+                `| [${result.method}](${repoUrl}/blob/${commitId}/src/${result.method}.ts)${result.warningEmoji} | ${result.fullName} | ${result.winner} is ${result.ratio}x faster than ${result.loser} | ${result.fasterHz} vs ${result.slowerHz} ops/sec |`,
         ),
         '',
         '> Note: Higher operations per second (ops/sec) numbers are better. Each test compares hidash vs lodash implementation.',
+        '> ⚠️ indicates where hidash is slower than lodash.',
         '',
         '<details>',
         '<summary>View Full Benchmark Data</summary>',
@@ -59,10 +66,10 @@ function formatBenchmarkResults(benchmarkData, commitId) {
     ].join('\n')
 }
 
-// CLI에서 실행할 경우
 const [, , inputFile, commitId = 'main'] = process.argv
 
 if (!inputFile) {
+    // eslint-disable-next-line no-console
     console.error('Usage: benchmark-to-md.mjs <benchmark-result.json> [commit-id]')
     process.exit(1)
 }
@@ -71,8 +78,10 @@ try {
     const input = await readFile(inputFile, 'utf8')
     const benchmarkData = JSON.parse(input)
     const output = formatBenchmarkResults(benchmarkData, commitId)
+    // eslint-disable-next-line no-console
     console.log(output)
 } catch (error) {
+    // eslint-disable-next-line no-console
     console.error('Error:', error.message)
     process.exit(1)
 }
