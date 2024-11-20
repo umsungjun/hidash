@@ -150,6 +150,16 @@
                 "default": "./isObject.js"
             }
         },
+        "./isSymbol": {
+            "import": {
+                "types": "./isSymbol.d.mts",
+                "default": "./isSymbol.mjs"
+            },
+            "require": {
+                "types": "./isSymbol.d.ts",
+                "default": "./isSymbol.js"
+            }
+        },
         "./keys": {
             "import": {
                 "types": "./keys.d.mts",
@@ -238,6 +248,16 @@
             "require": {
                 "types": "./throttle.d.ts",
                 "default": "./throttle.js"
+            }
+        },
+        "./toNumber": {
+            "import": {
+                "types": "./toNumber.d.mts",
+                "default": "./toNumber.mjs"
+            },
+            "require": {
+                "types": "./toNumber.d.ts",
+                "default": "./toNumber.js"
             }
         }
     },
