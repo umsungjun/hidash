@@ -1,5 +1,13 @@
 # @naverpay/hidash
 
+## 0.1.1
+
+### Patch Changes
+
+-   0d3de8e: 🚀 `merge`, `isNumber`, `once`, `before`, `omit`
+
+    [[#53] 🚀 merge](https://github.com/NaverPayDev/hidash/pull/107)
+
 ## 0.1.0
 
 ### Minor Changes
