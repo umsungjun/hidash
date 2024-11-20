@@ -1,0 +1,84 @@
+name: Validate Utils Registration
+
+on:
+    pull_request:
+        paths:
+            - 'src/**'
+            - 'index.ts'
+            - 'package.json'
+            - 'scripts/generate-utils.mjs'
+    workflow_dispatch:
+
+jobs:
+    check-utils:
+        runs-on: ubuntu-latest
+        permissions:
+            pull-requests: write
+        steps:
+            - uses: actions/checkout@v4
+            - uses: pnpm/action-setup@v4
+            - name: Use Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '20'
+                  cache: 'pnpm'
+            - name: Install dependencies
+              run: pnpm install --frozen-lockfile
+            - name: Generate Expected Config
+              run: node scripts/generate-utils.mjs
+            - name: Check and Comment Changes
+              uses: actions/github-script@v7
+              with:
+                  script: |
+                      const { execSync } = require('child_process');
+
+                      const indexDiff = execSync('git diff index.ts').toString();
+                      const packageDiff = execSync('git diff package.json').toString();
+
+                      const hasChanges = indexDiff || packageDiff;
+                      const prNumber = context.payload.pull_request.number;
+
+                      if (hasChanges) {
+                        let message = '### ⚠️ Module Registration Issue Detected\n\n';
+                        message += 'Please run this command locally and commit the changes:\n```bash\npnpm generate\n```\n\n';
+                        message += 'This will ensure all utility modules are properly registered in both index.ts and package.json';
+
+                        await github.rest.issues.createComment({
+                          owner: context.repo.owner,
+                          repo: context.repo.repo,
+                          issue_number: prNumber,
+                          body: message
+                        });
+
+                        process.exit(1);
+                      } else {
+                        const successMessage = '✅ All utility modules are properly registered';
+
+                        const comments = await github.rest.issues.listComments({
+                          owner: context.repo.owner,
+                          repo: context.repo.repo,
+                          issue_number: prNumber
+                        });
+
+                        const botComment = comments.data.find(comment =>
+                          comment.user.type === 'Bot' &&
+                          (comment.body.includes('Module Registration Issue Detected') ||
+                           comment.body.includes('All utility modules are properly registered'))
+                        );
+
+                        if (botComment) {
+                          await github.rest.issues.updateComment({
+                            owner: context.repo.owner,
+                            repo: context.repo.repo,
+                            comment_id: botComment.id,
+                            body: successMessage
+                          });
+                        } else {
+                          await github.rest.issues.createComment({
+                            owner: context.repo.owner,
+                            repo: context.repo.repo,
+                            issue_number: prNumber,
+                            body: successMessage
+                          });
+                        }
+                      }
