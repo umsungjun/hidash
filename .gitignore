@@ -131,3 +131,4 @@ dist
 
 html/
 .DS_Store
+benchmark-result.json
