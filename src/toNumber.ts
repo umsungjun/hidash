@@ -38,7 +38,7 @@ function toNumber(value: unknown): number {
     }
 
     if (value === undefined) {
-        return NaN
+        return NAN
     }
 
     if (typeof value === 'string') {
@@ -71,7 +71,7 @@ function toNumber(value: unknown): number {
         if (value.length === 1) {
             return toNumber(value[0])
         }
-        return NaN
+        return NAN
     }
 
     if (isObject(value)) {
