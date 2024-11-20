@@ -1,7 +1,7 @@
 name: Benchmark Comment on PR
 
 on:
-    pull_request_target: # pull_request_target 사용
+    pull_request:
         paths:
             - 'src/**'
             - '!src/**/*.test.ts'
@@ -12,20 +12,17 @@ on:
 
 permissions:
     pull-requests: write
-    contents: read
 
 jobs:
-    check_comment:
+    benchmark:
         if: |
-            (github.event.issue.pull_request &&
-            github.event.comment.body == '/benchmark')
+            github.event_name == 'pull_request' ||
+            (github.event.issue.pull_request && contains(github.event.comment.body, '/benchmark'))
         runs-on: ubuntu-latest
-        outputs:
-            should_run: ${{ steps.check.outputs.should_run }}
         steps:
-            - id: check
-              run: echo "should_run=true" >> $GITHUB_OUTPUT
-            - name: Add reaction to comment
+            # /benchmark 코멘트에 리액션 추가
+            - if: github.event_name == 'issue_comment'
+              name: Add reaction to comment
               uses: actions/github-script@v6
               with:
                   script: |
@@ -36,30 +33,6 @@ jobs:
                         content: '+1'
                       });
 
-    check_paths:
-        if: github.event_name == 'pull_request_target'
-        runs-on: ubuntu-latest
-        outputs:
-            should_run: ${{ steps.check.outputs.should_run }}
-        steps:
-            - uses: dorny/paths-filter@v2
-              id: filter
-              with:
-                  filters: |
-                      src:
-                        - 'src/**'
-                        - '!src/**/*.test.ts'
-                        - '!src/**/*.spec.ts'
-            - id: check
-              run: echo "should_run=${{ steps.filter.outputs.src }}" >> $GITHUB_OUTPUT
-
-    benchmark:
-        needs: [check_comment, check_paths]
-        if: |
-            needs.check_comment.outputs.should_run == 'true' ||
-            needs.check_paths.outputs.should_run == 'true'
-        runs-on: ubuntu-latest
-        steps:
             - uses: actions/checkout@v4
               with:
                   ref: ${{ github.event.pull_request.head.sha || github.event.pull_request.head.ref }}
