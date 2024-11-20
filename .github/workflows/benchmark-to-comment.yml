@@ -6,36 +6,23 @@ on:
             - 'src/**'
             - '!src/**/*.test.ts'
             - '!src/**/*.spec.ts'
-    issue_comment:
-        types:
-            - created
+    workflow_dispatch:
+        inputs:
+            pr_number:
+                description: 'PR number to run benchmark on'
+                required: false
+                type: string
 
 permissions:
     pull-requests: write
 
 jobs:
     benchmark:
-        if: |
-            github.event_name == 'pull_request' ||
-            (github.event.issue.pull_request && contains(github.event.comment.body, '/benchmark'))
         runs-on: ubuntu-latest
         steps:
-            # /benchmark 코멘트에 리액션 추가
-            - if: github.event_name == 'issue_comment'
-              name: Add reaction to comment
-              uses: actions/github-script@v6
-              with:
-                  script: |
-                      await github.rest.reactions.createForIssueComment({
-                        owner: context.repo.owner,
-                        repo: context.repo.repo,
-                        comment_id: context.payload.comment.id,
-                        content: '+1'
-                      });
-
             - uses: actions/checkout@v4
               with:
-                  ref: ${{ github.event.pull_request.head.sha || github.event.pull_request.head.ref }}
+                  ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
 
             - uses: pnpm/action-setup@v4
 
@@ -53,7 +40,7 @@ jobs:
 
             - name: Convert benchmark results to markdown
               run: |
-                  node ./scripts/benchmark-to-md.mjs benchmark-result.json ${{ github.event.pull_request.head.sha || github.sha }} > benchmark-results.md
+                  node ./scripts/benchmark-to-md.mjs benchmark-result.json ${{ github.sha }} > benchmark-results.md
 
             - name: Create PR comment
               uses: actions/github-script@v6
@@ -67,9 +54,15 @@ jobs:
                         process.env.GITHUB_REPOSITORY + '/actions/runs/' +
                         process.env.GITHUB_RUN_ID + ')*';
 
-                      const prNumber = context.eventName === 'issue_comment'
-                        ? context.payload.issue.number
-                        : context.payload.pull_request.number;
+                      let prNumber;
+                      if (context.eventName === 'pull_request') {
+                        prNumber = context.payload.pull_request.number;
+                      } else if (context.payload.inputs?.pr_number) {
+                        prNumber = parseInt(context.payload.inputs.pr_number, 10);
+                      } else {
+                        console.log('No PR number provided for workflow_dispatch event');
+                        return;
+                      }
 
                       const { data: comments } = await github.rest.issues.listComments({
                         ...context.repo,
