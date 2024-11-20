@@ -47,7 +47,7 @@ function formatBenchmarkResults(benchmarkData, commitId, isMainBranch = false) {
             ? '# Benchmark Results\n\nLatest benchmark results comparing hidash vs lodash performance.'
             : '### Benchmark Results',
         '',
-        '| Method | Test | Performance Comparison | hidash ops/sec | lodash ops/sec |',
+        '| Method | Test | Performance Comparison | hidash ops/sec | lodash(4.4.17.21) ops/sec |',
         '|--------|------|----------------------|----------------|----------------|',
         ...results.map((result) => {
             const hidashCol = result.isHidashFaster ? `${result.hidashHz} 🏆` : result.hidashHz
