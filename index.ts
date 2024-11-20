@@ -19,6 +19,11 @@ const moduleMap = {
     includes: './src/includes.ts',
     every: './src/every.ts',
     isNull: './src/isNull.ts',
+    merge: './src/merge.ts',
+    isNumber: './src/isNumber.ts',
+    once: './src/once.ts',
+    before: './src/before.ts',
+    omit: './src/omit.ts',
 } as const
 
 export default moduleMap

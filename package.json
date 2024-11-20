@@ -189,6 +189,56 @@
                 "types": "./isNull.d.ts",
                 "default": "./isNull.js"
             }
+        },
+        "./merge": {
+            "import": {
+                "types": "./merge.d.mts",
+                "default": "./merge.mjs"
+            },
+            "require": {
+                "types": "./merge.d.ts",
+                "default": "./merge.js"
+            }
+        },
+        "./isNumber": {
+            "import": {
+                "types": "./isNumber.d.mts",
+                "default": "./isNumber.mjs"
+            },
+            "require": {
+                "types": "./isNumber.d.ts",
+                "default": "./isNumber.js"
+            }
+        },
+        "./once": {
+            "import": {
+                "types": "./once.d.mts",
+                "default": "./once.mjs"
+            },
+            "require": {
+                "types": "./once.d.ts",
+                "default": "./once.js"
+            }
+        },
+        "./before": {
+            "import": {
+                "types": "./before.d.mts",
+                "default": "./before.mjs"
+            },
+            "require": {
+                "types": "./before.d.ts",
+                "default": "./before.js"
+            }
+        },
+        "./omit": {
+            "import": {
+                "types": "./omit.d.mts",
+                "default": "./omit.mjs"
+            },
+            "require": {
+                "types": "./omit.d.ts",
+                "default": "./omit.js"
+            }
         }
     },
     "scripts": {
