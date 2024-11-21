@@ -32,7 +32,7 @@ const testCases = [
 const ITERATIONS = 10000
 
 describe('toNumber performance', () => {
-    bench('hidash toNumber', () => {
+    bench('hidash', () => {
         for (let i = 0; i < ITERATIONS; i++) {
             testCases.forEach((testCase) => {
                 toNumber(testCase)
@@ -40,7 +40,7 @@ describe('toNumber performance', () => {
         }
     })
 
-    bench('lodash toNumber', () => {
+    bench('lodash', () => {
         for (let i = 0; i < ITERATIONS; i++) {
             testCases.forEach((testCase) => {
                 _toNumber(testCase)
