@@ -240,6 +240,16 @@
                 "default": "./once.js"
             }
         },
+        "./repeat": {
+            "import": {
+                "types": "./repeat.d.mts",
+                "default": "./repeat.mjs"
+            },
+            "require": {
+                "types": "./repeat.d.ts",
+                "default": "./repeat.js"
+            }
+        },
         "./size": {
             "import": {
                 "types": "./size.d.mts",

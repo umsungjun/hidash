@@ -24,6 +24,7 @@ const moduleMap = {
     merge: './src/merge.ts',
     omit: './src/omit.ts',
     once: './src/once.ts',
+    repeat: './src/repeat.ts',
     size: './src/size.ts',
     sum: './src/sum.ts',
     sumBy: './src/sumBy.ts',
