@@ -30,6 +30,16 @@
                 "default": "./clamp.js"
             }
         },
+        "./cloneDeep": {
+            "import": {
+                "types": "./cloneDeep.d.mts",
+                "default": "./cloneDeep.mjs"
+            },
+            "require": {
+                "types": "./cloneDeep.d.ts",
+                "default": "./cloneDeep.js"
+            }
+        },
         "./debounce": {
             "import": {
                 "types": "./debounce.d.mts",
