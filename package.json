@@ -170,6 +170,16 @@
                 "default": "./keys.js"
             }
         },
+        "./mapValues": {
+            "import": {
+                "types": "./mapValues.d.mts",
+                "default": "./mapValues.mjs"
+            },
+            "require": {
+                "types": "./mapValues.d.ts",
+                "default": "./mapValues.js"
+            }
+        },
         "./memoize": {
             "import": {
                 "types": "./memoize.d.mts",

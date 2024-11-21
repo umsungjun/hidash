@@ -17,6 +17,7 @@ const moduleMap = {
     isObject: './src/isObject.ts',
     isSymbol: './src/isSymbol.ts',
     keys: './src/keys.ts',
+    mapValues: './src/mapValues.ts',
     memoize: './src/memoize.ts',
     merge: './src/merge.ts',
     omit: './src/omit.ts',

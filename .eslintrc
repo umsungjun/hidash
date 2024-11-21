@@ -1,3 +1,6 @@
 {
-  "extends": "@naverpay/eslint-config"
+    "extends": "@naverpay/eslint-config",
+    "rules": {
+        "@typescript-eslint/naming-convention": ["off"]
+    }
 }
