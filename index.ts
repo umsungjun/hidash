@@ -15,6 +15,7 @@ const moduleMap = {
     isNull: './src/isNull.ts',
     isNumber: './src/isNumber.ts',
     isObject: './src/isObject.ts',
+    isString: './src/isString.ts',
     isSymbol: './src/isSymbol.ts',
     keys: './src/keys.ts',
     mapValues: './src/mapValues.ts',

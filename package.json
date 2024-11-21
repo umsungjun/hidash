@@ -150,6 +150,16 @@
                 "default": "./isObject.js"
             }
         },
+        "./isString": {
+            "import": {
+                "types": "./isString.d.mts",
+                "default": "./isString.mjs"
+            },
+            "require": {
+                "types": "./isString.d.ts",
+                "default": "./isString.js"
+            }
+        },
         "./isSymbol": {
             "import": {
                 "types": "./isSymbol.d.mts",
