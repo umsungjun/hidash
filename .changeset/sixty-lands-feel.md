@@ -2,6 +2,6 @@
 "@naverpay/hidash": patch
 ---
 
-🚀 `mapValues`
+🚀 `mapValues`, `isString`
 
-[🚀 mapValues](https://github.com/NaverPayDev/hidash/pull/119)
+[🚀 mapValues, isString](https://github.com/NaverPayDev/hidash/pull/119)
