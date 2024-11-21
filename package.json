@@ -150,6 +150,16 @@
                 "default": "./isObject.js"
             }
         },
+        "./isString": {
+            "import": {
+                "types": "./isString.d.mts",
+                "default": "./isString.mjs"
+            },
+            "require": {
+                "types": "./isString.d.ts",
+                "default": "./isString.js"
+            }
+        },
         "./isSymbol": {
             "import": {
                 "types": "./isSymbol.d.mts",
@@ -168,6 +178,16 @@
             "require": {
                 "types": "./keys.d.ts",
                 "default": "./keys.js"
+            }
+        },
+        "./mapValues": {
+            "import": {
+                "types": "./mapValues.d.mts",
+                "default": "./mapValues.mjs"
+            },
+            "require": {
+                "types": "./mapValues.d.ts",
+                "default": "./mapValues.js"
             }
         },
         "./memoize": {
