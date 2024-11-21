@@ -1,3 +1,5 @@
+import {isObject} from './isObject'
+
 type Iteratee<PARAM, RETURN> = string | ((element: PARAM) => RETURN)
 
 function getIteratee<PARAM, RETURN>(iteratee: Iteratee<PARAM, RETURN>): (element: PARAM) => RETURN {
@@ -24,10 +26,6 @@ type BoxedPrimitive = StringConstructor | NumberConstructor | BooleanConstructor
 
 function isBoxedPrimitive(value: unknown): value is BoxedPrimitive {
     return value === String || value === Number || value === Boolean
-}
-
-function isObject(value: unknown): value is Record<string, unknown> {
-    return typeof value === 'object' && value !== null && !Array.isArray(value)
 }
 
 function deepClone<T>(value: T): T {
@@ -81,17 +79,28 @@ export function mapValues<T extends Record<string, unknown> | unknown[], R>(
     }
 
     const result: Record<string, unknown> = {}
-    const entries = Array.isArray(object) ? Object.entries(object) : Object.entries(object as Record<string, unknown>)
-    for (const [key, value] of entries) {
-        if (iteratee === undefined || iteratee === null) {
-            result[key] = deepClone(value)
-        } else if (isBoxedPrimitive(iteratee)) {
-            result[key] = iteratee(value as T extends unknown[] ? T[number] : T[keyof T])
-        } else {
-            const iterateeFunc = getIteratee(iteratee)
-            result[key] = iterateeFunc(value as T extends unknown[] ? T[number] : T[keyof T])
+    const isBoxed = isBoxedPrimitive(iteratee)
+    const iterateeFunc =
+        !isBoxed && iteratee
+            ? getIteratee<T extends unknown[] ? T[number] : T[keyof T], R>(
+                  iteratee as Iteratee<T extends unknown[] ? T[number] : T[keyof T], R>,
+              )
+            : null
+
+    for (const key in object) {
+        if (Object.prototype.hasOwnProperty.call(object, key)) {
+            const value = object[key as keyof T]
+
+            if (iteratee === undefined || iteratee === null) {
+                result[key] = isObject(value) || Array.isArray(value) ? deepClone(value) : value
+            } else if (isBoxed) {
+                result[key] = (iteratee as BoxedPrimitive)(value as never)
+            } else if (iterateeFunc) {
+                result[key] = iterateeFunc(value as T extends unknown[] ? T[number] : T[keyof T])
+            }
         }
     }
+
     return result as T extends unknown[]
         ? Record<string, R | T[number] | ReturnType<BoxedPrimitive>>
         : {[K in keyof T]: R | T[keyof T] | ReturnType<BoxedPrimitive>}
