@@ -1,3 +1,6 @@
+import {isArrayLike} from './internal/array'
+import isArray from './isArray'
+
 type Collection<T> = ArrayLike<T> | object
 
 export function shuffle<T>(collection: Collection<T> | null | undefined): T[] {
@@ -9,10 +12,10 @@ export function shuffle<T>(collection: Collection<T> | null | undefined): T[] {
         result = Array.from(collection.entries()).flatMap(([key, value]) => [key as unknown as T, value as T])
     } else if (collection instanceof Set) {
         result = Array.from(collection)
-    } else if (typeof collection === 'string' || Array.isArray(collection)) {
-        result = [...collection]
+    } else if (typeof collection === 'string' || isArray(collection)) {
+        result = [...collection] as T[]
     } else if (typeof collection === 'object') {
-        if ('length' in collection && typeof collection.length === 'number') {
+        if (isArrayLike(collection)) {
             result = Array.from(collection as ArrayLike<T>)
         } else {
             result = Object.values(collection) as T[]
