@@ -1,5 +1,29 @@
 # @naverpay/hidash
 
+## 0.1.3
+
+### Patch Changes
+
+-   771765a: 🚀 repeat
+
+    [repeat](https://github.com/NaverPayDev/hidash/pull/123)
+
+-   3cf5d2b: 🚀 `cloneDeep`
+
+    [🚀 cloneDeep](https://github.com/NaverPayDev/hidash/pull/121)
+
+-   7f550d9: 🚀 `mapValues`, `isString`
+
+    [🚀 mapValues, isString](https://github.com/NaverPayDev/hidash/pull/119)
+
+-   8da2ee9: 🚀 `gt`
+
+    [🚀 gt](https://github.com/NaverPayDev/hidash/pull/124)
+
+-   fc79e11: 🚀 isEqual
+
+    [🚀 isEqual](https://github.com/NaverPayDev/hidash/pull/126)
+
 ## 0.1.2
 
 ### Patch Changes
