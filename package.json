@@ -80,6 +80,16 @@
                 "default": "./groupBy.js"
             }
         },
+        "./gt": {
+            "import": {
+                "types": "./gt.d.mts",
+                "default": "./gt.mjs"
+            },
+            "require": {
+                "types": "./gt.d.ts",
+                "default": "./gt.js"
+            }
+        },
         "./has": {
             "import": {
                 "types": "./has.d.mts",

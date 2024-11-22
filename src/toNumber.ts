@@ -12,7 +12,7 @@ const reIsBinary = /^0b[01]+$/i
 const reIsOctal = /^0o[0-7]+$/i
 const freeParseInt = Number.parseInt
 
-function toNumber(value: unknown): number {
+export function toNumber(value: unknown): number {
     if (typeof value === 'number') {
         return value
     }
