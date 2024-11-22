@@ -8,6 +8,7 @@ const moduleMap = {
     eq: './src/eq.ts',
     every: './src/every.ts',
     groupBy: './src/groupBy.ts',
+    gt: './src/gt.ts',
     has: './src/has.ts',
     includes: './src/includes.ts',
     isArray: './src/isArray.ts',
