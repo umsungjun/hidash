@@ -270,6 +270,16 @@
                 "default": "./repeat.js"
             }
         },
+        "./shuffle": {
+            "import": {
+                "types": "./shuffle.d.mts",
+                "default": "./shuffle.mjs"
+            },
+            "require": {
+                "types": "./shuffle.d.ts",
+                "default": "./shuffle.js"
+            }
+        },
         "./size": {
             "import": {
                 "types": "./size.d.mts",
