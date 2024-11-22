@@ -13,6 +13,7 @@ const moduleMap = {
     includes: './src/includes.ts',
     isArray: './src/isArray.ts',
     isEmpty: './src/isEmpty.ts',
+    isEqual: './src/isEqual.ts',
     isNil: './src/isNil.ts',
     isNull: './src/isNull.ts',
     isNumber: './src/isNumber.ts',

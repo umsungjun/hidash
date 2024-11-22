@@ -130,6 +130,16 @@
                 "default": "./isEmpty.js"
             }
         },
+        "./isEqual": {
+            "import": {
+                "types": "./isEqual.d.mts",
+                "default": "./isEqual.mjs"
+            },
+            "require": {
+                "types": "./isEqual.d.ts",
+                "default": "./isEqual.js"
+            }
+        },
         "./isNil": {
             "import": {
                 "types": "./isNil.d.mts",
