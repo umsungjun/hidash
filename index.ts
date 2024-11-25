@@ -30,6 +30,7 @@ const moduleMap = {
     omit: './src/omit.ts',
     once: './src/once.ts',
     repeat: './src/repeat.ts',
+    shuffle: './src/shuffle.ts',
     size: './src/size.ts',
     sum: './src/sum.ts',
     sumBy: './src/sumBy.ts',

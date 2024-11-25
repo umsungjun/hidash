@@ -1,7 +1,9 @@
+import {NUMBER_OBJECT_TAG} from './internal/to-string-tags'
+
 export function isNumber(value: unknown): value is number {
     return (
         typeof value === 'number' ||
-        (typeof value === 'object' && value !== null && Object.prototype.toString.call(value) === '[object Number]')
+        (typeof value === 'object' && value !== null && Object.prototype.toString.call(value) === NUMBER_OBJECT_TAG)
     )
 }
 

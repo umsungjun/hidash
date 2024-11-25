@@ -1,3 +1,4 @@
+import {STRING_OBJECT_TAG} from './internal/to-string-tags'
 import isArray from './isArray'
 
 export function isString(value: unknown) {
@@ -6,7 +7,7 @@ export function isString(value: unknown) {
         (!isArray(value) &&
             typeof value === 'object' &&
             value !== null &&
-            Object.prototype.toString.call(value) === '[object String]')
+            Object.prototype.toString.call(value) === STRING_OBJECT_TAG)
     )
 }
 

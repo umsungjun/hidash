@@ -1,3 +1,4 @@
+import {FUNCTION_TAG, WEAK_SET_TAG, WEAK_MAP_TAG} from './internal/to-string-tags'
 import isArray from './isArray'
 
 export function cloneDeep<T>(value: T): T {
@@ -6,7 +7,7 @@ export function cloneDeep<T>(value: T): T {
     function deepClone<R>(v: R): R {
         const type = Object.prototype.toString.call(v)
 
-        if (type === '[object WeakMap]' || type === '[object WeakSet]' || type === '[object Function]') {
+        if (type === WEAK_MAP_TAG || type === WEAK_SET_TAG || type === FUNCTION_TAG) {
             return {} as R
         }
 

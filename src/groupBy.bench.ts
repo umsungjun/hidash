@@ -14,12 +14,10 @@ const basicTestCases = [
         ],
         iteratee: 'category',
     },
-
     {
         data: Array.from({length: 100}, (_, i) => i),
         iteratee: (num: number) => (num % 2 === 0 ? 'even' : 'odd'),
     },
-
     {
         data: [null, undefined, {id: 1, value: 'a'}, {id: 2, value: 'b'}, null, {id: 3, value: 'a'}],
         iteratee: 'value',
@@ -38,13 +36,11 @@ const complexTestCases = [
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         iteratee: (item: any) => item.user.age,
     },
-
     {
         data: [1, '2', true, false, null, undefined, {id: 1}, [1, 2, 3]],
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         iteratee: (x: any) => typeof x,
     },
-
     {
         data: Array.from({length: 1000}, (_, i) => ({
             id: i,
@@ -55,48 +51,6 @@ const complexTestCases = [
     },
 ] as const
 
-const ITERATIONS = 1000
-
-describe('groupBy basic performance', () => {
-    bench('hidash groupBy', () => {
-        for (let i = 0; i < ITERATIONS; i++) {
-            basicTestCases.forEach(({data, iteratee}) => {
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
-                groupBy(data, iteratee)
-            })
-        }
-    })
-
-    bench('lodash groupBy', () => {
-        for (let i = 0; i < ITERATIONS; i++) {
-            basicTestCases.forEach(({data, iteratee}) => {
-                _groupBy(data, iteratee)
-            })
-        }
-    })
-})
-
-describe('groupBy complex performance', () => {
-    bench('hidash groupBy', () => {
-        for (let i = 0; i < ITERATIONS; i++) {
-            complexTestCases.forEach(({data, iteratee}) => {
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
-                groupBy(data, iteratee)
-            })
-        }
-    })
-
-    bench('lodash groupBy', () => {
-        for (let i = 0; i < ITERATIONS; i++) {
-            complexTestCases.forEach(({data, iteratee}) => {
-                _groupBy(data, iteratee)
-            })
-        }
-    })
-})
-
 const largeArray = Array.from({length: 10000}, (_, i) => ({
     id: i,
     category: String.fromCharCode(65 + (i % 26)),
@@ -105,23 +59,41 @@ const largeArray = Array.from({length: 10000}, (_, i) => ({
     nested: {level: i % 4},
 }))
 
-describe('groupBy large array performance (simple key)', () => {
-    bench('hidash groupBy', () => {
+describe('groupBy performance comparison', () => {
+    bench('hidash', () => {
+        // Basic test cases
+        basicTestCases.forEach(({data, iteratee}) => {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            groupBy(data, iteratee)
+        })
+
+        // Complex test cases
+        complexTestCases.forEach(({data, iteratee}) => {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            groupBy(data, iteratee)
+        })
+
+        // Large array tests
         groupBy(largeArray, 'category')
-    })
-
-    bench('lodash groupBy', () => {
-        _groupBy(largeArray, 'category')
-    })
-})
-
-describe('groupBy large array performance (complex operations)', () => {
-    bench('hidash groupBy', () => {
         groupBy(largeArray, (item) => item.tags[0])
         groupBy(largeArray, (item) => item.nested.level)
     })
 
-    bench('lodash groupBy', () => {
+    bench('lodash', () => {
+        // Basic test cases
+        basicTestCases.forEach(({data, iteratee}) => {
+            _groupBy(data, iteratee)
+        })
+
+        // Complex test cases
+        complexTestCases.forEach(({data, iteratee}) => {
+            _groupBy(data, iteratee)
+        })
+
+        // Large array tests
+        _groupBy(largeArray, 'category')
         _groupBy(largeArray, (item) => item.tags[0])
         _groupBy(largeArray, (item) => item.nested.level)
     })
