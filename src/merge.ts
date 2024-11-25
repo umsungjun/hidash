@@ -1,14 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import {DATE_TAG, REGEXP_TAG} from './internal/constants'
 import isObject from './isObject'
 
 const toString = Object.prototype.toString
 const getType = toString.call.bind(toString)
 
-const DATE_TYPE = '[object Date]'
-const REGEXP_TYPE = '[object RegExp]'
-
 function cloneSpecialObject(obj: any, type: string) {
-    return type === DATE_TYPE ? new Date(obj) : new RegExp(obj)
+    return type === DATE_TAG ? new Date(obj) : new RegExp(obj)
 }
 
 function baseMerge(target: any, source: any): any {
@@ -17,7 +15,7 @@ function baseMerge(target: any, source: any): any {
     }
 
     const sourceType = getType(source)
-    if (sourceType === DATE_TYPE || sourceType === REGEXP_TYPE) {
+    if (sourceType === DATE_TAG || sourceType === REGEXP_TAG) {
         return cloneSpecialObject(source, sourceType)
     }
 
@@ -43,7 +41,7 @@ function baseMerge(target: any, source: any): any {
 
                 const valueType = getType(value)
                 target[i] =
-                    valueType === DATE_TYPE || valueType === REGEXP_TYPE
+                    valueType === DATE_TAG || valueType === REGEXP_TAG
                         ? cloneSpecialObject(value, valueType)
                         : isObject(value)
                         ? baseMerge(isObject(target[i]) ? target[i] : {}, value)
@@ -71,7 +69,7 @@ function baseMerge(target: any, source: any): any {
 
             if (value !== null && typeof value === 'object') {
                 const valueType = getType(value)
-                if (valueType === DATE_TYPE || valueType === REGEXP_TYPE) {
+                if (valueType === DATE_TAG || valueType === REGEXP_TAG) {
                     target[key] = cloneSpecialObject(value, valueType)
                 } else {
                     const currentTarget = target[key]
