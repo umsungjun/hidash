@@ -1,7 +1,7 @@
 import {isArrayLike} from './internal/array'
 import isArray from './isArray'
 
-type Collection<T> = ArrayLike<T> | object
+import type {Collection} from './internal/types'
 
 export function shuffle<T>(collection: Collection<T> | null | undefined): T[] {
     if (collection == null) {
