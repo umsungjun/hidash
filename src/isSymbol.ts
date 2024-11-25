@@ -1,4 +1,4 @@
-import {SYMBOL_TAG} from './internal/constants'
+import {SYMBOL_TAG} from './internal/to-string-tags'
 
 export function isSymbol(value: unknown): value is symbol {
     return (

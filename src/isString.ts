@@ -1,4 +1,4 @@
-import {STRING_OBJECT_TAG} from './internal/constants'
+import {STRING_OBJECT_TAG} from './internal/to-string-tags'
 import isArray from './isArray'
 
 export function isString(value: unknown) {

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {DATE_TAG, REGEXP_TAG} from './internal/constants'
+import {DATE_TAG, REGEXP_TAG} from './internal/to-string-tags'
 import isObject from './isObject'
 
 const toString = Object.prototype.toString

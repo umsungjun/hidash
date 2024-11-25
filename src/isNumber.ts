@@ -1,4 +1,4 @@
-import {NUMBER_OBJECT_TAG} from './internal/constants'
+import {NUMBER_OBJECT_TAG} from './internal/to-string-tags'
 
 export function isNumber(value: unknown): value is number {
     return (

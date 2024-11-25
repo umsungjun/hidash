@@ -1,4 +1,4 @@
-import {FUNCTION_TAG, WEAK_SET_TAG, WEAK_MAP_TAG} from './internal/constants'
+import {FUNCTION_TAG, WEAK_SET_TAG, WEAK_MAP_TAG} from './internal/to-string-tags'
 import isArray from './isArray'
 
 export function cloneDeep<T>(value: T): T {
