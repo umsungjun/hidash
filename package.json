@@ -70,6 +70,16 @@
                 "default": "./every.js"
             }
         },
+        "./first": {
+            "import": {
+                "types": "./first.d.mts",
+                "default": "./first.mjs"
+            },
+            "require": {
+                "types": "./first.d.ts",
+                "default": "./first.js"
+            }
+        },
         "./groupBy": {
             "import": {
                 "types": "./groupBy.d.mts",
@@ -180,6 +190,16 @@
                 "default": "./isObject.js"
             }
         },
+        "./isPlainObject": {
+            "import": {
+                "types": "./isPlainObject.d.mts",
+                "default": "./isPlainObject.mjs"
+            },
+            "require": {
+                "types": "./isPlainObject.d.ts",
+                "default": "./isPlainObject.js"
+            }
+        },
         "./isString": {
             "import": {
                 "types": "./isString.d.mts",
@@ -208,6 +228,16 @@
             "require": {
                 "types": "./keys.d.ts",
                 "default": "./keys.js"
+            }
+        },
+        "./last": {
+            "import": {
+                "types": "./last.d.mts",
+                "default": "./last.mjs"
+            },
+            "require": {
+                "types": "./last.d.ts",
+                "default": "./last.js"
             }
         },
         "./mapValues": {
