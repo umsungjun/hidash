@@ -51,24 +51,4 @@ describe('isFunction', () => {
     it('should return false for Reflect', () => {
         expect(isFunction(Reflect)).toBe(false)
     })
-
-    /**
-     * @question DOM API 검사 여부
-     * Vitest 환경이 Node.js에서 jsdom으로 변경되어야 함
-     * 그러나 window.alert는 jsdom에서는 없어서 정확한 확인은 불가능
-     */
-    // it('should return false for DOM objects', () => {
-    //     expect(isFunction(document)).toBe(false)
-    //     expect(isFunction(window)).toBe(false)
-    // })
-
-    // it('should return true for DOM methods', () => {
-    //     expect(isFunction(document.createElement)).toBe(true)
-    //     expect(isFunction(window.alert)).toBe(true)
-    // })
-
-    // it('should return true for DOM constructors', () => {
-    //     expect(isFunction(HTMLElement)).toBe(true)
-    //     expect(isFunction(Node)).toBe(true)
-    // })
 })
