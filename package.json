@@ -150,6 +150,16 @@
                 "default": "./isEqual.js"
             }
         },
+        "./isFunction": {
+            "import": {
+                "types": "./isFunction.d.mts",
+                "default": "./isFunction.mjs"
+            },
+            "require": {
+                "types": "./isFunction.d.ts",
+                "default": "./isFunction.js"
+            }
+        },
         "./isNil": {
             "import": {
                 "types": "./isNil.d.mts",
