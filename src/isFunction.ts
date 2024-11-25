@@ -5,8 +5,7 @@ export function isFunction(value: unknown): value is (...args: any[]) => any {
     if (!isObject(value)) {
         return false
     }
-    const type = typeof value
-    return type === 'function'
+    return typeof value === 'function'
 }
 
 export default isFunction
