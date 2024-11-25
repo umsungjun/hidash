@@ -46,10 +46,12 @@ export default defineConfig({
                 {
                     format: 'es',
                     dir: 'dist',
+                    exports: 'named',
                 },
                 {
                     format: 'cjs',
                     dir: 'dist',
+                    exports: 'named',
                 },
             ],
         },
