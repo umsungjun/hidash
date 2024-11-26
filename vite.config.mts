@@ -2,7 +2,6 @@ import {babel} from '@rollup/plugin-babel'
 import browserslistToEsbuild from 'browserslist-to-esbuild'
 import preserveDirectives from 'rollup-preserve-directives'
 import {defineConfig} from 'vite'
-import tsconfigPaths from 'vite-tsconfig-paths'
 
 import moduleMap from './index'
 
@@ -10,7 +9,6 @@ const SUPPORT_TARGETS = browserslistToEsbuild()
 
 export default defineConfig({
     plugins: [
-        tsconfigPaths(),
         preserveDirectives(),
         babel({
             babelHelpers: 'runtime',
