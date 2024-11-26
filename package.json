@@ -431,7 +431,7 @@
         "browserslist-to-esbuild": "^2.1.1",
         "lefthook": "^1.8.2",
         "lodash": "^4.17.21",
-        "rimraf": "^6.0.1",
+        "rimraf": "^5.0.10",
         "rollup": "^4.24.3",
         "rollup-preserve-directives": "^1.1.2",
         "tsup": "^8.3.5",
