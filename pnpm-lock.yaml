@@ -14,9 +14,6 @@ importers:
       '@changesets/cli':
         specifier: ^2.27.9
         version: 2.27.9
-      '@naverpay/browserslist-config':
-        specifier: ^1.6.1
-        version: 1.6.1
       '@naverpay/editorconfig':
         specifier: ^0.0.4
         version: 0.0.4
@@ -620,9 +617,6 @@ packages:
 
   '@naverpay/ast-parser@0.0.2':
     resolution: {integrity: sha512-o9T9GmtF2r/z4jQVgUsaNrupKsxvpZ+zsa21UB37l7fnZSv3Nef8CiNFp2p4u5Vojp+X/uV/XT0sBw2kwd4y3w==}
-
-  '@naverpay/browserslist-config@1.6.1':
-    resolution: {integrity: sha512-PjeqslSiUFwK6YtEUpeMXMV0/OqAtAfDhrMwhzFWLXHQbZ2rzydEtrHWa2FFIS3jVSHRoPZr/OAW7wXAptu20A==}
 
   '@naverpay/editorconfig@0.0.4':
     resolution: {integrity: sha512-4TuaKZmZ7JJ5COBEBSW74Qjr9RcMitt2HnsL01OAUThGtvQgIMtlAhMYJ+vTLZtyqCrNsi5L0wSdqcpQNdQikw==}
@@ -3478,8 +3472,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
       - typescript
-
-  '@naverpay/browserslist-config@1.6.1': {}
 
   '@naverpay/editorconfig@0.0.4': {}
 

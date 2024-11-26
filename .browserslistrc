@@ -1,1 +1,1 @@
-extends @naverpay/browserslist-config
+node >= 16, >= 0.1%, not dead, not op_mini all, last 3 years
