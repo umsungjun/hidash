@@ -250,6 +250,16 @@
                 "default": "./last.js"
             }
         },
+        "./lt": {
+            "import": {
+                "types": "./lt.d.mts",
+                "default": "./lt.mjs"
+            },
+            "require": {
+                "types": "./lt.d.ts",
+                "default": "./lt.js"
+            }
+        },
         "./mapValues": {
             "import": {
                 "types": "./mapValues.d.mts",
