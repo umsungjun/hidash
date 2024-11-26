@@ -1,7 +1,7 @@
 import {STRING_OBJECT_TAG} from './internal/to-string-tags'
 import isArray from './isArray'
 
-export function isString(value: unknown) {
+export function isString(value: unknown): value is string {
     return (
         typeof value === 'string' ||
         (!isArray(value) &&
