@@ -20,7 +20,14 @@ export default defineConfig({
                         method: 'usage-pure',
                         version: '3.38.1',
                         proposals: true,
-                        exclude: ['es.array.push'],
+                        exclude: [
+                            'es.array.push',
+                            'es.array.includes', // has.ts
+                            'es.object.from-entries', // mapValues.ts
+                            'es.array.reduce', // mapValues.ts
+                            'es.array.flat-map', // omit.ts
+                            'es.string.trim', // toNumber.ts
+                        ],
                     },
                 ],
             ],
