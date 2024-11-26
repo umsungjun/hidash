@@ -37,6 +37,7 @@ const moduleMap = {
     sumBy: './src/sumBy.ts',
     throttle: './src/throttle.ts',
     toNumber: './src/toNumber.ts',
+    toString: './src/toString.ts',
 } as const
 
 export default moduleMap
