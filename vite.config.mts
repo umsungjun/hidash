@@ -21,11 +21,17 @@ export default defineConfig({
                         version: '3.38.1',
                         proposals: true,
                         exclude: [
+                            // https://bugs.chromium.org/p/v8/issues/detail?id=12681
                             'es.array.push',
-                            'es.array.includes', // has.ts
+                            // https://bugzilla.mozilla.org/show_bug.cgi?id=1767541
+                            'es.array.includes',
+                            // TODO: replace (Safari 12.1)
                             'es.object.from-entries', // mapValues.ts
-                            'es.array.reduce', // mapValues.ts
+                            // https://issues.chromium.org/issues/40672866
+                            'es.array.reduce',
+                            // TODO: replace (Safari 12)
                             'es.array.flat-map', // omit.ts
+                            // TODO: replace (Safari 12.1)
                             'es.string.trim', // toNumber.ts
                         ],
                     },
