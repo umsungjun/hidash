@@ -1,4 +1,5 @@
 import {isArrayLike} from './internal/array'
+import {MAP_TAG, SET_TAG} from './internal/to-string-tags'
 
 /**
  * @description https://unpkg.com/lodash.size@4.2.0/index.js
@@ -12,7 +13,7 @@ export function size(collection: unknown): number {
     }
 
     const type = Object.prototype.toString.call(collection)
-    if (type === '[object Map]' || type === '[object Set]') {
+    if (type === MAP_TAG || type === SET_TAG) {
         return (collection as Map<unknown, unknown> | Set<unknown>).size
     }
 
