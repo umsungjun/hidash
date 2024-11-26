@@ -28,7 +28,7 @@ export function toString(value: unknown): string {
     }
 
     if (typeof value === 'object') {
-        if (value != null && typeof value.toString === 'function' && value.toString !== Object.prototype.toString) {
+        if (typeof value.toString === 'function' && value.toString !== Object.prototype.toString) {
             return value.toString()
         }
 
