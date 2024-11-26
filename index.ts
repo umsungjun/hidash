@@ -26,6 +26,7 @@ const moduleMap = {
     isUndefined: './src/isUndefined.ts',
     keys: './src/keys.ts',
     last: './src/last.ts',
+    lt: './src/lt.ts',
     mapValues: './src/mapValues.ts',
     memoize: './src/memoize.ts',
     merge: './src/merge.ts',
