@@ -21,12 +21,12 @@ export default defineConfig({
                         version: '3.38.1',
                         proposals: true,
                         exclude: [
-                            'es.array.push',
-                            'es.array.includes', // has.ts
-                            'es.object.from-entries', // mapValues.ts
-                            'es.array.reduce', // mapValues.ts
-                            'es.array.flat-map', // omit.ts
-                            'es.string.trim', // toNumber.ts
+                            'es.array.push', // https://bugs.chromium.org/p/v8/issues/detail?id=12681
+                            'es.array.includes', // https://bugzilla.mozilla.org/show_bug.cgi?id=1767541
+                            'es.object.from-entries', // TODO: replace mapValues.ts (Safari 12.1)
+                            'es.array.reduce', // https://issues.chromium.org/issues/40672866
+                            'es.array.flat-map', // TODO: replace omit.ts (Safari 12)
+                            'es.string.trim', // TODO: replace toNumber.ts (Safari 12.1)
                         ],
                     },
                 ],
