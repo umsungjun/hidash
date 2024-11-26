@@ -22,6 +22,7 @@ const moduleMap = {
     isPlainObject: './src/isPlainObject.ts',
     isString: './src/isString.ts',
     isSymbol: './src/isSymbol.ts',
+    isUndefined: './src/isUndefined.ts',
     keys: './src/keys.ts',
     last: './src/last.ts',
     mapValues: './src/mapValues.ts',
