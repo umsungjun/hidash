@@ -230,6 +230,16 @@
                 "default": "./isSymbol.js"
             }
         },
+        "./isUndefined": {
+            "import": {
+                "types": "./isUndefined.d.mts",
+                "default": "./isUndefined.mjs"
+            },
+            "require": {
+                "types": "./isUndefined.d.ts",
+                "default": "./isUndefined.js"
+            }
+        },
         "./keys": {
             "import": {
                 "types": "./keys.d.mts",
