@@ -1,0 +1,38 @@
+name: CI Build Matrix
+
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                node-version: [18, 20, 22]
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+
+            - name: Use pnpm
+              uses: pnpm/action-setup@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: 'pnpm'
+
+            - name: Install dependencies
+              run: |
+                  pnpm install --frozen-lockfile
+
+            - name: Run Tests
+              run: pnpm run test
+
+            - name: Run Build
+              run: pnpm run build

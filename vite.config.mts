@@ -2,7 +2,6 @@ import {babel} from '@rollup/plugin-babel'
 import browserslistToEsbuild from 'browserslist-to-esbuild'
 import preserveDirectives from 'rollup-preserve-directives'
 import {defineConfig} from 'vite'
-import tsconfigPaths from 'vite-tsconfig-paths'
 
 import moduleMap from './index'
 
@@ -10,7 +9,6 @@ const SUPPORT_TARGETS = browserslistToEsbuild()
 
 export default defineConfig({
     plugins: [
-        tsconfigPaths(),
         preserveDirectives(),
         babel({
             babelHelpers: 'runtime',
@@ -22,7 +20,14 @@ export default defineConfig({
                         method: 'usage-pure',
                         version: '3.38.1',
                         proposals: true,
-                        exclude: ['es.array.push'],
+                        exclude: [
+                            'es.array.push', // https://bugs.chromium.org/p/v8/issues/detail?id=12681
+                            'es.array.includes', // https://bugzilla.mozilla.org/show_bug.cgi?id=1767541
+                            'es.object.from-entries', // TODO: replace mapValues.ts (Safari 12.1)
+                            'es.array.reduce', // https://issues.chromium.org/issues/40672866
+                            'es.array.flat-map', // TODO: replace omit.ts (Safari 12)
+                            'es.string.trim', // TODO: replace toNumber.ts (Safari 12.1)
+                        ],
                     },
                 ],
             ],
