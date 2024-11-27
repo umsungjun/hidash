@@ -7,6 +7,7 @@ const moduleMap = {
     debounce: './src/debounce.ts',
     eq: './src/eq.ts',
     every: './src/every.ts',
+    findLastIndex: './src/findLastIndex.ts',
     first: './src/first.ts',
     groupBy: './src/groupBy.ts',
     gt: './src/gt.ts',
