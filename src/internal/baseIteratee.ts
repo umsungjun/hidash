@@ -14,11 +14,7 @@ type ListIterator<T, TResult> = (value: T, index: number, collection: ArrayLike<
 export type ListIteratee<T> = ListIterator<T, unknown> | IterateeShorthand<T>
 export type ListIterateeCustom<T, TResult> = ListIterator<T, TResult> | IterateeShorthand<T>
 
-function isMatch<T extends object>(element: T, source: any, cache = new WeakMap<T>()): boolean {
-    if (cache.has(element)) {
-        return cache.get(element) as boolean
-    }
-
+function isMatch<T extends object>(element: T, source: any): boolean {
     if (!isPlainObject(element) || !isPlainObject(source)) {
         return false
     }
@@ -27,7 +23,7 @@ function isMatch<T extends object>(element: T, source: any, cache = new WeakMap<
         const elementValue = (element as Record<string, any>)[key]
 
         if (isPlainObject(value)) {
-            if (!isMatch(elementValue, value, cache)) {
+            if (!isMatch(elementValue, value)) {
                 return false
             }
         } else if (elementValue !== value) {
@@ -35,7 +31,6 @@ function isMatch<T extends object>(element: T, source: any, cache = new WeakMap<
         }
     }
 
-    cache.set(element, true)
     return true
 }
 
