@@ -1,6 +1,6 @@
 # @naverpay/hidash
 
-[![CI](https://github.com/NaverPayDev/hidash/actions/workflows/ci.yaml/badge.svg)](https://github.com/NaverPayDev/hidash/actions/workflows/ci.yaml)
+[![CI](https://github.com/NaverPayDev/hidash/actions/workflows/ci.yaml/badge.svg)](https://github.com/NaverPayDev/hidash/actions/workflows/matrix.yaml)
 
 A modern, performance-focused alternative to Lodash.
 
