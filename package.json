@@ -70,6 +70,16 @@
                 "default": "./every.js"
             }
         },
+        "./findLastIndex": {
+            "import": {
+                "types": "./findLastIndex.d.mts",
+                "default": "./findLastIndex.mjs"
+            },
+            "require": {
+                "types": "./findLastIndex.d.ts",
+                "default": "./findLastIndex.js"
+            }
+        },
         "./first": {
             "import": {
                 "types": "./first.d.mts",
