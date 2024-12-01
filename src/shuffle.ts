@@ -9,7 +9,12 @@ export function shuffle<T>(collection: Collection<T> | null | undefined): T[] {
     }
     let result: T[]
     if (collection instanceof Map) {
-        result = Array.from(collection.entries()).flatMap(([key, value]) => [key as unknown as T, value as T])
+        result = []
+        const entries = Array.from(collection.entries())
+        for (let i = 0; i < entries.length; i++) {
+            result.push(entries[i][0] as unknown as T)
+            result.push(entries[i][1] as T)
+        }
     } else if (collection instanceof Set) {
         result = Array.from(collection)
     } else if (typeof collection === 'string' || isArray(collection)) {
@@ -32,4 +37,5 @@ export function shuffle<T>(collection: Collection<T> | null | undefined): T[] {
     }
     return result
 }
+
 export default shuffle

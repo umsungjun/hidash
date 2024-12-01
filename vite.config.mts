@@ -24,7 +24,6 @@ export default defineConfig({
                             'es.array.push', // https://bugs.chromium.org/p/v8/issues/detail?id=12681
                             'es.array.includes', // https://bugzilla.mozilla.org/show_bug.cgi?id=1767541
                             'es.array.reduce', // https://issues.chromium.org/issues/40672866
-                            'es.array.flat-map', // TODO: replace omit.ts (Safari 12)
                             'es.string.trim', // TODO: replace toNumber.ts (Safari 12.1)
                         ],
                     },
