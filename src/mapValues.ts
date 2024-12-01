@@ -32,7 +32,13 @@ function deepClone<T>(value: T): T {
     if (Array.isArray(value)) {
         return value.map(deepClone) as T
     } else if (isObject(value)) {
-        return Object.fromEntries(Object.entries(value).map(([k, v]) => [k, deepClone(v)])) as T
+        const result = {} as T
+        for (const key in value) {
+            if (Object.prototype.hasOwnProperty.call(value, key)) {
+                result[key] = deepClone(value[key])
+            }
+        }
+        return result
     }
     return value
 }
