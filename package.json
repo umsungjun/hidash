@@ -399,6 +399,16 @@
                 "types": "./toNumber.d.ts",
                 "default": "./toNumber.js"
             }
+        },
+        "./toString": {
+            "import": {
+                "types": "./toString.d.mts",
+                "default": "./toString.mjs"
+            },
+            "require": {
+                "types": "./toString.d.ts",
+                "default": "./toString.js"
+            }
         }
     },
     "scripts": {

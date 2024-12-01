@@ -15,3 +15,7 @@ export const SYMBOL_TAG = '[object Symbol]'
 export const DATE_TAG = '[object Date]'
 
 export const REGEXP_TAG = '[object RegExp]'
+
+export const MAP_TAG = '[object Map]'
+
+export const SET_TAG = '[object Set]'
