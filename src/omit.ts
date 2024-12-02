@@ -6,11 +6,22 @@ export function omit<T extends object>(object: T | null | undefined, ...paths: P
     }
 
     const result = {...object}
-    const flattenedPaths = paths.flatMap((path) => (Array.isArray(path) ? path : [path]))
+    const flattenedPaths: PropertyPath[] = []
 
-    flattenedPaths.forEach((path) => {
-        delete result[path as keyof T]
-    })
+    for (let i = 0; i < paths.length; i++) {
+        const path = paths[i]
+        if (Array.isArray(path)) {
+            for (let j = 0; j < path.length; j++) {
+                flattenedPaths.push(path[j])
+            }
+        } else {
+            flattenedPaths.push(path)
+        }
+    }
+
+    for (let i = 0; i < flattenedPaths.length; i++) {
+        delete result[flattenedPaths[i] as keyof T]
+    }
 
     return result
 }
