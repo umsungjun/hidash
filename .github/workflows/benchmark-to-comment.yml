@@ -42,23 +42,29 @@ jobs:
               id: modified_files
               run: |
                   MODIFIED=$(git diff --name-only origin/$GITHUB_BASE_REF -- 'src/*.ts' ':!src/internal/*.ts' ':!src/*.test.ts')
-                  SRC_BENCH_FILES=$(echo "$MODIFIED" | sed -e 's/\.ts$/.bench.ts/' | xargs -I {} find {} -type f)
+                  SRC_BENCH_FILES=$(echo "$MODIFIED" | sed -e 's/\.ts$/.bench.ts/' | while read file; do
+                    if [ -f "$file" ]; then
+                      echo "$file"
+                    fi
+                  done | xargs echo)
                   echo "SRC_BENCH_FILES=$SRC_BENCH_FILES" >> $GITHUB_ENV
 
             - name: Find modified internal files and affected utilities
               id: modified_internal_files
               run: |
-                  INTERNAL_BENCH_FILES=$(node ./scripts/find-importing-files.mjs $GITHUB_BASE_REF \
-                    | sed -e 's/\.ts$/.bench.ts/' \
-                    | xargs -I {} find {} -type f \
-                    | xargs echo)
+                  INTERNAL_MODIFIED=$(node ./scripts/find-importing-files.mjs $GITHUB_BASE_REF)
+                  INTERNAL_BENCH_FILES=$(echo "$INTERNAL_MODIFIED" | sed -e 's/\.ts$/.bench.ts/' | while read file; do
+                    if [ -f "$file" ]; then
+                      echo "$file"
+                    fi
+                  done | xargs echo)
 
                   echo "INTERNAL_BENCH_FILES=$INTERNAL_BENCH_FILES" >> $GITHUB_ENV
 
             - name: Merge all modified bench files
               id: merge_bench_files
               run: |
-                  BENCH_FILES=$(echo "$SRC_BENCH_FILES $INTERNAL_BENCH_FILES" | tr ' ' '\n' | sort | uniq | tr '\n' ' ')
+                  BENCH_FILES=$(echo "$SRC_BENCH_FILES $INTERNAL_BENCH_FILES" | tr ' ' '\n' | sort | uniq | xargs echo)
                   echo "BENCH_FILES=$BENCH_FILES" >> $GITHUB_ENV
 
             - name: Run benchmarks
