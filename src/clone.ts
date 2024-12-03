@@ -2,7 +2,7 @@ import isArray from './isArray'
 import isObject from './isObject'
 
 export function clone<T>(value: T): T {
-    if (value == null || typeof value !== 'object') {
+    if (value === null || typeof value !== 'object') {
         return value
     }
 
