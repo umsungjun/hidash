@@ -44,12 +44,6 @@ jobs:
                   MODIFIED=$(git diff --name-only origin/$GITHUB_BASE_REF -- 'src/*.ts' ':!src/internal/*.ts' ':!src/*.test.ts')
                   SRC_BENCH_FILES=$(echo "$MODIFIED" | tr '\n' ' ')
 
-                  # SRC_BENCH_FILES=$(echo "$MODIFIED" | sed -e 's/\.ts$/.bench.ts/' | while read file; do
-                  #   if [ -f "$file" ]; then
-                  #     echo "$file"
-                  #   fi
-                  # done | xargs echo)
-
                   echo "SRC_BENCH_FILES=$SRC_BENCH_FILES" >> $GITHUB_ENV
 
             - name: Find modified internal files and affected utilities
@@ -58,20 +52,12 @@ jobs:
                   INTERNAL_MODIFIED=$(node ./scripts/find-importing-files.mjs $GITHUB_BASE_REF)
                   INTERNAL_BENCH_FILES=$(echo "$INTERNAL_MODIFIED" | tr '\n' ' ')
 
-                  # INTERNAL_BENCH_FILES=$(echo "$INTERNAL_MODIFIED" | sed -e 's/\.ts$/.bench.ts/' | while read file; do
-                  #   if [ -f "$file" ]; then
-                  #     echo "$file"
-                  #   fi
-                  # done | xargs echo)
-
                   echo "INTERNAL_BENCH_FILES=$INTERNAL_BENCH_FILES" >> $GITHUB_ENV
 
             - name: Merge all modified bench files
               id: merge_bench_files
               run: |
                   ALL_FILES=$(echo -e "$SRC_BENCH_FILES\n$INTERNAL_BENCH_FILES")
-
-                  # BENCH_FILES=$(echo "$SRC_BENCH_FILES $INTERNAL_BENCH_FILES" | tr ' ' '\n' | sort | uniq | xargs echo)
 
                   BENCH_FILES=$(echo "$ALL_FILES" | tr ' ' '\n' | while read file; do
                     # .bench.ts 변경은 그대로 사용
