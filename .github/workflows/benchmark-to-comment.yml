@@ -39,7 +39,20 @@ jobs:
               id: modified_files
               run: |
                   MODIFIED=$(git diff --name-only origin/${{ github.event.pull_request.base.ref }} -- 'src/**/*.ts' ':!src/**/*.test.ts')
-                  BENCH_FILES=$(echo "$MODIFIED" | sed -e 's/\.ts$/.bench.ts/' | xargs -I {} find {} -type f)
+                  SRC_BENCH_FILES=$(echo "$MODIFIED" | sed -e 's/\.ts$/.bench.ts/' | xargs -I {} find {} -type f)
+                  echo "SRC_BENCH_FILES=$SRC_BENCH_FILES" >> $GITHUB_ENV
+
+            - name: Find modified internal files and affected utilities
+              id: modified_internal_files
+              run: |
+                  INTERNAL_BENCH_FILES=$(node ./scripts/find-importing-files.mjs ${{ github.event.pull_request.base.ref }} | sed -e 's/\.ts$/.bench.ts/')
+
+                  echo "INTERNAL_BENCH_FILES=$INTERNAL_BENCH_FILES" >> $GITHUB_ENV
+
+            - name: Merge all modified bench files
+              id: merge_bench_files
+              run: |
+                  BENCH_FILES=$(echo "$SRC_BENCH_FILES $INTERNAL_BENCH_FILES" | tr ' ' '\n' | sort | uniq)
                   echo "BENCH_FILES=$BENCH_FILES" >> $GITHUB_ENV
 
             - name: Run benchmarks
