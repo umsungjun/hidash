@@ -15,7 +15,8 @@ export function clone<T>(value: T): T {
     }
 
     if (value instanceof RegExp) {
-        return new RegExp(value.source, value.flags) as T
+        // RegExp#toString()은 '/pattern/flags' 형식을 반환
+        return new RegExp(value.toString().slice(1, -1)) as T
     }
 
     if (ArrayBuffer.isView(value) && !(value instanceof DataView)) {
