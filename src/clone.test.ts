@@ -1,4 +1,3 @@
-// clone.test.ts
 import _clone from 'lodash/clone'
 import {describe, expect, it} from 'vitest'
 

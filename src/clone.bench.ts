@@ -1,4 +1,3 @@
-// clone.bench.ts
 import _clone from 'lodash/clone'
 import {bench, describe} from 'vitest'
 
