@@ -35,14 +35,26 @@ jobs:
             - name: Install dependencies
               run: pnpm install --frozen-lockfile
 
-            - name: Run benchmark
-              run: pnpm bench
+            - name: Identify modified utility files
+              id: modified_files
+              run: |
+                  MODIFIED=$(git diff --name-only origin/${{ github.event.pull_request.base.ref }} -- 'src/**/*.ts' ':!src/**/*.test.ts')
+                  BENCH_FILES=$(echo "$MODIFIED" | sed -e 's/\.ts$/.bench.ts/' | xargs -I {} find {} -type f)
+                  echo "BENCH_FILES=$BENCH_FILES" >> $GITHUB_ENV
+
+            - name: Run benchmarks
+              if: env.BENCH_FILES != ''
+              run: pnpm vitest bench $BENCH_FILES
+              env:
+                  BENCH_FILES: ${{ env.BENCH_FILES }}
 
             - name: Convert benchmark results to markdown
+              if: env.BENCH_FILES != ''
               run: |
                   node ./scripts/benchmark-to-md.mjs benchmark-result.json ${{ github.sha }} > benchmark-results.md
 
             - name: Create PR comment
+              if: env.BENCH_FILES != ''
               uses: actions/github-script@v6
               with:
                   script: |
