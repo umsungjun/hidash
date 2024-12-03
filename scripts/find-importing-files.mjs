@@ -20,9 +20,10 @@ function getAllFiles(dir, fileList = []) {
 }
 
 function getModifiedInternalFiles(commitId) {
-    const output = execSync(`git diff --name-only HEAD origin/${commitId} -- src/internal/**/*.ts`, {
+    const output = execSync(`git diff --name-only HEAD origin/${commitId} -- src/internal/*.ts`, {
         encoding: 'utf8',
     })
+
     return output
         .split('\n')
         .map((file) => file.trim())
@@ -35,7 +36,9 @@ function findImportingFiles(modifiedInternalFiles, allFiles) {
     modifiedInternalFiles.forEach((internalFile) => {
         allFiles.forEach((file) => {
             const content = fs.readFileSync(file, 'utf8')
-            const relativePath = './' + path.relative(path.dirname(file), internalFile).replace(/\\/g, '/')
+            const relativePath =
+                './' + path.relative(path.dirname(file), internalFile).replace(/\\/g, '/').replace('.ts', '')
+
             if (content.includes(`import`) && content.includes(relativePath)) {
                 result.add(file)
             }
@@ -44,6 +47,8 @@ function findImportingFiles(modifiedInternalFiles, allFiles) {
 
     return [...result]
 }
+
+const rootDir = process.cwd()
 
 const [, , commitId = 'main'] = process.argv
 
@@ -57,13 +62,9 @@ const [, , commitId = 'main'] = process.argv
         process.exit(0)
     }
 
-    console.log('Modified internal files:', modifiedInternalFiles)
-
     const importingFiles = findImportingFiles(modifiedInternalFiles, allFiles)
 
-    if (importingFiles.length === 0) {
-        console.log('No files importing modified internal files.')
-    } else {
-        console.log('Files importing modified internal files:', importingFiles)
+    if (importingFiles.length > 0) {
+        console.log(importingFiles.map((importingFile) => path.relative(rootDir, importingFile)))
     }
 })()
