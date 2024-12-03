@@ -65,6 +65,6 @@ const [, , commitId = 'main'] = process.argv
     const importingFiles = findImportingFiles(modifiedInternalFiles, allFiles)
 
     if (importingFiles.length > 0) {
-        console.log(importingFiles.map((importingFile) => path.relative(rootDir, importingFile)))
+        console.log(importingFiles.map((importingFile) => path.relative(rootDir, importingFile)).join('\n'))
     }
 })()

@@ -48,7 +48,7 @@ jobs:
             - name: Find modified internal files and affected utilities
               id: modified_internal_files
               run: |
-                  INTERNAL_BENCH_FILES=$(node ./scripts/find-importing-files.mjs $GITHUB_BASE_REF | sed -e 's/\.ts$/.bench.ts/')
+                  INTERNAL_BENCH_FILES=$(node ./scripts/find-importing-files.mjs $GITHUB_BASE_REF | sed -e 's/\.ts$/.bench.ts/' | xargs -I {} find {} -type f)
 
                   echo "INTERNAL_BENCH_FILES=$INTERNAL_BENCH_FILES" >> $GITHUB_ENV
 
