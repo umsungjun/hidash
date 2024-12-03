@@ -10,7 +10,6 @@ interface TestCase {
 }
 
 const testCases: TestCase[] = [
-    // 숫자 iteratee
     {
         array: [2.1, 1.2, 2.3, 1.4, 2.5],
         iteratee: Math.floor,
@@ -19,7 +18,6 @@ const testCases: TestCase[] = [
         array: [-2.1, -1.2, -2.3, -1.4],
         iteratee: Math.abs,
     },
-    // 객체 iteratee
     {
         array: [
             {id: 1, name: 'a'},
@@ -28,17 +26,14 @@ const testCases: TestCase[] = [
         ],
         iteratee: (obj: {name: string}) => obj.name,
     },
-    // 복잡한 객체
     {
         array: [{user: {id: 1, name: 'John'}}, {user: {id: 2, name: 'Jane'}}, {user: {id: 1, name: 'Johnny'}}],
         iteratee: (obj: {user: {id: number}}) => obj.user.id,
     },
-    // 배열 데이터
     {
         array: [{data: [1, 2]}, {data: [2, 3]}, {data: [1, 2]}],
         iteratee: (obj: {data: number[]}) => JSON.stringify(obj.data),
     },
-    // edge cases
     {
         array: [null, undefined, null],
         iteratee: (x: unknown) => x,
@@ -47,7 +42,6 @@ const testCases: TestCase[] = [
         array: [NaN, NaN, NaN],
         iteratee: (x: unknown) => x,
     },
-    // 큰 배열
     {
         array: Array.from({length: 1000}, (_, i) => ({value: i % 100})),
         iteratee: (obj: {value: number}) => obj.value,
