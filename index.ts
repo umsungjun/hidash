@@ -42,6 +42,8 @@ const moduleMap = {
     throttle: './src/throttle.ts',
     toNumber: './src/toNumber.ts',
     toString: './src/toString.ts',
+    uniq: './src/uniq.ts',
+    uniqBy: './src/uniqBy.ts',
 } as const
 
 export default moduleMap

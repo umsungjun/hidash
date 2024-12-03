@@ -419,6 +419,26 @@
                 "types": "./toString.d.ts",
                 "default": "./toString.js"
             }
+        },
+        "./uniq": {
+            "import": {
+                "types": "./uniq.d.mts",
+                "default": "./uniq.mjs"
+            },
+            "require": {
+                "types": "./uniq.d.ts",
+                "default": "./uniq.js"
+            }
+        },
+        "./uniqBy": {
+            "import": {
+                "types": "./uniqBy.d.mts",
+                "default": "./uniqBy.mjs"
+            },
+            "require": {
+                "types": "./uniqBy.d.ts",
+                "default": "./uniqBy.js"
+            }
         }
     },
     "scripts": {
