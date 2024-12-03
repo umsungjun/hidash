@@ -1,5 +1,45 @@
 # @naverpay/hidash
 
+## 0.1.4
+
+### Patch Changes
+
+-   79010c6: 🚀 lt
+
+    [🚀 lt](https://github.com/NaverPayDev/hidash/pull/136)
+
+-   2ecbab5: 🚀 clone
+
+    PR: [[#46] 🚀 clone](https://github.com/NaverPayDev/hidash/pull/148)
+
+-   acae386: 🚀 `shuffle`
+
+    [🚀 shuffle](https://github.com/NaverPayDev/hidash/pull/130)
+
+-   57bb04d: 🚀 `findLastIndex`
+
+    PR: [🚀 findLastIndex](https://github.com/NaverPayDev/hidash/pull/140)
+
+-   9158811: 🚀 `first` `last` `isPlainObject` `head`
+
+    [🚀 `first` `last` `isPlainObject` `head`](https://github.com/NaverPayDev/hidash/pull/132)
+
+-   63535c4: 🚀 `isFunction`
+
+    [🚀 isFunction, node>=18.12.0](https://github.com/NaverPayDev/hidash/pull/134)
+
+-   4bd8011: 🚀 `isUndefined`
+
+    PR: [🚀 isUndefined](https://github.com/NaverPayDev/hidash/pull/135)
+
+-   d892636: 🚀 `toString`
+
+    [🚀 toString](https://github.com/NaverPayDev/hidash/pull/137)
+
+-   505d2d9: 🚀 `findIndex`
+
+    PR: [🚀 findIndex](https://github.com/NaverPayDev/hidash/pull/141)
+
 ## 0.1.3
 
 ### Patch Changes
