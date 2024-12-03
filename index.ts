@@ -3,6 +3,7 @@
 const moduleMap = {
     before: './src/before.ts',
     clamp: './src/clamp.ts',
+    clone: './src/clone.ts',
     cloneDeep: './src/cloneDeep.ts',
     debounce: './src/debounce.ts',
     eq: './src/eq.ts',
