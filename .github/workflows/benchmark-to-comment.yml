@@ -58,7 +58,7 @@ jobs:
             - name: Merge all modified bench files
               id: merge_bench_files
               run: |
-                  BENCH_FILES=$(echo "$SRC_BENCH_FILES $INTERNAL_BENCH_FILES" | tr ' ' '\n' | sort | uniq)
+                  BENCH_FILES=$(echo "$SRC_BENCH_FILES $INTERNAL_BENCH_FILES" | tr ' ' '\n' | sort | uniq | tr '\n' ' ')
                   echo "BENCH_FILES=$BENCH_FILES" >> $GITHUB_ENV
 
             - name: Run benchmarks
