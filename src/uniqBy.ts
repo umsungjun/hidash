@@ -1,7 +1,7 @@
-import {baseIteratee, ListIteratee} from './internal/baseIteratee'
+import {baseIteratee, ValueIteratee} from './internal/baseIteratee'
 import {List} from './internal/types'
 
-export function uniqBy<T>(array: List<T> | null | undefined, iteratee: ListIteratee<T>): T[] {
+export function uniqBy<T>(array: List<T> | null | undefined, iteratee: ValueIteratee<T>): T[] {
     if (!array || !('length' in array)) {
         return []
     }

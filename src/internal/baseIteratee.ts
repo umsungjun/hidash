@@ -13,6 +13,7 @@ type IterateeShorthand<T> = PropertyName | [PropertyName, any] | PartialShallow<
 type ListIterator<T, TResult> = (value: T, index: number, collection: ArrayLike<T>) => TResult
 export type ListIteratee<T> = ListIterator<T, unknown> | IterateeShorthand<T>
 export type ListIterateeCustom<T, TResult> = ListIterator<T, TResult> | IterateeShorthand<T>
+export type ValueIteratee<T> = ((value: T) => unknown) | IterateeShorthand<T>
 
 function isMatch<T extends object>(element: T, source: any): boolean {
     if (!isPlainObject(element) || !isPlainObject(source)) {
