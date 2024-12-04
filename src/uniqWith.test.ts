@@ -44,11 +44,14 @@ describe('uniqWith', () => {
 
             // without comparator
             const arr = [1, 2, 1]
-            expect(uniqWith(arr)).toEqual(arr)
+            expect(uniqWith(arr)).toEqual([1, 2])
+            expect(uniqWith(arr)).toEqual(_uniqWith(arr))
 
             // invalid comparator
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            expect(uniqWith(arr, null as any)).toEqual(arr)
+            expect(uniqWith(arr, null as any)).toEqual([1, 2])
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            expect(uniqWith(arr, null as any)).toEqual(_uniqWith(arr, null as any))
         })
 
         it('array with different types', () => {

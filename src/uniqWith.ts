@@ -1,25 +1,37 @@
+import uniq from './uniq'
+
 export function uniqWith<T>(array: T[] | null | undefined, comparator?: (a: T, b: T) => boolean): T[] {
-    if (!array || !array.length) {
+    if (!Array.isArray(array)) {
         return []
     }
 
+    const length = array.length
+
+    if (!comparator && length > 200) {
+        return [...new Set(array)]
+    }
+
+    if (!comparator) {
+        return uniq(array)
+    }
+
     const result: T[] = []
-    const seen = new Set<T>()
 
-    for (let i = array.length - 1; i >= 0; i--) {
-        const value = array[i]
+    let i = -1
+
+    while (++i < length) {
         let isDuplicate = false
+        const item = array[i]
 
-        for (const seenValue of seen) {
-            if (comparator ? comparator(value, seenValue) : value === seenValue) {
+        for (const existing of result) {
+            if (comparator(existing, item)) {
                 isDuplicate = true
                 break
             }
         }
 
         if (!isDuplicate) {
-            seen.add(value)
-            result.unshift(value)
+            result.push(item)
         }
     }
 
