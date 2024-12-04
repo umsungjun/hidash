@@ -180,6 +180,16 @@
                 "default": "./isEqual.js"
             }
         },
+        "./isError": {
+            "import": {
+                "types": "./isError.d.mts",
+                "default": "./isError.mjs"
+            },
+            "require": {
+                "types": "./isError.d.ts",
+                "default": "./isError.js"
+            }
+        },
         "./isFunction": {
             "import": {
                 "types": "./isFunction.d.mts",
