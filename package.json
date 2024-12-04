@@ -200,6 +200,16 @@
                 "default": "./isFunction.js"
             }
         },
+        "./isMap": {
+            "import": {
+                "types": "./isMap.d.mts",
+                "default": "./isMap.mjs"
+            },
+            "require": {
+                "types": "./isMap.d.ts",
+                "default": "./isMap.js"
+            }
+        },
         "./isNil": {
             "import": {
                 "types": "./isNil.d.mts",
@@ -248,6 +258,16 @@
             "require": {
                 "types": "./isPlainObject.d.ts",
                 "default": "./isPlainObject.js"
+            }
+        },
+        "./isSet": {
+            "import": {
+                "types": "./isSet.d.mts",
+                "default": "./isSet.mjs"
+            },
+            "require": {
+                "types": "./isSet.d.ts",
+                "default": "./isSet.js"
             }
         },
         "./isString": {
