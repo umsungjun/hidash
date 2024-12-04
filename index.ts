@@ -18,6 +18,7 @@ const moduleMap = {
     isArray: './src/isArray.ts',
     isEmpty: './src/isEmpty.ts',
     isEqual: './src/isEqual.ts',
+    isError: './src/isError.ts',
     isFunction: './src/isFunction.ts',
     isNil: './src/isNil.ts',
     isNull: './src/isNull.ts',
