@@ -1,6 +1,6 @@
 {
     "name": "@naverpay/hidash",
-    "version": "0.1.4",
+    "version": "0.1.5",
     "description": "improved lodash",
     "sideEffects": false,
     "files": [

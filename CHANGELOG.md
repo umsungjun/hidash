@@ -1,5 +1,21 @@
 # @naverpay/hidash
 
+## 0.1.5
+
+### Patch Changes
+
+-   7b2ceda: 🚀 `uniq`, `uniqBy`
+
+    PR: [🚀 uniq, uniqBy](https://github.com/NaverPayDev/hidash/pull/146)
+
+-   163af89: 🚀 `isMap`, `isSet`, `toPairs`, `entries`
+
+    PR: [🚀 isMap, isSet, toPairs, entries](https://github.com/NaverPayDev/hidash/pull/154)
+
+-   2bb0881: 🚀 isError
+
+    PR: [🚀 isError](https://github.com/NaverPayDev/hidash/pull/151)
+
 ## 0.1.4
 
 ### Patch Changes
