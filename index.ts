@@ -6,6 +6,7 @@ const moduleMap = {
     clone: './src/clone.ts',
     cloneDeep: './src/cloneDeep.ts',
     debounce: './src/debounce.ts',
+    entries: './src/entries.ts',
     eq: './src/eq.ts',
     every: './src/every.ts',
     findIndex: './src/findIndex.ts',

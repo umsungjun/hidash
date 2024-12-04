@@ -60,6 +60,16 @@
                 "default": "./debounce.js"
             }
         },
+        "./entries": {
+            "import": {
+                "types": "./entries.d.mts",
+                "default": "./entries.mjs"
+            },
+            "require": {
+                "types": "./entries.d.ts",
+                "default": "./entries.js"
+            }
+        },
         "./eq": {
             "import": {
                 "types": "./eq.d.mts",
