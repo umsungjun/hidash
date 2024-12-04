@@ -45,6 +45,7 @@ const moduleMap = {
     sumBy: './src/sumBy.ts',
     throttle: './src/throttle.ts',
     toNumber: './src/toNumber.ts',
+    toPairs: './src/toPairs.ts',
     toString: './src/toString.ts',
     uniq: './src/uniq.ts',
     uniqBy: './src/uniqBy.ts',

@@ -450,6 +450,16 @@
                 "default": "./toNumber.js"
             }
         },
+        "./toPairs": {
+            "import": {
+                "types": "./toPairs.d.mts",
+                "default": "./toPairs.mjs"
+            },
+            "require": {
+                "types": "./toPairs.d.ts",
+                "default": "./toPairs.js"
+            }
+        },
         "./toString": {
             "import": {
                 "types": "./toString.d.mts",
