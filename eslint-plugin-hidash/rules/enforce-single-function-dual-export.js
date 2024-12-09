@@ -1,4 +1,6 @@
-// eslint-disable-next-line @typescript-eslint/no-require-imports
+/* eslint-disable @typescript-eslint/no-require-imports */
+const path = require('path')
+
 const micromatch = require('micromatch')
 
 module.exports = {
@@ -29,12 +31,12 @@ module.exports = {
     },
     create(context) {
         const {include, exclude} = context.options[0] || {}
-        const filePath = context.getFilename()
+        const filePath = path.relative(context.getCwd(), context.getFilename())
 
         const isIncluded = micromatch.isMatch(filePath, include)
         const isExcluded = micromatch.isMatch(filePath, exclude)
 
-        if (!isIncluded || isExcluded) {
+        if (!(isIncluded && !isExcluded)) {
             return {}
         }
 
