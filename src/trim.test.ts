@@ -31,6 +31,7 @@ describe('trim', () => {
                 ['abcdeabc', 'abc', 'de'],
                 ['---test--', '-', 'test'],
                 ['xxtrimxx', 'x', 'trim'],
+                ['-_-abc-_-', '_-', 'abc'],
             ]
 
             testCases.forEach(([input, chars, expected]) => {
