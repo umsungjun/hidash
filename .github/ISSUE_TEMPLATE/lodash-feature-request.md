@@ -13,25 +13,29 @@ assignees: ''
 
 ### 1. Requested Utility
 
+<!-- 
 -   Describe the utility function you would like to see in `@naverpay/hidash`.
--   Explain its purpose and typical use cases.
+-   Explain its purpose and typical use cases. 
+-->
 
-### 2. Unpkg URL\*\*
+### 2. Unpkg URL
 
 <https://unpkg.com/lodash.[utility-function]>
 
-### 3. Lodash Documentation\*\*
+### 3. Lodash Documentation
 
 <https://lodash.com/docs/#[utility-function]>
 
-### 4. TypeScript Types (`@types/lodash`)\*\*
+### 4. TypeScript Types (`@types/lodash`)
 
 <https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/lodash#[utility-function]>
 
 ### 5.(Optional) Additional Considerations
 
-> exmaples
+<!-- 
+> examples
 >
 > -   Should support nested path selection like `'a.b.c'`.
 > -   Should work with symbol-based keys.
 > -   Must handle nullish objects gracefully.
+-->
