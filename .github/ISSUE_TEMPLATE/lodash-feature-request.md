@@ -7,6 +7,8 @@ labels: 'new-feature'
 assignees: ''
 ---
 
+> [NOTICE]: Please write only the utility name as the GitHub issue title.
+
 ## **🚀 Feature Request: New Utility Proposal for `@naverpay/hidash`**
 
 ### **1. Requested Utility**
