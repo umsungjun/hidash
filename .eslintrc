@@ -4,15 +4,11 @@
     "rules": {
         "@typescript-eslint/naming-convention": ["off"],
         "@typescript-eslint/prefer-for-of": ["off"],
-        "hidash/require-same-function-export": [
+        "hidash/enforce-single-function-dual-export": [
             "error",
             {
-                "include": ["src/*.ts"], 
-                "exclude": [
-                    "src/index.ts",
-                    "**/*.bench.ts",
-                    "**/*.test.ts" 
-                ]
+                "include": ["src/*.ts"],
+                "exclude": ["src/index.ts", "**/*.bench.ts", "**/*.test.ts"]
             }
         ]
     }

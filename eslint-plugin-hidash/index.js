@@ -1,6 +1,6 @@
 module.exports = {
     rules: {
         // eslint-disable-next-line @typescript-eslint/no-require-imports
-        'require-same-function-export': require('./rules/require-same-function-export'),
+        'enforce-single-function-dual-export': require('./rules/enforce-single-function-dual-export'),
     },
 }
