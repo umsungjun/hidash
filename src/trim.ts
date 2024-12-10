@@ -2,7 +2,7 @@ export function trim(input: unknown = '', chars?: string, guard?: unknown): stri
     const str = input == null ? '' : String(input)
 
     // 기본 공백 제거
-    if (str && (guard !== undefined || chars === undefined)) {
+    if (str && (guard != null || chars === undefined)) {
         return str.trim()
     }
 
