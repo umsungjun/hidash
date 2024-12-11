@@ -4,33 +4,35 @@ Latest benchmark results comparing hidash vs lodash performance.
 
 | Method | Test | Performance Comparison | `hidash` ops/sec | `lodash@4.17.21` ops/sec |
 |--------|------|----------------------|----------------|----------------|
-| [clamp](https://github.com/NaverPayDev/hidash/blob/98270cd65f0ae2d6c4f71eebeb24f5d0225fb304/src/clamp.ts) | src/clamp.bench.ts > clamp performance | hidash is 2.29x faster | 113.74 🏆 | 49.71 |
-| [clone](https://github.com/NaverPayDev/hidash/blob/98270cd65f0ae2d6c4f71eebeb24f5d0225fb304/src/clone.ts) | src/clone.bench.ts > clone performance | hidash is 17.16x faster | 57.58 🏆 | 3.36 |
-| [cloneDeep](https://github.com/NaverPayDev/hidash/blob/98270cd65f0ae2d6c4f71eebeb24f5d0225fb304/src/cloneDeep.ts) | src/cloneDeep.bench.ts > cloneDeep performance | hidash is 2.26x faster | 2.06 🏆 | 0.91 |
-| [every](https://github.com/NaverPayDev/hidash/blob/98270cd65f0ae2d6c4f71eebeb24f5d0225fb304/src/every.ts) | src/every.bench.ts > every performance | hidash is 1.81x faster | 50.81 🏆 | 28.00 |
-| [findIndex](https://github.com/NaverPayDev/hidash/blob/98270cd65f0ae2d6c4f71eebeb24f5d0225fb304/src/findIndex.ts) | src/findIndex.bench.ts > findIndex performance | hidash is 5.74x faster | 5941.65 🏆 | 1035.47 |
-| [findLastIndex](https://github.com/NaverPayDev/hidash/blob/98270cd65f0ae2d6c4f71eebeb24f5d0225fb304/src/findLastIndex.ts) | src/findLastIndex.bench.ts > findLastIndex performance | hidash is 5.59x faster | 6053.48 🏆 | 1083.18 |
-| [groupBy](https://github.com/NaverPayDev/hidash/blob/98270cd65f0ae2d6c4f71eebeb24f5d0225fb304/src/groupBy.ts) | src/groupBy.bench.ts > groupBy performance comparison | hidash is 1.20x faster | 1538.50 🏆 | 1286.83 |
-| [gt](https://github.com/NaverPayDev/hidash/blob/98270cd65f0ae2d6c4f71eebeb24f5d0225fb304/src/gt.ts) | src/gt.bench.ts > gt performance | hidash is 3.24x faster | 166.89 🏆 | 51.45 |
-| [has](https://github.com/NaverPayDev/hidash/blob/98270cd65f0ae2d6c4f71eebeb24f5d0225fb304/src/has.ts) | src/has.bench.ts > has performance | hidash is 2.46x faster | 508.88 🏆 | 206.59 |
-| [includes](https://github.com/NaverPayDev/hidash/blob/98270cd65f0ae2d6c4f71eebeb24f5d0225fb304/src/includes.ts) | src/includes.bench.ts > includes performance | hidash is 7.05x faster | 40.73 🏆 | 5.78 |
-| [isEmpty](https://github.com/NaverPayDev/hidash/blob/98270cd65f0ae2d6c4f71eebeb24f5d0225fb304/src/isEmpty.ts) | src/isEmpty.bench.ts > isEmpty performance | hidash is 10.65x faster | 217.40 🏆 | 20.41 |
-| [isEqual](https://github.com/NaverPayDev/hidash/blob/98270cd65f0ae2d6c4f71eebeb24f5d0225fb304/src/isEqual.ts) | src/isEqual.bench.ts > isEqual performance | hidash is 6.38x faster | 5.51 🏆 | 0.86 |
-| [keys](https://github.com/NaverPayDev/hidash/blob/98270cd65f0ae2d6c4f71eebeb24f5d0225fb304/src/keys.ts) | src/keys.bench.ts > keys performance | hidash is 3.00x faster | 16.05 🏆 | 5.35 |
-| [mapValues](https://github.com/NaverPayDev/hidash/blob/98270cd65f0ae2d6c4f71eebeb24f5d0225fb304/src/mapValues.ts) | src/mapValues.bench.ts > mapValues performance | hidash is 1.26x faster | 311.76 🏆 | 247.82 |
-| [merge](https://github.com/NaverPayDev/hidash/blob/98270cd65f0ae2d6c4f71eebeb24f5d0225fb304/src/merge.ts) | src/merge.bench.ts > merge performance | hidash is 1.26x faster | 276.71 🏆 | 219.00 |
-| [omit](https://github.com/NaverPayDev/hidash/blob/98270cd65f0ae2d6c4f71eebeb24f5d0225fb304/src/omit.ts) | src/omit.bench.ts > omit performance | hidash is 3.93x faster | 110.04 🏆 | 27.98 |
-| [repeat](https://github.com/NaverPayDev/hidash/blob/98270cd65f0ae2d6c4f71eebeb24f5d0225fb304/src/repeat.ts) | src/repeat.bench.ts > repeat performance | hidash is 2.68x faster | 1717.27 🏆 | 640.08 |
-| [shuffle](https://github.com/NaverPayDev/hidash/blob/98270cd65f0ae2d6c4f71eebeb24f5d0225fb304/src/shuffle.ts) | src/shuffle.bench.ts > shuffle performance | hidash is 2.92x faster | 19.21 🏆 | 6.57 |
-| [size](https://github.com/NaverPayDev/hidash/blob/98270cd65f0ae2d6c4f71eebeb24f5d0225fb304/src/size.ts) | src/size.bench.ts > size performance | hidash is 1.03x faster | 64.36 🏆 | 62.61 |
-| [sum](https://github.com/NaverPayDev/hidash/blob/98270cd65f0ae2d6c4f71eebeb24f5d0225fb304/src/sum.ts) | src/sum.bench.ts > sum performance | hidash is 2.53x faster | 152.59 🏆 | 60.22 |
-| [sumBy](https://github.com/NaverPayDev/hidash/blob/98270cd65f0ae2d6c4f71eebeb24f5d0225fb304/src/sumBy.ts) | src/sumBy.bench.ts > sumBy performance | hidash is 3.51x faster | 310.44 🏆 | 88.39 |
-| [toNumber](https://github.com/NaverPayDev/hidash/blob/98270cd65f0ae2d6c4f71eebeb24f5d0225fb304/src/toNumber.ts) | src/toNumber.bench.ts > toNumber performance | hidash is 8.12x faster | 94.93 🏆 | 11.69 |
-| [toPairs](https://github.com/NaverPayDev/hidash/blob/98270cd65f0ae2d6c4f71eebeb24f5d0225fb304/src/toPairs.ts) | src/toPairs.bench.ts > toPairs performance | hidash is 3.70x faster | 0.96 🏆 | 0.26 |
-| [toString](https://github.com/NaverPayDev/hidash/blob/98270cd65f0ae2d6c4f71eebeb24f5d0225fb304/src/toString.ts) | src/toString.bench.ts > toString performance | hidash is 2.03x faster | 35.95 🏆 | 17.73 |
-| [uniq](https://github.com/NaverPayDev/hidash/blob/98270cd65f0ae2d6c4f71eebeb24f5d0225fb304/src/uniq.ts) | src/uniq.bench.ts > uniq performance | hidash is 1.50x faster | 116.73 🏆 | 77.81 |
-| [uniqBy](https://github.com/NaverPayDev/hidash/blob/98270cd65f0ae2d6c4f71eebeb24f5d0225fb304/src/uniqBy.ts) | src/uniqBy.bench.ts > uniqBy performance | hidash is 1.67x faster | 64.40 🏆 | 38.45 |
-| [uniqWith](https://github.com/NaverPayDev/hidash/blob/98270cd65f0ae2d6c4f71eebeb24f5d0225fb304/src/uniqWith.ts) ⚠️ | src/uniqWith.bench.ts > uniqWith performance | lodash is 1.05x faster | 16.38 | 17.12 🏆 |
+| [clamp](https://github.com/NaverPayDev/hidash/blob/169c1b436bbcfff65892d97aeeddaa06d5033bd6/src/clamp.ts) | src/clamp.bench.ts > clamp performance | hidash is 2.32x faster | 113.02 🏆 | 48.65 |
+| [clone](https://github.com/NaverPayDev/hidash/blob/169c1b436bbcfff65892d97aeeddaa06d5033bd6/src/clone.ts) | src/clone.bench.ts > clone performance | hidash is 14.82x faster | 50.37 🏆 | 3.40 |
+| [cloneDeep](https://github.com/NaverPayDev/hidash/blob/169c1b436bbcfff65892d97aeeddaa06d5033bd6/src/cloneDeep.ts) | src/cloneDeep.bench.ts > cloneDeep performance | hidash is 2.33x faster | 2.08 🏆 | 0.89 |
+| [every](https://github.com/NaverPayDev/hidash/blob/169c1b436bbcfff65892d97aeeddaa06d5033bd6/src/every.ts) | src/every.bench.ts > every performance | hidash is 1.82x faster | 49.61 🏆 | 27.23 |
+| [findIndex](https://github.com/NaverPayDev/hidash/blob/169c1b436bbcfff65892d97aeeddaa06d5033bd6/src/findIndex.ts) | src/findIndex.bench.ts > findIndex performance | hidash is 5.35x faster | 5760.58 🏆 | 1075.79 |
+| [findLastIndex](https://github.com/NaverPayDev/hidash/blob/169c1b436bbcfff65892d97aeeddaa06d5033bd6/src/findLastIndex.ts) | src/findLastIndex.bench.ts > findLastIndex performance | hidash is 5.63x faster | 5926.81 🏆 | 1051.99 |
+| [groupBy](https://github.com/NaverPayDev/hidash/blob/169c1b436bbcfff65892d97aeeddaa06d5033bd6/src/groupBy.ts) | src/groupBy.bench.ts > groupBy performance comparison | hidash is 1.26x faster | 1566.72 🏆 | 1248.27 |
+| [gt](https://github.com/NaverPayDev/hidash/blob/169c1b436bbcfff65892d97aeeddaa06d5033bd6/src/gt.ts) | src/gt.bench.ts > gt performance | hidash is 3.09x faster | 161.97 🏆 | 52.38 |
+| [has](https://github.com/NaverPayDev/hidash/blob/169c1b436bbcfff65892d97aeeddaa06d5033bd6/src/has.ts) | src/has.bench.ts > has performance | hidash is 2.63x faster | 519.14 🏆 | 197.65 |
+| [includes](https://github.com/NaverPayDev/hidash/blob/169c1b436bbcfff65892d97aeeddaa06d5033bd6/src/includes.ts) | src/includes.bench.ts > includes performance | hidash is 6.96x faster | 39.91 🏆 | 5.74 |
+| [isEmpty](https://github.com/NaverPayDev/hidash/blob/169c1b436bbcfff65892d97aeeddaa06d5033bd6/src/isEmpty.ts) | src/isEmpty.bench.ts > isEmpty performance | hidash is 11.12x faster | 222.39 🏆 | 20.00 |
+| [isEqual](https://github.com/NaverPayDev/hidash/blob/169c1b436bbcfff65892d97aeeddaa06d5033bd6/src/isEqual.ts) | src/isEqual.bench.ts > isEqual performance | hidash is 6.38x faster | 5.47 🏆 | 0.86 |
+| [keys](https://github.com/NaverPayDev/hidash/blob/169c1b436bbcfff65892d97aeeddaa06d5033bd6/src/keys.ts) | src/keys.bench.ts > keys performance | hidash is 2.94x faster | 15.63 🏆 | 5.31 |
+| [lt](https://github.com/NaverPayDev/hidash/blob/169c1b436bbcfff65892d97aeeddaa06d5033bd6/src/lt.ts) | src/lt.bench.ts > lt performance | hidash is 3.26x faster | 172.79 🏆 | 53.01 |
+| [mapValues](https://github.com/NaverPayDev/hidash/blob/169c1b436bbcfff65892d97aeeddaa06d5033bd6/src/mapValues.ts) | src/mapValues.bench.ts > mapValues performance | hidash is 1.26x faster | 313.64 🏆 | 249.75 |
+| [merge](https://github.com/NaverPayDev/hidash/blob/169c1b436bbcfff65892d97aeeddaa06d5033bd6/src/merge.ts) | src/merge.bench.ts > merge performance | hidash is 1.25x faster | 270.19 🏆 | 216.66 |
+| [omit](https://github.com/NaverPayDev/hidash/blob/169c1b436bbcfff65892d97aeeddaa06d5033bd6/src/omit.ts) | src/omit.bench.ts > omit performance | hidash is 3.97x faster | 110.24 🏆 | 27.75 |
+| [repeat](https://github.com/NaverPayDev/hidash/blob/169c1b436bbcfff65892d97aeeddaa06d5033bd6/src/repeat.ts) | src/repeat.bench.ts > repeat performance | hidash is 2.54x faster | 1714.44 🏆 | 675.03 |
+| [shuffle](https://github.com/NaverPayDev/hidash/blob/169c1b436bbcfff65892d97aeeddaa06d5033bd6/src/shuffle.ts) | src/shuffle.bench.ts > shuffle performance | hidash is 2.87x faster | 18.78 🏆 | 6.54 |
+| [size](https://github.com/NaverPayDev/hidash/blob/169c1b436bbcfff65892d97aeeddaa06d5033bd6/src/size.ts) | src/size.bench.ts > size performance | hidash is 1.01x faster | 64.57 🏆 | 63.67 |
+| [sum](https://github.com/NaverPayDev/hidash/blob/169c1b436bbcfff65892d97aeeddaa06d5033bd6/src/sum.ts) | src/sum.bench.ts > sum performance | hidash is 2.76x faster | 155.81 🏆 | 56.40 |
+| [sumBy](https://github.com/NaverPayDev/hidash/blob/169c1b436bbcfff65892d97aeeddaa06d5033bd6/src/sumBy.ts) | src/sumBy.bench.ts > sumBy performance | hidash is 3.50x faster | 310.20 🏆 | 88.58 |
+| [toNumber](https://github.com/NaverPayDev/hidash/blob/169c1b436bbcfff65892d97aeeddaa06d5033bd6/src/toNumber.ts) | src/toNumber.bench.ts > toNumber performance | hidash is 7.90x faster | 93.15 🏆 | 11.79 |
+| [toPairs](https://github.com/NaverPayDev/hidash/blob/169c1b436bbcfff65892d97aeeddaa06d5033bd6/src/toPairs.ts) | src/toPairs.bench.ts > toPairs performance | hidash is 3.07x faster | 94.27 🏆 | 30.71 |
+| [toString](https://github.com/NaverPayDev/hidash/blob/169c1b436bbcfff65892d97aeeddaa06d5033bd6/src/toString.ts) | src/toString.bench.ts > toString performance | hidash is 2.02x faster | 35.57 🏆 | 17.58 |
+| [trim](https://github.com/NaverPayDev/hidash/blob/169c1b436bbcfff65892d97aeeddaa06d5033bd6/src/trim.ts) | src/trim.bench.ts > trim performance | hidash is 2.86x faster | 34.62 🏆 | 12.09 |
+| [uniq](https://github.com/NaverPayDev/hidash/blob/169c1b436bbcfff65892d97aeeddaa06d5033bd6/src/uniq.ts) | src/uniq.bench.ts > uniq performance | hidash is 1.51x faster | 118.09 🏆 | 78.16 |
+| [uniqBy](https://github.com/NaverPayDev/hidash/blob/169c1b436bbcfff65892d97aeeddaa06d5033bd6/src/uniqBy.ts) | src/uniqBy.bench.ts > uniqBy performance | hidash is 1.68x faster | 63.16 🏆 | 37.51 |
+| [uniqWith](https://github.com/NaverPayDev/hidash/blob/169c1b436bbcfff65892d97aeeddaa06d5033bd6/src/uniqWith.ts) ⚠️ | src/uniqWith.bench.ts > uniqWith performance | lodash is 1.05x faster | 16.23 | 17.09 🏆 |
 
 > Note: Higher operations per second (ops/sec) numbers are better. Each test compares hidash vs lodash implementation.
 >
@@ -38,4 +40,4 @@ Latest benchmark results comparing hidash vs lodash performance.
 >
 > 🏆 indicates the faster implementation.
 
-_Last updated: 2024-12-10_
+_Last updated: 2024-12-11_
