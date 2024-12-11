@@ -330,6 +330,16 @@
                 "default": "./isUndefined.js"
             }
         },
+        "./join": {
+            "import": {
+                "types": "./join.d.mts",
+                "default": "./join.mjs"
+            },
+            "require": {
+                "types": "./join.d.ts",
+                "default": "./join.js"
+            }
+        },
         "./keys": {
             "import": {
                 "types": "./keys.d.mts",
