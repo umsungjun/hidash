@@ -56,6 +56,7 @@ const moduleMap = {
     uniq: './src/uniq.ts',
     uniqBy: './src/uniqBy.ts',
     uniqWith: './src/uniqWith.ts',
+    values: './src/values.ts',
 } as const
 
 export default moduleMap

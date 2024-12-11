@@ -559,6 +559,16 @@
                 "types": "./uniqWith.d.ts",
                 "default": "./uniqWith.js"
             }
+        },
+        "./values": {
+            "import": {
+                "types": "./values.d.mts",
+                "default": "./values.mjs"
+            },
+            "require": {
+                "types": "./values.d.ts",
+                "default": "./values.js"
+            }
         }
     },
     "scripts": {
