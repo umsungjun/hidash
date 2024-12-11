@@ -60,6 +60,16 @@
                 "default": "./debounce.js"
             }
         },
+        "./delay": {
+            "import": {
+                "types": "./delay.d.mts",
+                "default": "./delay.mjs"
+            },
+            "require": {
+                "types": "./delay.d.ts",
+                "default": "./delay.js"
+            }
+        },
         "./entries": {
             "import": {
                 "types": "./entries.d.mts",
@@ -428,6 +438,16 @@
             "require": {
                 "types": "./size.d.ts",
                 "default": "./size.js"
+            }
+        },
+        "./sleep": {
+            "import": {
+                "types": "./sleep.d.mts",
+                "default": "./sleep.mjs"
+            },
+            "require": {
+                "types": "./sleep.d.ts",
+                "default": "./sleep.js"
             }
         },
         "./sum": {
