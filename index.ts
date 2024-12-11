@@ -34,6 +34,7 @@ const moduleMap = {
     isString: './src/isString.ts',
     isSymbol: './src/isSymbol.ts',
     isUndefined: './src/isUndefined.ts',
+    join: './src/join.ts',
     keys: './src/keys.ts',
     last: './src/last.ts',
     lt: './src/lt.ts',
