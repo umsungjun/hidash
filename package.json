@@ -540,6 +540,16 @@
                 "default": "./trim.js"
             }
         },
+        "./union": {
+            "import": {
+                "types": "./union.d.mts",
+                "default": "./union.mjs"
+            },
+            "require": {
+                "types": "./union.d.ts",
+                "default": "./union.js"
+            }
+        },
         "./uniq": {
             "import": {
                 "types": "./uniq.d.mts",
