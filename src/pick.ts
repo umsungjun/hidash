@@ -1,6 +1,6 @@
 type KeyOf<T> = keyof T
 
-export function pick<T extends object, K extends KeyOf<T>>(object: T, keys: K[]): Pick<T, K> {
+export function pick<T extends object, K extends KeyOf<T>>(object: T | null | undefined, keys: K[]): Pick<T, K> {
     if (object == null) {
         return {} as Pick<T, K>
     }
