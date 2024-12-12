@@ -1,10 +1,13 @@
-type KeyOf<T> = keyof T
+import flatten from './flatten'
 
-export function pick<T extends object, K extends KeyOf<T>>(object: T | null | undefined, keys: K[]): Pick<T, K> {
+type Many<T> = T | Many<T>[]
+
+export function pick<T extends object, U extends keyof T>(object: T, ...props: Many<U>[]): Pick<T, U> {
     if (object == null) {
-        return {} as Pick<T, K>
+        return {} as Pick<T, U>
     }
 
+    const keys = flatten(props)
     const result: Partial<T> = {}
 
     for (const key of keys) {
@@ -13,7 +16,7 @@ export function pick<T extends object, K extends KeyOf<T>>(object: T | null | un
         }
     }
 
-    return result as Pick<T, K>
+    return result as Pick<T, U>
 }
 
 export default pick
