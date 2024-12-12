@@ -2,12 +2,12 @@ import flatten from './flatten'
 
 type Many<T> = T | Many<T>[]
 
-export function pick<T extends object, U extends keyof T>(object: T, ...props: Many<U>[]): Pick<T, U> {
+export function pick<T extends object, U extends keyof T>(object: T, ...params: Many<U>[]): Pick<T, U> {
     if (object == null) {
         return {} as Pick<T, U>
     }
 
-    const keys = flatten(props)
+    const keys = flatten(params)
     const result: Partial<T> = {}
 
     for (const key of keys) {
