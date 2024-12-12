@@ -430,6 +430,16 @@
                 "default": "./once.js"
             }
         },
+        "./pick": {
+            "import": {
+                "types": "./pick.d.mts",
+                "default": "./pick.mjs"
+            },
+            "require": {
+                "types": "./pick.d.ts",
+                "default": "./pick.js"
+            }
+        },
         "./repeat": {
             "import": {
                 "types": "./repeat.d.mts",
