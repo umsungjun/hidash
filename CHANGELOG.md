@@ -1,5 +1,53 @@
 # @naverpay/hidash
 
+## 0.1.6
+
+### Patch Changes
+
+-   1c14ef8: 🚀 join
+
+    PR: [🚀 join](https://github.com/NaverPayDev/hidash/pull/164)
+
+-   8c98543: 🚀 pick
+
+    PR: [🚀 pick](https://github.com/NaverPayDev/hidash/pull/167)
+
+-   fa6f7b2: 🚀 trim
+
+    PR: [🚀 trim](https://github.com/NaverPayDev/hidash/pull/156)
+
+-   1e52b05: 🚀 sleep, delay
+
+    PR: [🚀 sleep, delay](https://github.com/NaverPayDev/hidash/pull/162)
+
+-   412b2dc: 🐛 add missing default export of clone
+
+    PR: [create hidash/enforce-single-function-dual-export](https://github.com/NaverPayDev/hidash/pull/155)
+
+-   9c721c8: 🚀 union
+
+    PR: [🚀 union](https://github.com/NaverPayDev/hidash/pull/163)
+
+-   266f606: 🚀 flow
+
+    PR: [🚀 flow](https://github.com/NaverPayDev/hidash/pull/158)
+
+-   f83d1ea: 🚀 flatten
+
+    PR: [[#64] 🚀 flatten](https://github.com/NaverPayDev/hidash/pull/160)
+
+-   f50d1aa: 🚀 reverse
+
+    PR: [🚀 reverse](https://github.com/NaverPayDev/hidash/pull/170)
+
+-   f50b156: 🚀 uniqWith
+
+    PR: [🚀 uniqWith](https://github.com/NaverPayDev/hidash/pull/149)
+
+-   be5494f: 🚀 `values`
+
+    PR: [🚀 values](https://github.com/NaverPayDev/hidash/pull/166)
+
 ## 0.1.5
 
 ### Patch Changes
