@@ -45,6 +45,7 @@ const moduleMap = {
     once: './src/once.ts',
     pick: './src/pick.ts',
     repeat: './src/repeat.ts',
+    reverse: './src/reverse.ts',
     shuffle: './src/shuffle.ts',
     size: './src/size.ts',
     sleep: './src/sleep.ts',

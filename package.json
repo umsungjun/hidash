@@ -450,6 +450,16 @@
                 "default": "./repeat.js"
             }
         },
+        "./reverse": {
+            "import": {
+                "types": "./reverse.d.mts",
+                "default": "./reverse.mjs"
+            },
+            "require": {
+                "types": "./reverse.d.ts",
+                "default": "./reverse.js"
+            }
+        },
         "./shuffle": {
             "import": {
                 "types": "./shuffle.d.mts",
