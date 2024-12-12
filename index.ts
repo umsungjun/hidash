@@ -43,6 +43,7 @@ const moduleMap = {
     merge: './src/merge.ts',
     omit: './src/omit.ts',
     once: './src/once.ts',
+    pick: './src/pick.ts',
     repeat: './src/repeat.ts',
     shuffle: './src/shuffle.ts',
     size: './src/size.ts',
