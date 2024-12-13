@@ -550,6 +550,16 @@
                 "default": "./toString.js"
             }
         },
+        "./transform": {
+            "import": {
+                "types": "./transform.d.mts",
+                "default": "./transform.mjs"
+            },
+            "require": {
+                "types": "./transform.d.ts",
+                "default": "./transform.js"
+            }
+        },
         "./trim": {
             "import": {
                 "types": "./trim.d.mts",

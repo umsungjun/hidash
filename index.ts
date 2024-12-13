@@ -55,6 +55,7 @@ const moduleMap = {
     toNumber: './src/toNumber.ts',
     toPairs: './src/toPairs.ts',
     toString: './src/toString.ts',
+    transform: './src/transform.ts',
     trim: './src/trim.ts',
     union: './src/union.ts',
     uniq: './src/uniq.ts',
