@@ -1,6 +1,7 @@
 // only for vite, tsup
 // remember, this is not barrel file.
 const moduleMap = {
+    assign: './src/assign.ts',
     before: './src/before.ts',
     clamp: './src/clamp.ts',
     clone: './src/clone.ts',
