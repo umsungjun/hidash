@@ -520,6 +520,16 @@
                 "default": "./throttle.js"
             }
         },
+        "./times": {
+            "import": {
+                "types": "./times.d.mts",
+                "default": "./times.mjs"
+            },
+            "require": {
+                "types": "./times.d.ts",
+                "default": "./times.js"
+            }
+        },
         "./toNumber": {
             "import": {
                 "types": "./toNumber.d.mts",

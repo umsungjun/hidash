@@ -52,6 +52,7 @@ const moduleMap = {
     sum: './src/sum.ts',
     sumBy: './src/sumBy.ts',
     throttle: './src/throttle.ts',
+    times: './src/times.ts',
     toNumber: './src/toNumber.ts',
     toPairs: './src/toPairs.ts',
     toString: './src/toString.ts',
