@@ -7,6 +7,7 @@ const moduleMap = {
     cloneDeep: './src/cloneDeep.ts',
     debounce: './src/debounce.ts',
     delay: './src/delay.ts',
+    difference: './src/difference.ts',
     entries: './src/entries.ts',
     eq: './src/eq.ts',
     every: './src/every.ts',
