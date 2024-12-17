@@ -2,6 +2,7 @@
 // remember, this is not barrel file.
 const moduleMap = {
     before: './src/before.ts',
+    chunk: './src/chunk.ts',
     clamp: './src/clamp.ts',
     clone: './src/clone.ts',
     cloneDeep: './src/cloneDeep.ts',
