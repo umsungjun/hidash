@@ -20,6 +20,16 @@
                 "default": "./before.js"
             }
         },
+        "./chunk": {
+            "import": {
+                "types": "./chunk.d.mts",
+                "default": "./chunk.mjs"
+            },
+            "require": {
+                "types": "./chunk.d.ts",
+                "default": "./chunk.js"
+            }
+        },
         "./clamp": {
             "import": {
                 "types": "./clamp.d.mts",
