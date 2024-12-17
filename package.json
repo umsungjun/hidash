@@ -70,6 +70,16 @@
                 "default": "./delay.js"
             }
         },
+        "./difference": {
+            "import": {
+                "types": "./difference.d.mts",
+                "default": "./difference.mjs"
+            },
+            "require": {
+                "types": "./difference.d.ts",
+                "default": "./difference.js"
+            }
+        },
         "./entries": {
             "import": {
                 "types": "./entries.d.mts",
