@@ -1,11 +1,11 @@
 export function times(n: number): number[]
 export function times<TResult>(n: number, iteratee: (num: number) => TResult): TResult[]
 export function times<TResult>(n: number, iteratee?: (num: number) => TResult): (number | TResult)[] {
-    const nTimes = Math.floor(Number(n))
-    if (n < 1) {
+    if (!Number.isInteger(n) || n < 1 || n >= Number.MAX_SAFE_INTEGER) {
         return []
     }
 
+    const nTimes = n
     const result = new Array(nTimes)
 
     if (iteratee) {
