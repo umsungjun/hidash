@@ -87,6 +87,16 @@ describe('complex scenarios', () => {
         const iteratee = (item) => item.tags[0]
         expect(groupBy(data, iteratee)).toEqual(_groupBy(data, iteratee))
     })
+
+    it('should handle nested object paths using string notation', () => {
+        const data = [
+            {insurance: {type: 'health', value: 100}},
+            {insurance: {type: 'life', value: 200}},
+            {insurance: {type: 'health', value: 300}},
+        ]
+
+        expect(groupBy(data, 'insurance.type')).toEqual(_groupBy(data, (item) => item.insurance.type))
+    })
 })
 
 describe('performance cases', () => {
@@ -103,11 +113,7 @@ describe('performance cases', () => {
 
 describe('error cases', () => {
     it('should handle invalid iteratee paths', () => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
         expect(groupBy(users, 'nonexistent')).toEqual(_groupBy(users, 'nonexistent'))
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
         expect(groupBy(users, '')).toEqual(_groupBy(users, ''))
     })
 
@@ -137,5 +143,17 @@ describe('type safety', () => {
         expect(groupBy(typedUsers, (user) => (user.age >= 30 ? 'senior' : 'junior'))).toEqual(
             _groupBy(typedUsers, (user) => (user.age >= 30 ? 'senior' : 'junior')),
         )
+    })
+})
+
+describe('lodash groupBy with undefined', () => {
+    it('should use "undefined" as a key when iteratee returns undefined', () => {
+        const data = [1, 2, 3]
+        expect(groupBy(data, () => undefined)).toEqual(_groupBy(data, () => undefined))
+    })
+
+    it('should handle undefined values in collection', () => {
+        const data = [1, undefined, 3]
+        expect(groupBy(data)).toEqual(_groupBy(data))
     })
 })
