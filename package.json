@@ -10,6 +10,16 @@
         "*.d.mts"
     ],
     "exports": {
+        "./assign": {
+            "import": {
+                "types": "./assign.d.mts",
+                "default": "./assign.mjs"
+            },
+            "require": {
+                "types": "./assign.d.ts",
+                "default": "./assign.js"
+            }
+        },
         "./before": {
             "import": {
                 "types": "./before.d.mts",
