@@ -410,6 +410,16 @@
                 "default": "./lt.js"
             }
         },
+        "./map": {
+            "import": {
+                "types": "./map.d.mts",
+                "default": "./map.mjs"
+            },
+            "require": {
+                "types": "./map.d.ts",
+                "default": "./map.js"
+            }
+        },
         "./mapValues": {
             "import": {
                 "types": "./mapValues.d.mts",

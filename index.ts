@@ -42,6 +42,7 @@ const moduleMap = {
     last: './src/last.ts',
     lt: './src/lt.ts',
     mapValues: './src/mapValues.ts',
+    map: './src/map.ts',
     memoize: './src/memoize.ts',
     merge: './src/merge.ts',
     omit: './src/omit.ts',
