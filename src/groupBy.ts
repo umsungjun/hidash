@@ -1,79 +1,43 @@
-type PropertyName = string | number
-type PropertyPath = PropertyName | PropertyName[]
-type ValueIteratee<T> = ((value: T) => PropertyName) | PropertyPath
+import {isArrayLike} from './internal/array'
+import {baseIteratee, ValueIteratee} from './internal/baseIteratee'
+import isPlainObject from './isPlainObject'
 
-type Dictionary<T> = Record<string, T[]>
+type PropertyName = string | number | symbol
 
-interface List<T> {
-    length: number
-    [index: number]: T
-}
-
-export function groupBy<T>(collection: List<T> | null | undefined, iteratee?: ValueIteratee<T>): Dictionary<T>
+export function groupBy<T>(collection: T[] | null | undefined, iteratee?: ValueIteratee<T>): Record<string, T[]>
 export function groupBy<T extends object>(
     collection: T | null | undefined,
     iteratee?: ValueIteratee<T[keyof T]>,
-): Dictionary<T[keyof T]>
-export function groupBy(collection: string | null | undefined, iteratee?: ValueIteratee<string>): Dictionary<string>
-export function groupBy(collection: unknown, iteratee?: unknown): Dictionary<unknown> {
+): Record<string, T[keyof T][]>
+export function groupBy(collection: unknown, iteratee?: ValueIteratee<unknown>): Record<string, unknown[]> {
     if (collection == null) {
         return {}
     }
 
-    let finalIteratee: (val: unknown) => PropertyName
+    const iterFn = baseIteratee(iteratee ?? ((v: unknown) => v))
+    const result: Record<string, unknown[]> = {}
 
-    if (iteratee == null) {
-        finalIteratee = (val: unknown) => val as PropertyName
-    } else if (typeof iteratee === 'function') {
-        finalIteratee = iteratee as (val: unknown) => PropertyName
-    } else {
-        const path = Array.isArray(iteratee) ? iteratee : (iteratee as string).split('.')
-        finalIteratee = (val: unknown) => {
-            let current: unknown = val
-            for (const key of path) {
-                if (current == null || typeof current !== 'object') {
-                    return 'undefined'
-                }
-                current = (current as Record<string, unknown>)[key]
-            }
-            return current == null ? 'undefined' : String(current)
-        }
-    }
-
-    const result: Dictionary<unknown> = {}
-
-    if (typeof collection === 'string') {
-        for (let i = 0; i < collection.length; i++) {
-            const char = collection[i]
-            const key = String(finalIteratee(char))
-            if (!result[key]) {
-                result[key] = []
-            }
-            result[key].push(char)
+    if (isArrayLike(collection)) {
+        const arr = collection as ArrayLike<unknown>
+        for (let i = 0; i < arr.length; i++) {
+            const value = arr[i]
+            const key = iterFn(value, i, arr)
+            const stringKey = key == null ? 'undefined' : String(key)
+            const group = result[stringKey] || (result[stringKey] = [])
+            group.push(value)
         }
         return result
     }
 
-    if (Array.isArray(collection)) {
-        for (const item of collection) {
-            const key = String(finalIteratee(item))
-            if (!result[key]) {
-                result[key] = []
-            }
-            result[key].push(item)
-        }
-        return result
-    }
-
-    if (typeof collection === 'object') {
-        const objKeys = Object.keys(collection as object)
-        for (const k of objKeys) {
-            const val = (collection as Record<string, unknown>)[k]
-            const key = String(finalIteratee(val))
-            if (!result[key]) {
-                result[key] = []
-            }
-            result[key].push(val)
+    if (isPlainObject(collection)) {
+        // 객체일 경우 values 추출
+        const values = Object.values(collection as Record<PropertyName, unknown>)
+        for (let i = 0; i < values.length; i++) {
+            const value = values[i]
+            const key = iterFn(value, i, values)
+            const stringKey = key == null ? 'undefined' : String(key)
+            const group = result[stringKey] || (result[stringKey] = [])
+            group.push(value)
         }
         return result
     }

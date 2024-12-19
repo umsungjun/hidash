@@ -3,7 +3,6 @@ import {describe, it, expect} from 'vitest'
 
 import {groupBy} from './groupBy'
 
-// 테스트용 데이터
 const users = [
     {id: 1, name: 'John', age: 25, city: 'NY'},
     {id: 2, name: 'Jane', age: 25, city: 'LA'},
@@ -155,5 +154,25 @@ describe('lodash groupBy with undefined', () => {
     it('should handle undefined values in collection', () => {
         const data = [1, undefined, 3]
         expect(groupBy(data)).toEqual(_groupBy(data))
+    })
+})
+
+describe('pattern iteratees', () => {
+    it('should group by object pattern', () => {
+        expect(groupBy(users, {age: 25})).toEqual(_groupBy(users, {age: 25}))
+    })
+
+    it('should group by array [key, value] pattern', () => {
+        expect(groupBy(users, ['city', 'NY'])).toEqual(_groupBy(users, ['city', 'NY']))
+    })
+
+    it('should group by nested object pattern', () => {
+        const data = [{user: {age: 25, name: 'A'}}, {user: {age: 25, name: 'B'}}, {user: {age: 30, name: 'C'}}]
+
+        expect(groupBy(data, {user: {age: 25}})).toEqual(
+            _groupBy(data, (item) => {
+                return item.user && item.user.age === 25
+            }),
+        )
     })
 })
