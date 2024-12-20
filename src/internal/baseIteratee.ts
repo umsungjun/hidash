@@ -12,6 +12,12 @@ export type ListIteratee<T> = ListIterator<T, unknown> | IterateeShorthand<T>
 export type ListIterateeCustom<T, TResult> = ListIterator<T, TResult> | IterateeShorthand<T>
 export type ValueIteratee<T> = ((value: T) => unknown) | IterateeShorthand<T>
 
+type ObjectIterator<T, TResult> = (value: T[keyof T], key: string, collection: T) => TResult
+export type ObjectIteratee<TObject> = ObjectIterator<TObject, unknown> | IterateeShorthand<TObject[keyof TObject]>
+export type ObjectIterateeCustom<TObject, TResult> =
+    | ObjectIterator<TObject, TResult>
+    | IterateeShorthand<TObject[keyof TObject]>
+
 function getValueByPath(element: unknown, path: PropertyName[]): unknown {
     let result = element
     for (let i = 0; i < path.length; i++) {

@@ -530,6 +530,16 @@
                 "default": "./sleep.js"
             }
         },
+        "./some": {
+            "import": {
+                "types": "./some.d.mts",
+                "default": "./some.mjs"
+            },
+            "require": {
+                "types": "./some.d.ts",
+                "default": "./some.js"
+            }
+        },
         "./sum": {
             "import": {
                 "types": "./sum.d.mts",
