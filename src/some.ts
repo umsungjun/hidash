@@ -1,14 +1,19 @@
 import {isArrayLike} from './internal/array'
-import {baseIteratee, type ListIterateeCustom} from './internal/baseIteratee'
+import {baseIteratee, type ListIterateeCustom, type ObjectIterateeCustom} from './internal/baseIteratee'
 import isPlainObject from './isPlainObject'
 import keys from './keys'
 
-import type {Collection} from './internal/types'
+import type {List} from './internal/types'
 
+export function some<T>(collection: List<T> | null | undefined, predicate?: ListIterateeCustom<T, boolean>): boolean
+export function some<T extends object>(
+    collection: T | null | undefined,
+    predicate?: ObjectIterateeCustom<T, boolean>,
+): boolean
 export function some<T>(
-    collection: Collection<T> | null | undefined,
-    predicate?: ListIterateeCustom<T, boolean>,
-): boolean {
+    collection: unknown,
+    predicate?: ListIterateeCustom<T, boolean> | ObjectIterateeCustom<T, boolean>,
+) {
     if (!predicate && keys(collection).length === 0) {
         return false
     }
