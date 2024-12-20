@@ -82,7 +82,6 @@ export function baseIteratee<T, TResult>(iteratee: ListIterateeCustom<T, TResult
     }
 
     if (typeof iteratee === 'number' || typeof iteratee === 'symbol') {
-        // 숫자나 심볼인 경우 path 한 번 접근
         const path = [iteratee]
         return (element: T) => {
             if (element == null) {

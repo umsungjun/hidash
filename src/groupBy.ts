@@ -30,7 +30,6 @@ export function groupBy(collection: unknown, iteratee?: ValueIteratee<unknown>):
     }
 
     if (isPlainObject(collection)) {
-        // 객체일 경우 values 추출
         const values = Object.values(collection as Record<PropertyName, unknown>)
         for (let i = 0; i < values.length; i++) {
             const value = values[i]
