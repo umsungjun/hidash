@@ -1,7 +1,5 @@
 import isFunction from '../isFunction'
-import isNull from '../isNull'
 import isPlainObject from '../isPlainObject'
-import isUndefined from '../isUndefined'
 import {isArrayLike} from './array'
 
 type PropertyName = string | number | symbol
@@ -15,14 +13,13 @@ export type ListIterateeCustom<T, TResult> = ListIterator<T, TResult> | Iteratee
 export type ValueIteratee<T> = ((value: T) => unknown) | IterateeShorthand<T>
 
 function getValueByPath(element: unknown, path: PropertyName[]): unknown {
-    let result: unknown = element
+    let result = element
     for (let i = 0; i < path.length; i++) {
-        const key = path[i]
         if (result == null || typeof result !== 'object') {
             return undefined
         }
-        const obj = result as Record<string | symbol | number, unknown>
-        result = obj[key as string]
+        const obj = result as Record<PropertyName, unknown>
+        result = obj[path[i]]
     }
     return result
 }
@@ -33,27 +30,35 @@ function isMatch(element: unknown, source: unknown): boolean {
     }
     const elementObj = element as Record<PropertyName, unknown>
     const sourceObj = source as Record<PropertyName, unknown>
+
     const keys = Object.keys(sourceObj)
     for (let i = 0; i < keys.length; i++) {
         const key = keys[i]
         const value = sourceObj[key]
         const elementValue = elementObj[key]
-        if (isPlainObject(value)) {
-            if (!isMatch(elementValue, value)) {
-                return false
-            }
-        } else {
-            if (elementValue !== value) {
-                return false
-            }
+
+        if (elementValue === value) {
+            continue
+        }
+
+        if (value == null || typeof value !== 'object') {
+            return false
+        }
+
+        if (!isMatch(elementValue, value)) {
+            return false
         }
     }
     return true
 }
 
 export function baseIteratee<T, TResult>(iteratee: ListIterateeCustom<T, TResult>): ListIterator<T, TResult> {
-    if (isNull(iteratee) || isUndefined(iteratee)) {
+    if (iteratee == null) {
         return (element: T) => element as unknown as TResult
+    }
+
+    if (typeof iteratee === 'function') {
+        return iteratee
     }
 
     if (typeof iteratee === 'string') {
@@ -63,8 +68,7 @@ export function baseIteratee<T, TResult>(iteratee: ListIterateeCustom<T, TResult
                 if (element == null) {
                     return undefined as TResult
                 }
-                const obj = element as Record<PropertyName, unknown>
-                return obj[key] as TResult
+                return (element as Record<PropertyName, unknown>)[key] as TResult
             }
         } else {
             const path = iteratee.split('.')
@@ -77,7 +81,8 @@ export function baseIteratee<T, TResult>(iteratee: ListIterateeCustom<T, TResult
         }
     }
 
-    if (typeof iteratee === 'symbol' || typeof iteratee === 'number') {
+    if (typeof iteratee === 'number' || typeof iteratee === 'symbol') {
+        // 숫자나 심볼인 경우 path 한 번 접근
         const path = [iteratee]
         return (element: T) => {
             if (element == null) {
@@ -108,10 +113,6 @@ export function baseIteratee<T, TResult>(iteratee: ListIterateeCustom<T, TResult
             }
             return (isPlainObject(element) && isMatch(element, pattern)) as unknown as TResult
         }
-    }
-
-    if (isFunction(iteratee)) {
-        return iteratee as ListIterator<T, TResult>
     }
 
     throw new Error('Invalid iteratee')
