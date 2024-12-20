@@ -53,6 +53,7 @@ const moduleMap = {
     shuffle: './src/shuffle.ts',
     size: './src/size.ts',
     sleep: './src/sleep.ts',
+    some: './src/some.ts',
     sum: './src/sum.ts',
     sumBy: './src/sumBy.ts',
     throttle: './src/throttle.ts',
