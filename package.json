@@ -1,6 +1,6 @@
 {
     "name": "@naverpay/hidash",
-    "version": "0.1.6",
+    "version": "0.1.7",
     "description": "improved lodash",
     "sideEffects": false,
     "files": [
@@ -128,6 +128,16 @@
             "require": {
                 "types": "./every.d.ts",
                 "default": "./every.js"
+            }
+        },
+        "./filter": {
+            "import": {
+                "types": "./filter.d.mts",
+                "default": "./filter.mjs"
+            },
+            "require": {
+                "types": "./filter.d.ts",
+                "default": "./filter.js"
             }
         },
         "./findIndex": {

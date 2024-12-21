@@ -13,6 +13,7 @@ const moduleMap = {
     entries: './src/entries.ts',
     eq: './src/eq.ts',
     every: './src/every.ts',
+    filter: './src/filter.ts',
     findIndex: './src/findIndex.ts',
     findLastIndex: './src/findLastIndex.ts',
     first: './src/first.ts',

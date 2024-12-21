@@ -89,4 +89,16 @@ describe('baseIteratee', () => {
         const obj = {a: {b: {}}}
         expect(iteratee(obj, 0, [])).toBeUndefined()
     })
+
+    it('should handle NaN edge case with [key, value] pair', () => {
+        const iteratee = baseIteratee<{score: number}, boolean>(['score', NaN])
+        const obj = {score: NaN}
+        expect(iteratee(obj, 0, [])).toBe(false)
+    })
+
+    it('should handle NaN edge case with plain object match', () => {
+        const iteratee = baseIteratee<{score: number}, boolean>({score: NaN})
+        const obj = {score: NaN}
+        expect(iteratee(obj, 0, [])).toBe(false)
+    })
 })

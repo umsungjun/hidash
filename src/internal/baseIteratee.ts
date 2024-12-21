@@ -2,22 +2,17 @@ import isFunction from '../isFunction'
 import isPlainObject from '../isPlainObject'
 import {isArrayLike} from './array'
 
+import type {List} from './types'
+
 type PropertyName = string | number | symbol
+
 type PartialShallow<T> = {
     [P in keyof T]?: T[P] extends object ? object : T[P]
 }
+
 type IterateeShorthand<T> = PropertyName | [PropertyName, unknown] | PartialShallow<T> | undefined | null
-export type ListIterator<T, TResult> = (value: T, index: number, collection: ArrayLike<T>) => TResult
-export type ListIteratee<T> = ListIterator<T, unknown> | IterateeShorthand<T>
-export type ListIterateeCustom<T, TResult> = ListIterator<T, TResult> | IterateeShorthand<T>
-export type ValueIteratee<T> = ((value: T) => unknown) | IterateeShorthand<T>
 
-type ObjectIterator<T, TResult> = (value: T[keyof T], key: string, collection: T) => TResult
-export type ObjectIteratee<TObject> = ObjectIterator<TObject, unknown> | IterateeShorthand<TObject[keyof TObject]>
-export type ObjectIterateeCustom<TObject, TResult> =
-    | ObjectIterator<TObject, TResult>
-    | IterateeShorthand<TObject[keyof TObject]>
-
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function getValueByPath(element: unknown, path: PropertyName[]): unknown {
     let result = element
     for (let i = 0; i < path.length; i++) {
@@ -29,6 +24,24 @@ function getValueByPath(element: unknown, path: PropertyName[]): unknown {
     }
     return result
 }
+
+export type ListIterator<T, TResult> = (value: T, index: number, collection: ArrayLike<T>) => TResult
+
+export type ListIteratee<T> = ListIterator<T, unknown> | IterateeShorthand<T>
+export type ListIterateeCustom<T, TResult> = ListIterator<T, TResult> | IterateeShorthand<T>
+export type ListIteratorTypeGuard<T, S extends T> = (value: T, index: number, collection: List<T>) => value is S
+
+export type ValueIteratee<T> = ((value: T) => unknown) | IterateeShorthand<T>
+export type ObjectIterator<T, TResult> = (value: T[keyof T], key: string, collection: T) => TResult
+export type ObjectIteratee<TObject> = ObjectIterator<TObject, unknown> | IterateeShorthand<TObject[keyof TObject]>
+export type ObjectIterateeCustom<TObject, TResult> =
+    | ObjectIterator<TObject, TResult>
+    | IterateeShorthand<TObject[keyof TObject]>
+export type ObjectIteratorTypeGuard<TObject, S extends TObject[keyof TObject]> = (
+    value: TObject[keyof TObject],
+    key: string,
+    collection: TObject,
+) => value is S
 
 function isMatch(element: unknown, source: unknown): boolean {
     if (!isPlainObject(element) || !isPlainObject(source)) {
@@ -50,7 +63,6 @@ function isMatch(element: unknown, source: unknown): boolean {
         if (value == null || typeof value !== 'object') {
             return false
         }
-
         if (!isMatch(elementValue, value)) {
             return false
         }
@@ -58,65 +70,83 @@ function isMatch(element: unknown, source: unknown): boolean {
     return true
 }
 
-export function baseIteratee<T, TResult>(iteratee: ListIterateeCustom<T, TResult>): ListIterator<T, TResult> {
+export function baseIteratee<T, TResult>(iteratee: ObjectIterateeCustom<T, TResult>): ObjectIterator<T, TResult>
+export function baseIteratee<T, TResult>(iteratee: ListIterateeCustom<T, TResult>): ListIterator<T, TResult>
+export function baseIteratee<T, TResult>(
+    iteratee: ListIterateeCustom<T, TResult> | ObjectIterateeCustom<T, TResult>,
+): ListIterator<T, TResult> | ObjectIterator<T, TResult> {
     if (iteratee == null) {
-        return (element: T) => element as unknown as TResult
+        return function (element: T) {
+            return element as unknown as TResult
+        }
     }
 
     if (typeof iteratee === 'function') {
         return iteratee
     }
 
-    if (typeof iteratee === 'string') {
-        if (!iteratee.includes('.')) {
-            const key = iteratee
-            return (element: T) => {
-                if (element == null) {
-                    return undefined as TResult
-                }
-                return (element as Record<PropertyName, unknown>)[key] as TResult
-            }
-        } else {
-            const path = iteratee.split('.')
-            return (element: T) => {
-                if (element == null) {
-                    return undefined as TResult
-                }
-                return getValueByPath(element, path) as TResult
-            }
-        }
-    }
-
-    if (typeof iteratee === 'number' || typeof iteratee === 'symbol') {
-        const path = [iteratee]
-        return (element: T) => {
+    if (typeof iteratee === 'string' && !iteratee.includes('.')) {
+        return function (element: T) {
             if (element == null) {
                 return undefined as TResult
             }
-            return getValueByPath(element, path) as TResult
+            return (element as Record<PropertyName, unknown>)[iteratee] as TResult
+        }
+    }
+
+    if (typeof iteratee === 'string' || typeof iteratee === 'symbol' || typeof iteratee === 'number') {
+        const path = typeof iteratee === 'string' ? iteratee.split('.') : [iteratee]
+
+        return function (element: T) {
+            if (element == null) {
+                return undefined as TResult
+            }
+            // 간단히 getValueByPath 써도 됨
+            let result = element as unknown
+            for (const key of path) {
+                if (result == null) {
+                    return undefined as TResult
+                }
+                result = (result as Record<PropertyName, unknown>)[key]
+            }
+            return result as TResult
         }
     }
 
     if (isArrayLike(iteratee) && !isFunction(iteratee)) {
-        const arrIter = iteratee as [PropertyName, unknown]
-        const [key, val] = arrIter
-        const path = typeof key === 'string' && key.includes('.') ? key.split('.') : [key]
-        return (element: T) => {
-            if (element == null) {
-                return false as unknown as TResult
+        const [key, value] = iteratee as [PropertyName, unknown]
+
+        if (typeof key === 'string' && !key.includes('.')) {
+            return function (element: T) {
+                if (element == null) {
+                    return false as unknown as TResult
+                }
+                return ((element as Record<string, unknown>)[key] === value) as unknown as TResult
             }
-            const elementVal = getValueByPath(element, path)
-            return (elementVal === val) as unknown as TResult
+        }
+        const path = typeof key === 'string' ? key.split('.') : [key]
+
+        return function (element: T) {
+            if (element == null) {
+                return false as TResult
+            }
+            let result = element as unknown
+            for (const prop of path) {
+                if (result == null) {
+                    return false as TResult
+                }
+                result = (result as Record<PropertyName, unknown>)[prop]
+            }
+            return (result === value) as TResult
         }
     }
 
     if (isPlainObject(iteratee) && !isFunction(iteratee)) {
-        const pattern = iteratee as PartialShallow<T>
-        return (element: T) => {
-            if (element == null) {
-                return false as unknown as TResult
+        return function (element: T) {
+            if (!isPlainObject(element)) {
+                return false as TResult
             }
-            return (isPlainObject(element) && isMatch(element, pattern)) as unknown as TResult
+            return isMatch(element, iteratee) as unknown as TResult
         }
     }
 
