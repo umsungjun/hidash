@@ -1,5 +1,41 @@
 # @naverpay/hidash
 
+## 0.1.7
+
+### Patch Changes
+
+-   fb49125: 🚀 transform
+
+    PR: [🚀 transform](https://github.com/NaverPayDev/hidash/pull/172)
+
+-   62384f8: 🚀 chunk
+
+    PR: [🚀 chunk](https://github.com/NaverPayDev/hidash/pull/179)
+
+-   ab9ac31: 🚀 `some`
+
+    PR: [🚀 some](https://github.com/NaverPayDev/hidash/pull/184)
+
+-   84c46d4: 🚀 difference
+
+    PR: [🚀 difference](https://github.com/NaverPayDev/hidash/pull/177)
+
+-   27090dc: 🚀 times
+
+    PR: [🚀 times](https://github.com/NaverPayDev/hidash/pull/178)
+
+-   c74ccae: 🚀 `filter`
+
+    PR: [🚀 filter](https://github.com/NaverPayDev/hidash/pull/185)
+
+-   a6bdce1: 🚀 map
+
+    PR: [🚀 map](https://github.com/NaverPayDev/hidash/pull/180)
+
+-   df169ab: 🚀 `assign`
+
+    PR: [🚀 assign](https://github.com/NaverPayDev/hidash/pull/174)
+
 ## 0.1.6
 
 ### Patch Changes
