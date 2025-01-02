@@ -1,5 +1,13 @@
 # @naverpay/hidash
 
+## 0.1.8
+
+### Patch Changes
+
+-   076ff3f: support groupBy by string with dot
+
+    PR: [test groupby](https://github.com/NaverPayDev/hidash/pull/183)
+
 ## 0.1.7
 
 ### Patch Changes
