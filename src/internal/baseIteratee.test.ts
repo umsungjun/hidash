@@ -101,4 +101,40 @@ describe('baseIteratee', () => {
         const obj = {score: NaN}
         expect(iteratee(obj, 0, [])).toBe(false)
     })
+
+    it('should handle NaN iteratee', () => {
+        const iteratee = baseIteratee(NaN)
+
+        const arr = ['a', 'b', 'c']
+        expect(iteratee(arr, 0, [])).toBeUndefined()
+    })
+
+    it('should handle NaN iteratee edge case', () => {
+        const iteratee = baseIteratee(NaN)
+
+        const arr = ['a', 'b', 'c']
+        expect(iteratee(arr, 0, [])).toBeUndefined()
+    })
+
+    it('should handle empty iteratee edge case', () => {
+        const nullIteratee = baseIteratee(null)
+
+        const arr = ['a', 'b', 'c']
+        expect(nullIteratee(arr, 0, [])).toEqual(arr)
+
+        const undefinedIteratee = baseIteratee(undefined)
+        expect(undefinedIteratee(arr, 0, [])).toEqual(arr)
+
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        const voidIteratee = baseIteratee()
+        expect(voidIteratee(arr, 0, [])).toEqual(arr)
+    })
+
+    it('should handle negative integer iteratee edge case with array', () => {
+        const iteratee = baseIteratee(-1)
+
+        const arr = ['a', 'b', 'c']
+        expect(iteratee(arr, 0, [])).toBeUndefined()
+    })
 })
