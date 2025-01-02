@@ -1,6 +1,5 @@
-export type Dictionary<T> = Record<string, T>
-export type NumericDictionary<T> = Record<number, T>
-type PropertyName = string | number
+import type {PropertyName} from './internal/baseIteratee.type'
+import type {Dictionary, NumericDictionary} from './internal/types'
 
 export function includes<T>(
     collection: Dictionary<T> | NumericDictionary<T> | null | undefined,

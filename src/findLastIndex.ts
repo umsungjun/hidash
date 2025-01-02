@@ -1,4 +1,6 @@
-import {baseIteratee, ListIterateeCustom} from './internal/baseIteratee'
+import {baseIteratee} from './internal/baseIteratee'
+
+import type {ListIterateeCustom} from './internal/baseIteratee.type'
 
 export function findLastIndex<T>(array: T[], predicate?: ListIterateeCustom<T, unknown>, fromIndex?: number): number {
     const length = array.length

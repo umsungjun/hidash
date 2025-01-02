@@ -157,6 +157,11 @@ describe('some', () => {
         expect(result.lodash).toBe(result.hidash)
     })
 
+    it('should handle object arrays with property name', () => {
+        const result = compareResults([{name: 'jj'}, {age: 30}], 'name')
+        expect(result.lodash).toBe(result.hidash)
+    })
+
     it('should handle objects with undefined values', () => {
         const result = compareResults({a: undefined, b: 1}, (v) => v === undefined)
         expect(result.lodash).toBe(result.hidash)

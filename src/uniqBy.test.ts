@@ -85,6 +85,9 @@ describe('uniqBy', () => {
 
             const zeroTest: [number[], (x: number) => number] = [[0, -0, 0], (x) => x]
             expect(uniqBy(...zeroTest)).toEqual(_uniqBy(...zeroTest))
+
+            const nanIterateeTest: [string[], number] = [['a', 'b', 'c'], NaN]
+            expect(uniqBy(...nanIterateeTest)).toEqual(_uniqBy(...nanIterateeTest))
         })
 
         it('array-like objects', () => {

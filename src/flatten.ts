@@ -1,7 +1,6 @@
 import isArray from './isArray'
 
-type Many<T> = T | Many<T>[]
-type List<T> = ArrayLike<T>
+import type {List, Many} from './internal/types'
 
 function baseFlatten<T>(array: List<Many<T>>, depth: number = 1, result?: T[]): T[] {
     const flattenResult: unknown[] = result || []

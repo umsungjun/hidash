@@ -1,8 +1,9 @@
 import {isArrayLike} from './internal/array'
-import {baseIteratee, type ListIterateeCustom, type ObjectIterateeCustom} from './internal/baseIteratee'
+import {baseIteratee} from './internal/baseIteratee'
 import isPlainObject from './isPlainObject'
 import keys from './keys'
 
+import type {ListIterateeCustom, ObjectIterateeCustom} from './internal/baseIteratee.type'
 import type {List} from './internal/types'
 
 export function some<T>(collection: List<T> | null | undefined, predicate?: ListIterateeCustom<T, boolean>): boolean

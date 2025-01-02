@@ -1,6 +1,5 @@
-type List<T> = ArrayLike<T>
-type ListIterateeCustom<T, R> = (value: T, index: number, collection: List<T>) => R
-type ObjectIterateeCustom<T, R> = (value: T[keyof T], key: string, collection: T) => R
+import type {ListIterateeCustom, ObjectIterateeCustom} from './internal/baseIteratee.type'
+import type {List} from './internal/types'
 
 export function every<T>(collection: List<T> | null | undefined, predicate?: ListIterateeCustom<T, boolean>): boolean
 export function every<T extends object>(

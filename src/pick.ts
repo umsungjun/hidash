@@ -1,6 +1,6 @@
 import flatten from './flatten'
 
-type Many<T> = T | Many<T>[]
+import type {Many} from './internal/types'
 
 export function pick<T extends object, U extends keyof T>(object: T, ...params: Many<U>[]): Pick<T, U> {
     if (object == null) {
