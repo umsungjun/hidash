@@ -1,6 +1,8 @@
 import {isArrayLike} from './internal/array'
-import {baseIteratee, ListIterator} from './internal/baseIteratee'
+import {baseIteratee} from './internal/baseIteratee'
 import isArray from './isArray'
+
+import type {ListIterator} from './internal/baseIteratee.type'
 
 function arrayMap<T, R>(array: ArrayLike<T> | null | undefined, iteratee: ListIterator<T, R>): R[] {
     if (!array || array.length === 0) {

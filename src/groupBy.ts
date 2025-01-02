@@ -1,6 +1,8 @@
 import {isArrayLike} from './internal/array'
-import {baseIteratee, ValueIteratee} from './internal/baseIteratee'
+import {baseIteratee} from './internal/baseIteratee'
 import isPlainObject from './isPlainObject'
+
+import type {ValueIteratee} from './internal/baseIteratee.type'
 
 type PropertyName = string | number | symbol
 

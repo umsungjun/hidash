@@ -1,15 +1,15 @@
 import _filter from 'lodash/filter'
 
 import {isArrayLike} from './internal/array'
+import {baseIteratee} from './internal/baseIteratee'
 import {
-    baseIteratee,
     type ListIterateeCustom,
     type ListIterator,
     type ListIteratorTypeGuard,
     type ObjectIterateeCustom,
     type ObjectIterator,
     type ObjectIteratorTypeGuard,
-} from './internal/baseIteratee'
+} from './internal/baseIteratee.type'
 import isNull from './isNull'
 import isPlainObject from './isPlainObject'
 import {isUndefined} from './isUndefined'
