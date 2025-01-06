@@ -721,7 +721,7 @@
         "@naverpay/editorconfig": "^0.0.4",
         "@naverpay/eslint-config": "^1.0.7",
         "@naverpay/markdown-lint": "^0.0.3",
-        "@naverpay/pite": "^0.0.5",
+        "@naverpay/pite": "^0.0.6",
         "@naverpay/prettier-config": "^1.0.0",
         "@rollup/plugin-babel": "^6.0.4",
         "@types/lodash": "^4.17.13",
