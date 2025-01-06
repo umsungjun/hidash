@@ -1,4 +1,4 @@
-type PropertyPath = string | number | symbol | readonly (string | number | symbol)[]
+import {PropertyPath} from './internal/types'
 
 export function omit<T extends object>(object: T | null | undefined, ...paths: PropertyPath[]): T {
     if (object == null) {
