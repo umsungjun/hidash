@@ -1,4 +1,5 @@
-type PropertyPath = string | string[]
+import {Many, PropertyPath} from './internal/types'
+import isArray from './isArray'
 
 const reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/
 const reIsPlainProp = /^\w*$/
@@ -13,11 +14,14 @@ function isKey(value: PropertyPath, object: unknown): boolean {
     return reIsPlainProp.test(value) || !reIsDeepProp.test(value) || (object != null && value in Object(object))
 }
 
-function castPath(value: PropertyPath): string[] {
+function castPath(value: Many<string | number | symbol>): string[] {
     if (Array.isArray(value)) {
-        return [...value]
+        return value.map(String)
     }
-    return value.split('.')
+    if (typeof value === 'string') {
+        return value.split('.')
+    }
+    return [String(value)]
 }
 
 function hasPath(object: unknown, path: PropertyPath): boolean {
@@ -67,7 +71,7 @@ export function has(object: unknown, path: PropertyPath): boolean {
         if (!path.includes('.')) {
             return object != null && typeof object === 'object' && Object.prototype.hasOwnProperty.call(object, path)
         }
-    } else if (!path.every((segment) => typeof segment === 'string')) {
+    } else if (isArray(path) && !path.every((segment) => typeof segment === 'string')) {
         return false
     }
 
