@@ -1,1 +1,0 @@
-"use strict";Object.defineProperties(exports,{__esModule:{value:!0},[Symbol.toStringTag]:{value:"Module"}});const o=require("./internal/to-string-tags.js");function e(t){return typeof t=="symbol"||typeof t=="object"&&t!==null&&Object.prototype.toString.call(t)===o.SYMBOL_TAG}exports.default=e;exports.isSymbol=e;
