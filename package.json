@@ -490,6 +490,16 @@
                 "default": "./pick.js"
             }
         },
+        "./pickBy": {
+            "import": {
+                "types": "./pickBy.d.mts",
+                "default": "./pickBy.mjs"
+            },
+            "require": {
+                "types": "./pickBy.d.ts",
+                "default": "./pickBy.js"
+            }
+        },
         "./repeat": {
             "import": {
                 "types": "./repeat.d.mts",
