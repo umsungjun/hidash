@@ -8,6 +8,7 @@ import type {
     ObjectIterateeCustom,
     ObjectIterator,
     PropertyName,
+    ValueKeyIteratee,
 } from './baseIteratee.type'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -52,9 +53,8 @@ function isMatch(element: unknown, source: unknown): boolean {
 
 export function baseIteratee<T, TResult>(iteratee: ObjectIterateeCustom<T, TResult>): ObjectIterator<T, TResult>
 export function baseIteratee<T, TResult>(iteratee: ListIterateeCustom<T, TResult>): ListIterator<T, TResult>
-export function baseIteratee<T, TResult>(
-    iteratee: ListIterateeCustom<T, TResult> | ObjectIterateeCustom<T, TResult>,
-): ListIterator<T, TResult> | ObjectIterator<T, TResult> {
+export function baseIteratee<T, TResult>(iteratee: ValueKeyIteratee<T>): ObjectIterator<T, TResult>
+export function baseIteratee<T, TResult>(iteratee: unknown) {
     if (iteratee == null) {
         return function (element: T) {
             return element as unknown as TResult
