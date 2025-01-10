@@ -12,6 +12,8 @@ export type ListIterateeCustom<T, TResult> = ListIterator<T, TResult> | Iteratee
 export type ListIteratorTypeGuard<T, S extends T> = (value: T, index: number, collection: List<T>) => value is S
 
 export type ValueIteratee<T> = ((value: T) => unknown) | IterateeShorthand<T>
+export type ValueKeyIteratee<T> = ((value: T, key: string) => unknown) | IterateeShorthand<T>
+export type ValueKeyIterateeTypeGuard<T, S extends T> = (value: T, key: string) => value is S
 
 export type ObjectIterator<T, TResult> = (value: T[keyof T], key: string, collection: T) => TResult
 export type ObjectIteratee<TObject> = ObjectIterator<TObject, unknown> | IterateeShorthand<TObject[keyof TObject]>
