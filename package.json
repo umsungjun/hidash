@@ -500,6 +500,16 @@
                 "default": "./pickBy.js"
             }
         },
+        "./range": {
+            "import": {
+                "types": "./range.d.mts",
+                "default": "./range.mjs"
+            },
+            "require": {
+                "types": "./range.d.ts",
+                "default": "./range.js"
+            }
+        },
         "./repeat": {
             "import": {
                 "types": "./repeat.d.mts",
