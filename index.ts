@@ -50,6 +50,7 @@ const moduleMap = {
     once: './src/once.ts',
     pick: './src/pick.ts',
     pickBy: './src/pickBy.ts',
+    range: './src/range.ts',
     repeat: './src/repeat.ts',
     reverse: './src/reverse.ts',
     shuffle: './src/shuffle.ts',
