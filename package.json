@@ -220,6 +220,16 @@
                 "default": "./has.js"
             }
         },
+        "./identity": {
+            "import": {
+                "types": "./identity.d.mts",
+                "default": "./identity.mjs"
+            },
+            "require": {
+                "types": "./identity.d.ts",
+                "default": "./identity.js"
+            }
+        },
         "./includes": {
             "import": {
                 "types": "./includes.d.mts",

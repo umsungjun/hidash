@@ -22,6 +22,7 @@ const moduleMap = {
     groupBy: './src/groupBy.ts',
     gt: './src/gt.ts',
     has: './src/has.ts',
+    identity: './src/identity.ts',
     includes: './src/includes.ts',
     isArray: './src/isArray.ts',
     isEmpty: './src/isEmpty.ts',
