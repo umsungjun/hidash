@@ -1,5 +1,37 @@
 # @naverpay/hidash
 
+## 0.1.9
+
+### Patch Changes
+
+-   f6440f2: 🚀 `pickBy`
+
+    PR: [🚀 pickBy](https://github.com/NaverPayDev/hidash/pull/194)
+
+-   76a737a: apply baseIteratee in every
+
+    PR: [apply baseIteratee in every](https://github.com/NaverPayDev/hidash/pull/190)
+
+-   521fcd6: 🔧 `omit` 내부 타입을 PropertyPath 로 분리
+
+    PR: [🔧PropertyPath 로 분리](https://github.com/NaverPayDev/hidash/pull/193)
+
+-   b5fc9ff: pite 적용 테스트
+
+    PR: [pite 적용 테스트](https://github.com/NaverPayDev/hidash/pull/187)
+
+-   c4cb8f0: 🚀 range
+
+    PR: [[#198] 🚀 range](https://github.com/NaverPayDev/hidash/pull/199)
+
+-   8f69a59: 🔧 refactor sumby with baseIteratee
+
+    PR: [🔧 refactor sumby with baseIteratee](https://github.com/NaverPayDev/hidash/pull/191)
+
+-   b909923: [#195] 🚀 identity
+
+    PR: [[#195] 🚀 identity](https://github.com/NaverPayDev/hidash/pull/196)
+
 ## 0.1.8
 
 ### Patch Changes
