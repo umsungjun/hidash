@@ -1,5 +1,4 @@
-// scripts/move-dist.js
-import {copyFileSync, readdirSync} from 'fs'
+import {cpSync} from 'fs'
 import {join, dirname} from 'path'
 import {fileURLToPath} from 'url'
 
@@ -8,8 +7,4 @@ const __dirname = dirname(__filename)
 const rootPath = join(__dirname, '..')
 const distPath = join(rootPath, 'dist')
 
-const files = readdirSync(distPath)
-
-files.forEach((file) => {
-    copyFileSync(join(distPath, file), join(rootPath, file))
-})
+cpSync(distPath, rootPath, {recursive: true})
