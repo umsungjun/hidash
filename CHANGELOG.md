@@ -1,5 +1,13 @@
 # @naverpay/hidash
 
+## 0.1.11
+
+### Patch Changes
+
+-   4668e8f: 🐛 fix wrong glob pattern
+
+    PR: [🐛 fix wrong glob pattern](https://github.com/NaverPayDev/hidash/pull/202)
+
 ## 0.1.10
 
 ### Patch Changes
