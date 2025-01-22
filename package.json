@@ -4,10 +4,14 @@
     "description": "improved lodash",
     "sideEffects": false,
     "files": [
-        "**/*.js",
-        "**/*.mjs",
-        "**/*.d.ts",
-        "**/*.d.mts"
+        "*.js",
+        "*.mjs",
+        "*.d.ts",
+        "*.d.mts",
+        "internal/*.js",
+        "internal/*.mjs",
+        "internal/*.d.ts",
+        "internal/*.d.mts"
     ],
     "exports": {
         "./assign": {
