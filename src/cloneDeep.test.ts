@@ -68,4 +68,18 @@ describe('cloneDeep function comparison with lodash', () => {
             expect(cloneDeep(value)).toStrictEqual(_cloneDeep(value))
         })
     })
+
+    it('handles class instances', () => {
+        class User {
+            name: string
+            constructor(name: string) {
+                this.name = name
+            }
+        }
+        const user = new User('Alice')
+        const clonedUser = cloneDeep(user)
+        expect(clonedUser).toStrictEqual(_cloneDeep(user))
+        expect(clonedUser).not.toBe(user)
+        expect(clonedUser.constructor).toBe(User)
+    })
 })
