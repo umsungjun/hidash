@@ -2,6 +2,7 @@ import _cloneDeep from 'lodash/cloneDeep'
 import {bench, describe} from 'vitest'
 
 import {cloneDeep} from './cloneDeep'
+import {noop} from './internal/noop'
 
 const testCases: unknown[] = [
     // Primitive values
@@ -77,7 +78,7 @@ const testCases: unknown[] = [
             ]),
             set: new Set([1, 2, 3]),
         },
-        func: () => {},
+        func: noop,
         symbol: Symbol('test'),
     },
     // Large deeply nested structure

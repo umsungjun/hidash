@@ -1,6 +1,7 @@
 import _shuffle from 'lodash/shuffle'
 import {describe, test, expect} from 'vitest'
 
+import {noop} from './internal/noop'
 import shuffle from './shuffle'
 
 describe('shuffle function', () => {
@@ -122,7 +123,7 @@ describe('shuffle function', () => {
     })
 
     test('returns empty array for functions', () => {
-        expect(shuffle(() => {})).toEqual([])
+        expect(shuffle(noop)).toEqual([])
         expect(shuffle(function () {})).toEqual([])
     })
 

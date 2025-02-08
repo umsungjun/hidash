@@ -1,6 +1,7 @@
 import _isError from 'lodash/isError'
 import {describe, it, expect} from 'vitest'
 
+import {noop} from './internal/noop'
 import isError from './isError'
 
 describe('isError', () => {
@@ -64,7 +65,7 @@ describe('isError', () => {
     it('should match lodash for proxy-wrapped values', () => {
         const proxyError = new Proxy(new Error('test'), {})
         const proxyObject = new Proxy({}, {})
-        const proxyFunction = new Proxy(() => {}, {})
+        const proxyFunction = new Proxy(noop, {})
 
         expect(isError(proxyError)).toBe(_isError(proxyError))
         expect(isError(proxyObject)).toBe(_isError(proxyObject))
