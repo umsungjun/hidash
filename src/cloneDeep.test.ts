@@ -2,6 +2,7 @@ import _cloneDeep from 'lodash/cloneDeep'
 import {describe, it, expect} from 'vitest'
 
 import {cloneDeep} from './cloneDeep'
+import {noop} from './internal/noop'
 
 describe('cloneDeep function comparison with lodash', () => {
     it('handles primitive values', () => {
@@ -63,7 +64,7 @@ describe('cloneDeep function comparison with lodash', () => {
     })
 
     it('handles unsupported types', () => {
-        const testCases = [() => {}, new WeakMap(), new WeakSet()]
+        const testCases = [noop, new WeakMap(), new WeakSet()]
         testCases.forEach((value) => {
             expect(cloneDeep(value)).toStrictEqual(_cloneDeep(value))
         })

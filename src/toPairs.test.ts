@@ -1,6 +1,7 @@
 import _toPairs from 'lodash/toPairs'
 import {describe, test, expect} from 'vitest'
 
+import {noop} from './internal/noop'
 import {toPairs} from './toPairs'
 
 describe('toPairs', () => {
@@ -75,13 +76,13 @@ describe('toPairs', () => {
         expect(toPairs(true)).toEqual([])
         expect(toPairs(Symbol(1))).toEqual([])
         expect(toPairs(new Error())).toEqual([])
-        expect(toPairs(() => {})).toEqual([])
+        expect(toPairs(noop)).toEqual([])
 
         expect(toPairs(123)).toEqual(_toPairs(123))
         expect(toPairs(true)).toEqual(_toPairs(true))
         expect(toPairs(Symbol(1))).toEqual(_toPairs(Symbol(1)))
         expect(toPairs(new Error())).toEqual(_toPairs(new Error()))
-        expect(toPairs(() => {})).toEqual(_toPairs(() => {}))
+        expect(toPairs(noop)).toEqual(_toPairs(noop))
     })
 
     test('should handle empty inputs gracefully', () => {

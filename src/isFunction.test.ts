@@ -1,11 +1,12 @@
 import {describe, it, expect} from 'vitest'
 
+import {noop} from './internal/noop'
 import isFunction from './isFunction'
 
 describe('isFunction', () => {
     it('should return true for normal functions', () => {
         expect(isFunction(function () {})).toBe(true)
-        expect(isFunction(() => {})).toBe(true)
+        expect(isFunction(noop)).toBe(true)
     })
 
     it('should return true for async functions', () => {
@@ -19,7 +20,7 @@ describe('isFunction', () => {
     })
 
     it('should return true for Proxy-wrapped functions', () => {
-        const proxyFunc = new Proxy(() => {}, {})
+        const proxyFunc = new Proxy(noop, {})
         expect(isFunction(proxyFunc)).toBe(true)
     })
 

@@ -1,5 +1,6 @@
 import {describe, test, expect, vi} from 'vitest'
 
+import {noop} from './internal/noop'
 import memoize from './memoize'
 
 describe('memoize function', () => {
@@ -112,7 +113,7 @@ describe('memoize function', () => {
 
         // resolver가 함수가 아닐 때 TypeError를 던지는지 확인
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        expect(() => memoize(() => {}, 'not a function' as any)).toThrow(TypeError)
+        expect(() => memoize(noop, 'not a function' as any)).toThrow(TypeError)
     })
 
     test('handles functions with no arguments', () => {

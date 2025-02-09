@@ -1,6 +1,7 @@
 import _isEmpty from 'lodash/isEmpty'
 import {describe, test, expect} from 'vitest'
 
+import {noop} from './internal/noop'
 import isEmpty from './isEmpty'
 
 describe('isEmpty function', () => {
@@ -61,7 +62,7 @@ describe('isEmpty function', () => {
     })
 
     test('should return true for a function', () => {
-        const fn = () => {}
+        const fn = noop
         expect(isEmpty(fn)).toBe(true)
         expect(isEmpty(fn)).toBe(_isEmpty(fn))
     })

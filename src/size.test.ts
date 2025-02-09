@@ -1,6 +1,7 @@
 import _size from 'lodash/size'
 import {describe, test, expect} from 'vitest'
 
+import {noop} from './internal/noop'
 import size from './size'
 
 describe('size function', () => {
@@ -82,7 +83,7 @@ describe('size function', () => {
     })
 
     test('returns 0 for functions', () => {
-        const arrowFn = () => {}
+        const arrowFn = noop
         expect(size(arrowFn)).toBe(0)
         expect(size(arrowFn)).toBe(_size(arrowFn))
 

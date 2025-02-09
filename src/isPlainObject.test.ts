@@ -1,6 +1,7 @@
 import _isPlainObject from 'lodash/isPlainObject'
 import {describe, test, expect} from 'vitest'
 
+import {noop} from './internal/noop'
 import {isPlainObject} from './isPlainObject'
 
 describe('isPlainObject function', () => {
@@ -53,8 +54,8 @@ describe('isPlainObject function', () => {
         expect(isPlainObject(Function)).toBe(false)
         expect(isPlainObject(Function)).toBe(_isPlainObject(Function))
 
-        expect(isPlainObject(() => {})).toBe(false)
-        expect(isPlainObject(() => {})).toBe(_isPlainObject(() => {}))
+        expect(isPlainObject(noop)).toBe(false)
+        expect(isPlainObject(noop)).toBe(_isPlainObject(noop))
 
         expect(isPlainObject(class {})).toBe(false)
         expect(isPlainObject(class {})).toBe(_isPlainObject(class {}))
