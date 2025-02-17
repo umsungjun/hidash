@@ -1,5 +1,17 @@
 # @naverpay/hidash
 
+## 0.1.12
+
+### Patch Changes
+
+-   cd303a1: feat: Add noop function
+
+    PR: [fix: feat: Add noop function](https://github.com/NaverPayDev/hidash/pull/207)
+
+-   cd303a1: Preserve class prototype chain in cloneDeep function
+
+    PR: [fix: Preserve class prototype chain in cloneDeep function](https://github.com/NaverPayDev/hidash/pull/204)
+
 ## 0.1.11
 
 ### Patch Changes
