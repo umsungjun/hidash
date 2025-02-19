@@ -103,7 +103,7 @@ jobs:
                         process.env.GITHUB_RUN_ID + ')*';
 
                       let prNumber;
-                      if (context.eventName === 'pull_request') {
+                      if (context.eventName === 'pull_request_target') {
                         prNumber = context.payload.pull_request.number;
                       } else if (context.payload.inputs?.pr_number) {
                         prNumber = parseInt(context.payload.inputs.pr_number, 10);
