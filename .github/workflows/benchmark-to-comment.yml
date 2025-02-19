@@ -23,10 +23,17 @@ jobs:
         steps:
             - uses: actions/checkout@v4
               with:
+                  fetch-depth: 0
                   ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
 
+            - name: Determine base branch
+              run: |
+                  BASE_BRANCH=${{ github.base_ref || 'main' }}
+                  echo "Using base branch: $BASE_BRANCH"
+                  echo "BASE_BRANCH=$BASE_BRANCH" >> $GITHUB_ENV
+
             - name: Fetch base branch
-              run: git fetch origin $GITHUB_BASE_REF
+              run: git fetch origin $BASE_BRANCH
 
             - uses: pnpm/action-setup@v4
 
@@ -85,7 +92,7 @@ jobs:
               if: env.IS_FORK == 'false'
               id: modified_files
               run: |
-                  MODIFIED=$(git diff --name-only origin/$GITHUB_BASE_REF -- 'src/*.ts' ':!src/internal/*.ts' ':!src/*.test.ts')
+                  MODIFIED=$(git diff --name-only origin/$BASE_BRANCH -- 'src/*.ts' ':!src/internal/*.ts' ':!src/*.test.ts')
                   SRC_BENCH_FILES=$(echo "$MODIFIED" | tr '\n' ' ')
 
                   echo "SRC_BENCH_FILES=$SRC_BENCH_FILES" >> $GITHUB_ENV
@@ -94,7 +101,7 @@ jobs:
               if: env.IS_FORK == 'false'
               id: modified_internal_files
               run: |
-                  INTERNAL_MODIFIED=$(node ./scripts/find-importing-files.mjs $GITHUB_BASE_REF)
+                  INTERNAL_MODIFIED=$(node ./scripts/find-importing-files.mjs $BASE_BRANCH)
                   INTERNAL_BENCH_FILES=$(echo "$INTERNAL_MODIFIED" | tr '\n' ' ')
 
                   echo "INTERNAL_BENCH_FILES=$INTERNAL_BENCH_FILES" >> $GITHUB_ENV
