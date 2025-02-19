@@ -1,7 +1,7 @@
 name: Benchmark Comment on PR
 
 on:
-    pull_request:
+    pull_request_target:
         paths:
             - 'src/**'
             - '!src/**/*.test.ts'
@@ -10,12 +10,11 @@ on:
         inputs:
             pr_number:
                 description: 'PR number to run benchmark on'
-                required: true
+                required: false
                 type: string
 
 permissions:
     pull-requests: write
-    issues: write
 
 jobs:
     benchmark:
@@ -23,17 +22,10 @@ jobs:
         steps:
             - uses: actions/checkout@v4
               with:
-                  fetch-depth: 0
                   ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
 
-            - name: Determine base branch
-              run: |
-                  BASE_BRANCH=${{ github.base_ref || 'main' }}
-                  echo "Using base branch: $BASE_BRANCH"
-                  echo "BASE_BRANCH=$BASE_BRANCH" >> $GITHUB_ENV
-
             - name: Fetch base branch
-              run: git fetch origin $BASE_BRANCH
+              run: git fetch origin $GITHUB_BASE_REF
 
             - uses: pnpm/action-setup@v4
 
@@ -46,79 +38,38 @@ jobs:
             - name: Install dependencies
               run: pnpm install --frozen-lockfile
 
-            - name: Determine PR number
-              id: determine_pr_number
-              run: |
-                  if [[ "${{ github.event_name }}" == "pull_request" ]]; then
-                    echo "PR_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
-                  else
-                    echo "PR_NUMBER=${{ inputs.pr_number }}" >> $GITHUB_ENV
-                  fi
-
-            - name: Check if PR is from a fork
-              id: check_fork
-              run: |
-                  if [[ "${{ github.event_name }}" == "pull_request" && "${{ github.event.pull_request.head.repo.full_name }}" != "${{ github.repository }}" ]]; then
-                    echo "IS_FORK=true" >> $GITHUB_ENV
-                  else
-                    echo "IS_FORK=false" >> $GITHUB_ENV
-                  fi
-
-            - name: Post comment for external PRs
-              if: env.IS_FORK == 'true'
-              uses: actions/github-script@v6
-              with:
-                  github-token: ${{ secrets.YUJEONG_TOKEN }}
-                  script: |
-                      const prNumber = process.env.PR_NUMBER;
-
-                      const message = `
-                      ⚠️ **Automated benchmark tests are not run for external PRs.**
-
-                      If you want to run benchmarks for this PR, a maintainer can trigger it manually by:
-                      1. Going to **Actions** tab.
-                      2. Selecting **Benchmark Comment on PR** workflow.
-                      3. Running the workflow with **PR number: ${prNumber}**.
-
-                      _This is a security measure to prevent unauthorized code execution from forked repositories._`;
-
-                      await github.rest.issues.createComment({
-                        ...context.repo,
-                        issue_number: prNumber,
-                        body: message
-                      });
-
             - name: Identify modified utility files
-              if: env.IS_FORK == 'false'
               id: modified_files
               run: |
-                  MODIFIED=$(git diff --name-only origin/$BASE_BRANCH -- 'src/*.ts' ':!src/internal/*.ts' ':!src/*.test.ts')
+                  MODIFIED=$(git diff --name-only origin/$GITHUB_BASE_REF -- 'src/*.ts' ':!src/internal/*.ts' ':!src/*.test.ts')
                   SRC_BENCH_FILES=$(echo "$MODIFIED" | tr '\n' ' ')
 
                   echo "SRC_BENCH_FILES=$SRC_BENCH_FILES" >> $GITHUB_ENV
 
             - name: Find modified internal files and affected utilities
-              if: env.IS_FORK == 'false'
               id: modified_internal_files
               run: |
-                  INTERNAL_MODIFIED=$(node ./scripts/find-importing-files.mjs $BASE_BRANCH)
+                  INTERNAL_MODIFIED=$(node ./scripts/find-importing-files.mjs $GITHUB_BASE_REF)
                   INTERNAL_BENCH_FILES=$(echo "$INTERNAL_MODIFIED" | tr '\n' ' ')
 
                   echo "INTERNAL_BENCH_FILES=$INTERNAL_BENCH_FILES" >> $GITHUB_ENV
 
             - name: Merge all modified bench files
-              if: env.IS_FORK == 'false'
               id: merge_bench_files
               run: |
                   ALL_FILES=$(echo -e "$SRC_BENCH_FILES\n$INTERNAL_BENCH_FILES")
 
                   BENCH_FILES=$(echo "$ALL_FILES" | tr ' ' '\n' | while read file; do
+                    # .bench.ts 변경은 그대로 사용
                     if [[ "$file" == *.bench.ts ]]; then
+                      # 파일이 존재하는지 확인
                       if [ -f "$file" ]; then
                         echo "$file"
                       fi
+                    # .ts -> .bench.ts로 변경
                     else
                       BENCH_FILE="${file%.ts}.bench.ts"
+                      # 파일이 존재하는지 확인
                       if [ -f "$BENCH_FILE" ]; then
                         echo "$BENCH_FILE"
                       fi
@@ -128,18 +79,18 @@ jobs:
                   echo "BENCH_FILES=$BENCH_FILES" >> $GITHUB_ENV
 
             - name: Run benchmarks
-              if: env.BENCH_FILES != '' && env.IS_FORK == 'false'
+              if: env.BENCH_FILES != ''
               run: pnpm vitest bench $BENCH_FILES
               env:
                   BENCH_FILES: ${{ env.BENCH_FILES }}
 
             - name: Convert benchmark results to markdown
-              if: env.BENCH_FILES != '' && env.IS_FORK == 'false'
+              if: env.BENCH_FILES != ''
               run: |
                   node ./scripts/benchmark-to-md.mjs benchmark-result.json ${{ github.sha }} > benchmark-results.md
 
             - name: Create PR comment
-              if: env.BENCH_FILES != '' && env.IS_FORK == 'false'
+              if: env.BENCH_FILES != ''
               uses: actions/github-script@v6
               with:
                   script: |
@@ -151,7 +102,15 @@ jobs:
                         process.env.GITHUB_REPOSITORY + '/actions/runs/' +
                         process.env.GITHUB_RUN_ID + ')*';
 
-                      const prNumber = process.env.PR_NUMBER;
+                      let prNumber;
+                      if (context.eventName === 'pull_request') {
+                        prNumber = context.payload.pull_request.number;
+                      } else if (context.payload.inputs?.pr_number) {
+                        prNumber = parseInt(context.payload.inputs.pr_number, 10);
+                      } else {
+                        console.log('No PR number provided for workflow_dispatch event');
+                        return;
+                      }
 
                       const { data: comments } = await github.rest.issues.listComments({
                         ...context.repo,
