@@ -51,6 +51,7 @@ jobs:
               if: env.IS_FORK == 'true'
               uses: actions/github-script@v6
               with:
+                  github-token: ${{ secrets.ACTION_TOKEN }}
                   script: |
                       const prNumber = context.payload.pull_request.number;
 
@@ -69,7 +70,6 @@ jobs:
                         issue_number: prNumber,
                         body: message
                       });
-                  github-token: ${{ secrets.ACTION_TOKEN }}
 
             - name: Identify modified utility files
               if: env.IS_FORK == 'false'
