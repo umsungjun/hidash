@@ -7,7 +7,6 @@ on:
             - 'index.ts'
             - 'package.json'
             - 'scripts/generate-utils.mjs'
-    workflow_dispatch:
 
 jobs:
     check-utils:
