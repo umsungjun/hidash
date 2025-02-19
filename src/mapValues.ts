@@ -1,26 +1,7 @@
+import {baseIteratee} from './internal/baseIteratee'
+import {ListIterator, ObjectIterator} from './internal/baseIteratee.type'
+import {Dictionary, NumericDictionary} from './internal/types'
 import {isObject} from './isObject'
-
-type Iteratee<PARAM, RETURN> = string | ((element: PARAM) => RETURN)
-
-function getIteratee<PARAM, RETURN>(iteratee: Iteratee<PARAM, RETURN>): (element: PARAM) => RETURN {
-    /**
-     * string을 iteratee로 변환합니다.
-     *
-     * ex. n.m > function ({ n : { m }}) { return m }
-     * */
-    if (typeof iteratee === 'string') {
-        const keys = iteratee.split('.')
-        const iterateeByString = function (element: PARAM): RETURN {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            return keys.reduce((acc: any, key) => {
-                return acc && acc[key]
-            }, element)
-        }
-        return iterateeByString as (element: PARAM) => RETURN
-    }
-
-    return iteratee
-}
 
 type BoxedPrimitive = StringConstructor | NumberConstructor | BooleanConstructor
 
@@ -43,37 +24,39 @@ function deepClone<T>(value: T): T {
     return value
 }
 
-// 오버로드 시그니처
-export function mapValues<T extends Record<string, unknown>>(object: T | null | undefined): T
-export function mapValues<T extends unknown[]>(object: T | null | undefined): Record<string, T[number]>
-export function mapValues<T extends Record<string, unknown>>(
-    object: T | null | undefined,
-    iteratee?: null | undefined,
-): T
-export function mapValues<T extends unknown[]>(
-    object: T | null | undefined,
-    iteratee?: null | undefined,
-): Record<string, T[number]>
-export function mapValues<T extends Record<string, unknown>, I extends BoxedPrimitive>(
-    object: T | null | undefined,
-    iteratee: I,
-): {[K in keyof T]: ReturnType<I>}
-export function mapValues<T extends Record<string, unknown>, R>(
-    object: T | null | undefined,
-    iteratee: Iteratee<T[keyof T], R>,
-): {[K in keyof T]: R}
-export function mapValues<T extends unknown[], I extends BoxedPrimitive>(
-    object: T | null | undefined,
-    iteratee: I,
-): Record<string, ReturnType<I>>
-export function mapValues<T extends unknown[], R>(
-    object: T | null | undefined,
-    iteratee: Iteratee<T[number], R>,
-): Record<string, R>
+export function mapValues<TResult>(
+    obj: string | null | undefined,
+    callback: StringIterator<TResult>,
+): NumericDictionary<TResult>
+export function mapValues<T, TResult>(array: T[], callback: ListIterator<T, TResult>): NumericDictionary<TResult>
+export function mapValues<T extends object, TResult>(
+    obj: T | null | undefined,
+    callback: ObjectIterator<T, TResult>,
+): {[P in keyof T]: TResult}
+export function mapValues<T>(
+    obj: Dictionary<T> | NumericDictionary<T> | null | undefined,
+    iteratee: object,
+): Dictionary<boolean>
+export function mapValues<T extends object>(obj: T | null | undefined, iteratee: object): {[P in keyof T]: boolean}
+export function mapValues<T, TKey extends keyof T>(
+    obj: Dictionary<T> | NumericDictionary<T> | null | undefined,
+    iteratee: TKey,
+): Dictionary<T[TKey]>
+export function mapValues<T>(
+    obj: Dictionary<T> | NumericDictionary<T> | null | undefined,
+    iteratee: string,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+): Dictionary<any>
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function mapValues<T extends object>(obj: T | null | undefined, iteratee: string): {[P in keyof T]: any}
+export function mapValues(obj: string | null | undefined): NumericDictionary<string>
+export function mapValues<T>(obj: Dictionary<T> | NumericDictionary<T> | null | undefined): Dictionary<T>
+export function mapValues<T extends object>(obj: T): T
+export function mapValues<T extends object>(obj: T | null | undefined): Partial<T>
 // 실제 구현
-export function mapValues<T extends Record<string, unknown> | unknown[], R>(
+export function mapValues<T extends Record<string, unknown> | unknown[], R, I>(
     object: T | null | undefined,
-    iteratee?: BoxedPrimitive | Iteratee<T extends unknown[] ? T[number] : T[keyof T], R> | null | undefined,
+    iteratee?: BoxedPrimitive | I | null | undefined,
 ): T extends unknown[]
     ? Record<string, R | T[number] | ReturnType<BoxedPrimitive>>
     : {[K in keyof T]: R | T[keyof T] | ReturnType<BoxedPrimitive>} {
@@ -87,11 +70,7 @@ export function mapValues<T extends Record<string, unknown> | unknown[], R>(
     const result: Record<string, unknown> = {}
     const isBoxed = isBoxedPrimitive(iteratee)
     const iterateeFunc =
-        !isBoxed && iteratee
-            ? getIteratee<T extends unknown[] ? T[number] : T[keyof T], R>(
-                  iteratee as Iteratee<T extends unknown[] ? T[number] : T[keyof T], R>,
-              )
-            : null
+        !isBoxed && iteratee ? baseIteratee<T extends unknown[] ? T[number] : T[keyof T], R>(iteratee) : null
 
     for (const key in object) {
         if (Object.prototype.hasOwnProperty.call(object, key)) {
@@ -102,7 +81,13 @@ export function mapValues<T extends Record<string, unknown> | unknown[], R>(
             } else if (isBoxed) {
                 result[key] = (iteratee as BoxedPrimitive)(value as never)
             } else if (iterateeFunc) {
-                result[key] = iterateeFunc(value as T extends unknown[] ? T[number] : T[keyof T])
+                result[key] = iterateeFunc(
+                    value as (T extends unknown[] ? T[number] : T[keyof T])[keyof (T extends unknown[]
+                        ? T[number]
+                        : T[keyof T])],
+                    key,
+                    object as T extends unknown[] ? T[number] : T[keyof T],
+                )
             }
         }
     }
