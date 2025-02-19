@@ -68,7 +68,7 @@ jobs:
               if: env.IS_FORK == 'true'
               uses: actions/github-script@v6
               with:
-                  # github-token: ${{ secrets.ACTION_TOKEN }}
+                  github-token: ${{ secrets.YUJEONG_TOKEN }}
                   script: |
                       const prNumber = process.env.PR_NUMBER;
 
