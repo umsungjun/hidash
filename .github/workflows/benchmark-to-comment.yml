@@ -38,10 +38,19 @@ jobs:
             - name: Install dependencies
               run: pnpm install --frozen-lockfile
 
+            - name: Determine PR number
+              id: determine_pr_number
+              run: |
+                  if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+                    echo "PR_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+                  else
+                    echo "PR_NUMBER=${{ inputs.pr_number }}" >> $GITHUB_ENV
+                  fi
+
             - name: Check if PR is from a fork
               id: check_fork
               run: |
-                  if [[ "${{ github.event.pull_request.head.repo.full_name }}" != "${{ github.repository }}" ]]; then
+                  if [[ "${{ github.event_name }}" == "pull_request" && "${{ github.event.pull_request.head.repo.full_name }}" != "${{ github.repository }}" ]]; then
                     echo "IS_FORK=true" >> $GITHUB_ENV
                   else
                     echo "IS_FORK=false" >> $GITHUB_ENV
@@ -53,7 +62,7 @@ jobs:
               with:
                   github-token: ${{ secrets.ACTION_TOKEN }}
                   script: |
-                      const prNumber = context.payload.pull_request.number;
+                      const prNumber = process.env.PR_NUMBER;
 
                       const message = `
                       ⚠️ **Automated benchmark tests are not run for external PRs.**
@@ -134,7 +143,7 @@ jobs:
                         process.env.GITHUB_REPOSITORY + '/actions/runs/' +
                         process.env.GITHUB_RUN_ID + ')*';
 
-                      let prNumber = context.payload.pull_request.number;
+                      const prNumber = process.env.PR_NUMBER;
 
                       const { data: comments } = await github.rest.issues.listComments({
                         ...context.repo,
