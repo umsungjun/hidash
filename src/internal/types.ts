@@ -8,3 +8,6 @@ export type AnyKindOfDictionary<T> = Dictionary<T> | NumericDictionary<T>
 export type Many<T> = T | Many<T>[]
 
 export type PropertyPath = Many<string | number | symbol>
+
+type EmptyObject<T> = {[K in keyof T]?: never}
+export type EmptyObjectOf<T> = EmptyObject<T> extends T ? EmptyObject<T> : never

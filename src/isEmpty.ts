@@ -1,8 +1,14 @@
 import {isArrayLike} from './internal/array'
 
+import type {EmptyObjectOf} from './internal/types'
+
 /**
  * @description hhttps://unpkg.com/browse/lodash.isempty@4.4.0/index.js
  */
+export function isEmpty(value: string): value is ''
+export function isEmpty(value: Map<unknown, unknown> | Set<unknown> | ArrayLike<unknown> | null | undefined): boolean
+export function isEmpty<T extends object>(value: T | null | undefined): value is EmptyObjectOf<T> | null | undefined
+export function isEmpty(value?: unknown): boolean
 export function isEmpty(value: unknown): boolean {
     if (value == null) {
         return true
