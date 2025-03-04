@@ -174,4 +174,18 @@ describe('merge', () => {
         expect(() => merge(obj, source)).not.toThrow()
         expect(() => _merge(obj, source)).not.toThrow()
     })
+
+    it('should handle empty array', () => {
+        const emptyArr = []
+
+        const expected = _merge(emptyArr[0], ...emptyArr)
+        const result = merge(emptyArr[0], ...emptyArr)
+        expect(result).toEqual(expected)
+    })
+
+    it('should handle empty object', () => {
+        const expected = _merge({}, {})
+        const result = merge({}, {})
+        expect(result).toEqual(expected)
+    })
 })
