@@ -6,7 +6,7 @@ export default createViteConfig({
     cwd: '.',
     formats: ['cjs', 'es'],
     entry: moduleMap,
-    allowedPolyfills: [
+    ignoredPolyfills: [
         'es.array.push', // https://bugs.chromium.org/p/v8/issues/detail?id=12681
         'es.array.includes', // https://bugzilla.mozilla.org/show_bug.cgi?id=1767541
         'es.array.reduce', // https://issues.chromium.org/issues/40672866
