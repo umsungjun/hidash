@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {DATE_TAG, REGEXP_TAG} from './internal/to-string-tags'
+import isNil from './isNil'
 import isObject from './isObject'
 
 const toString = Object.prototype.toString
@@ -91,7 +92,7 @@ export function merge<TObject extends object, TSource extends object>(
 ): TObject & TSource {
     const length = sources.length
     if (!length) {
-        return object as TObject & TSource
+        return isNil(object) ? ({} as TObject & TSource) : (object as TObject & TSource)
     }
 
     let result = object
