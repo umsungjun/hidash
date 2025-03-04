@@ -1,5 +1,21 @@
 # @naverpay/hidash
 
+## 0.1.13
+
+### Patch Changes
+
+-   2ad71af: Fix vite.config.mts
+
+    PR: [Fix vite.config.mts](https://github.com/NaverPayDev/hidash/pull/221)
+
+-   e9cdfbc: Update `mapValues` with `baseIteratee`
+
+    PR: [Update `mapValues` with `baseIteratee`](https://github.com/NaverPayDev/hidash/pull/212)
+
+-   d299086: isEmpty: Add override types for improved type safety
+
+    PR: [isEmpty: Add override types for improved type safety](https://github.com/NaverPayDev/hidash/pull/218)
+
 ## 0.1.12
 
 ### Patch Changes
