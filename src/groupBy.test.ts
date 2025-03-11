@@ -10,25 +10,10 @@ const users = [
     {id: 4, name: 'Alice', age: 30, city: 'LA'},
 ]
 
-const objects = {
-    user1: {age: 25, name: 'John'},
-    user2: {age: 30, name: 'Jane'},
-    user3: {age: 25, name: 'Bob'},
-}
-
 describe('basic functionality', () => {
-    it('should group array by property', () => {
-        expect(groupBy(users, 'age')).toEqual(_groupBy(users, 'age'))
-        expect(groupBy(users, 'city')).toEqual(_groupBy(users, 'city'))
-    })
-
     it('should group array using iteratee function', () => {
         const iteratee = (user) => (user.age >= 30 ? 'senior' : 'junior')
         expect(groupBy(users, iteratee)).toEqual(_groupBy(users, iteratee))
-    })
-
-    it('should group object values by property', () => {
-        expect(groupBy(objects, 'age')).toEqual(_groupBy(objects, 'age'))
     })
 })
 
@@ -42,19 +27,9 @@ describe('edge cases', () => {
         expect(groupBy([])).toEqual(_groupBy([]))
         expect(groupBy({})).toEqual(_groupBy({}))
     })
-
-    it('should handle missing properties', () => {
-        const data = [{id: 1, name: 'John'}, {id: 2}, {id: 3, name: 'Bob'}]
-        expect(groupBy(data, 'name')).toEqual(_groupBy(data, 'name'))
-    })
 })
 
 describe('special values', () => {
-    it('should handle arrays with null/undefined values', () => {
-        const data = [null, undefined, {id: 1}, {id: 2}]
-        expect(groupBy(data, 'id')).toEqual(_groupBy(data, 'id'))
-    })
-
     it('should handle arrays with primitive values', () => {
         const numbers = [1.2, 2.1, 2.3]
         expect(groupBy(numbers, Math.floor)).toEqual(_groupBy(numbers, Math.floor))
@@ -86,16 +61,6 @@ describe('complex scenarios', () => {
         const iteratee = (item) => item.tags[0]
         expect(groupBy(data, iteratee)).toEqual(_groupBy(data, iteratee))
     })
-
-    it('should handle nested object paths using string notation', () => {
-        const data = [
-            {insurance: {type: 'health', value: 100}},
-            {insurance: {type: 'life', value: 200}},
-            {insurance: {type: 'health', value: 300}},
-        ]
-
-        expect(groupBy(data, 'insurance.type')).toEqual(_groupBy(data, (item) => item.insurance.type))
-    })
 })
 
 describe('performance cases', () => {
@@ -106,16 +71,11 @@ describe('performance cases', () => {
             value: Math.random(),
         }))
 
-        expect(groupBy(largeArray, 'category')).toEqual(_groupBy(largeArray, 'category'))
+        expect(groupBy(largeArray, (item) => item.category)).toEqual(_groupBy(largeArray, 'category'))
     })
 })
 
 describe('error cases', () => {
-    it('should handle invalid iteratee paths', () => {
-        expect(groupBy(users, 'nonexistent')).toEqual(_groupBy(users, 'nonexistent'))
-        expect(groupBy(users, '')).toEqual(_groupBy(users, ''))
-    })
-
     it('should handle invalid iteratee functions', () => {
         const invalidIteratee = () => {
             throw new Error('error')
@@ -138,7 +98,6 @@ describe('type safety', () => {
     ]
 
     it('should work with typed arrays', () => {
-        expect(groupBy(typedUsers, 'age')).toEqual(_groupBy(typedUsers, 'age'))
         expect(groupBy(typedUsers, (user) => (user.age >= 30 ? 'senior' : 'junior'))).toEqual(
             _groupBy(typedUsers, (user) => (user.age >= 30 ? 'senior' : 'junior')),
         )

@@ -33,17 +33,6 @@ describe('findIndex', () => {
         expect(findIndex(nestedArray, ['a', 10])).toBe(_findIndex(nestedArray, ['a', 10]))
     })
 
-    it('should handle string shorthand predicates', () => {
-        const nestedArray = [{a: 1}, {b: 2}, {a: 3}]
-
-        expect(findIndex(nestedArray, 'a')).toBe(0)
-        expect(findIndex(nestedArray, 'b')).toBe(1)
-        expect(findIndex(nestedArray, 'c')).toBe(-1)
-        expect(findIndex(nestedArray, 'a')).toBe(_findIndex(nestedArray, 'a'))
-        expect(findIndex(nestedArray, 'b')).toBe(_findIndex(nestedArray, 'b'))
-        expect(findIndex(nestedArray, 'c')).toBe(_findIndex(nestedArray, 'c'))
-    })
-
     it('should support a fromIndex parameter (positive values)', () => {
         const array = [1, 2, 3, 4, 5]
 

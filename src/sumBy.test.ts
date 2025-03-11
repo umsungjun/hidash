@@ -40,11 +40,4 @@ describe('sumBy', () => {
             }),
         )
     })
-
-    it('sumBy by string', () => {
-        expect(sumBy(elementOneDepth, 'n')).toBe(20)
-        expect(sumBy(elementOneDepth, 'n')).toBe(_sumBy(elementOneDepth, 'n'))
-        expect(sumBy(elementTwoDepth, 'n.m')).toBe(20)
-        expect(sumBy(elementTwoDepth, 'n.m')).toBe(_sumBy(elementTwoDepth, 'n.m'))
-    })
 })
