@@ -115,4 +115,12 @@ describe('mapValues function', () => {
         expect(mapValues(obj, (v) => !v)).toEqual({own: true})
         expect(mapValues(obj, (v) => !v)).toEqual(_mapValues(obj, (v) => !v))
     })
+
+    it('...', () => {
+        const obj = {
+            user1: {name: 'John', age: 25},
+            user2: {name: 'Jane', age: 30},
+        }
+        expect(mapValues(obj, (v) => v.age)).toEqual(_mapValues(obj, (v) => v.age))
+    })
 })

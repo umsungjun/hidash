@@ -15,14 +15,14 @@ const testCases = [
             user1: {name: 'John', age: 25},
             user2: {name: 'Jane', age: 30},
         },
-        'age',
+        (v: {name: string; age: number}) => v.age,
     ],
     [
         {
             a: {b: {c: 1}},
             x: {b: {c: 2}},
         },
-        'b.c',
+        (v: {b: {c: number}}) => v.b.c,
     ],
 
     // 배열 케이스
@@ -80,7 +80,10 @@ const testCases = [
     // 대량의 작은 객체들
     ...Array(50)
         .fill(0)
-        .map((_, i) => [{value: i, double: i * 2, square: i * i}, 'value']),
+        .map((_, i) => [
+            {value: i, double: i * 2, square: i * i},
+            (v: {value: number; double: number; square: number}) => v.value,
+        ]),
 ] as const
 
 const ITERATIONS = 100
