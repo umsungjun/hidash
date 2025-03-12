@@ -40,7 +40,7 @@ jobs:
                       const { execSync } = require('child_process');
                       const baseRef = process.env.GITHUB_BASE_REF;
 
-                      const indexDiff = execSync(`git diff origin/${baseRef} index.ts``).toString();
+                      const indexDiff = execSync(`git diff origin/${baseRef} index.ts`).toString();
                       const packageDiff = execSync(`git diff origin/${baseRef} package.json`).toString();
 
                       const hasChanges = indexDiff || packageDiff;
