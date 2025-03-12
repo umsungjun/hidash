@@ -14,7 +14,7 @@ interface TestObject {
 
 const testCases = [
     // Empty array
-    [[] as TestObject[], 'value'],
+    [[] as TestObject[], (item: {value: number}) => item.value],
     // Simple array with objects
     [
         [
@@ -22,7 +22,7 @@ const testCases = [
             {value: 2, price: 20, weight: 200},
             {value: 3, price: 30, weight: 300},
         ],
-        'value',
+        (item: {value: number; price: number; weight: number}) => item.value,
     ],
     // Array with iteratee function
     [
@@ -40,7 +40,7 @@ const testCases = [
             {nested: {value: 2}, price: 20, weight: 200},
             {nested: {value: 3}, price: 30, weight: 300},
         ],
-        'nested.value',
+        (item: {nested: {value: number}; price: number; weight: number}) => item.nested.value,
     ],
     // Large array
     [
@@ -51,7 +51,7 @@ const testCases = [
                 price: i * 10,
                 weight: i * 100,
             })),
-        'value',
+        (item: {value: number; price: number; weight: number}) => item.value,
     ],
     // Array with negative values
     [
@@ -60,7 +60,7 @@ const testCases = [
             {value: -2, price: 20, weight: 200},
             {value: -3, price: 30, weight: 300},
         ],
-        'value',
+        (item: {value: number; price: number; weight: number}) => item.value,
     ],
     // Array with decimal values
     [
@@ -69,7 +69,7 @@ const testCases = [
             {value: 0.2, price: 20.5, weight: 200.2},
             {value: 0.3, price: 30.5, weight: 300.3},
         ],
-        'value',
+        (item: {value: number; price: number; weight: number}) => item.value,
     ],
     // Complex calculation with iteratee function
     [
@@ -89,7 +89,7 @@ const testCases = [
             {value: 1, price: 10, weight: 100},
             {value: 1, price: 10, weight: 100},
         ],
-        'value',
+        (item: {value: number; price: number; weight: number}) => item.value,
     ],
     // Array with zero values
     [
@@ -98,7 +98,7 @@ const testCases = [
             {value: 0, price: 0, weight: 0},
             {value: 0, price: 0, weight: 0},
         ],
-        'value',
+        (item: {value: number; price: number; weight: number}) => item.value,
     ],
     // Large numbers
     [
@@ -106,7 +106,7 @@ const testCases = [
             {value: Number.MAX_SAFE_INTEGER, price: 10, weight: 100},
             {value: Number.MAX_SAFE_INTEGER - 1, price: 20, weight: 200},
         ],
-        'value',
+        (item: {value: number; price: number; weight: number}) => item.value,
     ],
     // Small numbers
     [
@@ -114,7 +114,7 @@ const testCases = [
             {value: Number.MIN_SAFE_INTEGER, price: 10, weight: 100},
             {value: Number.MIN_SAFE_INTEGER + 1, price: 20, weight: 200},
         ],
-        'value',
+        (item: {value: number; price: number; weight: number}) => item.value,
     ],
 ] as const
 

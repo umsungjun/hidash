@@ -117,7 +117,6 @@ describe('filter', () => {
         ]
         const predicate = (item: {details: {active: boolean}}) => item.details.active
         expect(filter(input, predicate)).toEqual(_filter(input, predicate))
-        expect(filter(input, 'details.active')).toEqual(_filter(input, 'details.active'))
     })
 
     // Edge case: Predicate is a value instead of a function

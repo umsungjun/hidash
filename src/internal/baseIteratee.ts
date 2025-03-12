@@ -11,19 +11,6 @@ import type {
     ValueKeyIteratee,
 } from './baseIteratee.type'
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-function getValueByPath(element: unknown, path: PropertyName[]): unknown {
-    let result = element
-    for (let i = 0; i < path.length; i++) {
-        if (result == null || typeof result !== 'object') {
-            return undefined
-        }
-        const obj = result as Record<PropertyName, unknown>
-        result = obj[path[i]]
-    }
-    return result
-}
-
 function isMatch(element: unknown, source: unknown): boolean {
     if (!isPlainObject(element) || !isPlainObject(source)) {
         return false
@@ -63,34 +50,6 @@ export function baseIteratee<T, TResult>(iteratee: unknown) {
 
     if (typeof iteratee === 'function') {
         return iteratee
-    }
-
-    if (typeof iteratee === 'string' && !iteratee.includes('.')) {
-        return function (element: T) {
-            if (element == null) {
-                return undefined as TResult
-            }
-            return (element as Record<PropertyName, unknown>)[iteratee] as TResult
-        }
-    }
-
-    if (typeof iteratee === 'string' || typeof iteratee === 'symbol' || typeof iteratee === 'number') {
-        const path = typeof iteratee === 'string' ? iteratee.split('.') : [iteratee]
-
-        return function (element: T) {
-            if (element == null) {
-                return undefined as TResult
-            }
-            // 간단히 getValueByPath 써도 됨
-            let result = element as unknown
-            for (const key of path) {
-                if (result == null) {
-                    return undefined as TResult
-                }
-                result = (result as Record<PropertyName, unknown>)[key]
-            }
-            return result as TResult
-        }
     }
 
     if (isArrayLike(iteratee) && !isFunction(iteratee)) {

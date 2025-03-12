@@ -12,7 +12,7 @@ const basicTestCases = [
             {id: 4, category: 'C', value: 40},
             {id: 5, category: 'B', value: 50},
         ],
-        iteratee: 'category',
+        iteratee: (item: {id: number; category: string; value: number}) => item.category,
     },
     {
         data: Array.from({length: 100}, (_, i) => i),
@@ -20,7 +20,7 @@ const basicTestCases = [
     },
     {
         data: [null, undefined, {id: 1, value: 'a'}, {id: 2, value: 'b'}, null, {id: 3, value: 'a'}],
-        iteratee: 'value',
+        iteratee: (item: null | undefined | {id: number; value: string}) => item?.value,
     },
 ] as const
 
@@ -47,7 +47,7 @@ const complexTestCases = [
             category: String.fromCharCode(65 + (i % 26)), // A-Z 반복
             value: i * 10,
         })),
-        iteratee: 'category',
+        iteratee: (item: {id: number; category: string; value: number}) => item.category,
     },
 ] as const
 

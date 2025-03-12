@@ -4,7 +4,7 @@ export type PropertyName = string | number | symbol
 export type PartialShallow<T> = {
     [P in keyof T]?: T[P] extends object ? object : T[P]
 }
-export type IterateeShorthand<T> = PropertyName | [PropertyName, unknown] | PartialShallow<T> | undefined | null
+export type IterateeShorthand<T> = [PropertyName, unknown] | PartialShallow<T> | undefined | null
 
 export type ListIterator<T, TResult> = (value: T, index: number, collection: ArrayLike<T>) => TResult
 export type ListIteratee<T> = ListIterator<T, unknown> | IterateeShorthand<T>

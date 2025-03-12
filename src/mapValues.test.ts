@@ -15,14 +15,6 @@ describe('mapValues function', () => {
         const obj = {a: 1, b: 2}
         expect(mapValues(obj, (n) => n * 2)).toEqual({a: 2, b: 4})
         expect(mapValues(obj, (n) => n * 2)).toEqual(_mapValues(obj, (n) => n * 2))
-
-        // String iteratee
-        const users = {
-            fred: {user: 'fred', age: 40},
-            pebbles: {user: 'pebbles', age: 1},
-        }
-        expect(mapValues(users, 'age')).toEqual({fred: 40, pebbles: 1})
-        expect(mapValues(users, 'age')).toEqual(_mapValues(users, 'age'))
     })
 
     it('handles array transformations', () => {
@@ -42,15 +34,6 @@ describe('mapValues function', () => {
 
         expect(mapValues(obj, Boolean)).toEqual({a: true, b: true, c: true})
         expect(mapValues(obj, Boolean)).toEqual(_mapValues(obj, Boolean))
-    })
-
-    it('handles nested property paths', () => {
-        const obj = {
-            a: {info: {value: 1}},
-            b: {info: {value: 2}},
-        }
-        expect(mapValues(obj, 'info.value')).toEqual({a: 1, b: 2})
-        expect(mapValues(obj, 'info.value')).toEqual(_mapValues(obj, 'info.value'))
     })
 
     it('handles undefined and null values in objects', () => {
@@ -131,5 +114,13 @@ describe('mapValues function', () => {
 
         expect(mapValues(obj, (v) => !v)).toEqual({own: true})
         expect(mapValues(obj, (v) => !v)).toEqual(_mapValues(obj, (v) => !v))
+    })
+
+    it('...', () => {
+        const obj = {
+            user1: {name: 'John', age: 25},
+            user2: {name: 'Jane', age: 30},
+        }
+        expect(mapValues(obj, (v) => v.age)).toEqual(_mapValues(obj, (v) => v.age))
     })
 })

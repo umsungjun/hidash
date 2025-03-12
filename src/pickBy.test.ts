@@ -39,11 +39,6 @@ describe('pickBy', () => {
         expect(pickBy(obj, predicate)).toEqual(_pickBy(obj, predicate))
     })
 
-    it('should handle object arrays with property name shorthand', () => {
-        const objArray = [{name: 'Alice'}, {age: 25}, {name: 'Bob', age: 30}]
-        expect(pickBy(objArray, 'name')).toEqual(_pickBy(objArray, 'name'))
-    })
-
     it('should handle objects with partial matching using shorthand', () => {
         const objArray = [
             {name: 'Alice', active: true},

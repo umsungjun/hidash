@@ -22,7 +22,7 @@ const testCases = [
             {id: 3, value: 'c'},
             {id: 4, value: 'd'},
         ],
-        'value',
+        (item: {id: number; value: string}) => item.value,
     ],
     [
         [

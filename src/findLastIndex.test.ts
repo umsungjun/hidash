@@ -40,21 +40,6 @@ describe('findLastIndex', () => {
         )
     })
 
-    it('should handle string predicate (key lookup)', () => {
-        const array = [{a: 1}, {a: 2}, {a: 3}]
-        expect(findLastIndex(array, 'a')).toBe(2)
-        expect(findLastIndex(array, 'a')).toBe(_findLastIndex(array, 'a'))
-
-        expect(findLastIndex(array, 'b')).toBe(-1)
-        expect(findLastIndex(array, 'b')).toBe(_findLastIndex(array, 'b'))
-    })
-
-    it('should handle arrays of objects with number as predicate (key lookup)', () => {
-        const array = [{1: 'value'}, {}, {1: 'other'}]
-        expect(findLastIndex(array, 1)).toBe(2)
-        expect(findLastIndex(array, 1)).toBe(_findLastIndex(array, 1))
-    })
-
     it('should handle array predicate ([key, value])', () => {
         const array = [{a: 1}, {a: 2}, {a: 3}]
         expect(findLastIndex(array, ['a', 2])).toBe(1)
@@ -130,9 +115,6 @@ describe('findLastIndex', () => {
 
         expect(findLastIndex([], (v) => v === 1)).toBe(-1)
         expect(findLastIndex([], (v) => v === 1)).toBe(_findLastIndex([], (v) => v === 1))
-
-        expect(findLastIndex([], 'a')).toBe(-1)
-        expect(findLastIndex([], 'a')).toBe(_findLastIndex([], 'a'))
     })
 
     it('should handle arrays with undefined or null values', () => {
