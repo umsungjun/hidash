@@ -8,6 +8,9 @@ on:
             - 'package.json'
             - 'scripts/generate-utils.mjs'
 
+permissions:
+    pull-requests: write
+
 jobs:
     check-utils:
         runs-on: ubuntu-latest
@@ -15,6 +18,8 @@ jobs:
             pull-requests: write
         steps:
             - uses: actions/checkout@v4
+              with:
+                  ref: ${{ github.event.pull_request.head.sha }}
 
             - name: Fetch base branch
               run: git fetch origin $GITHUB_BASE_REF
