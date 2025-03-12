@@ -1,5 +1,13 @@
 # @naverpay/hidash
 
+## 0.2.1
+
+### Patch Changes
+
+-   137ef28: 🐛 add missing zip
+
+    PR: [🐛 add missing zip](https://github.com/NaverPayDev/hidash/pull/234)
+
 ## 0.2.0
 
 ### Minor Changes
