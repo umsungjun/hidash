@@ -59,7 +59,7 @@ jobs:
                             console.log('=== index.ts diff ===');
                             console.log(indexDiff);
                         }
-                        if (pkgDiff.trim()) {
+                        if (packageDiff.trim()) {
                             console.log('=== package.json diff ===');
                             console.log(packageDiff);
                         }
