@@ -1,5 +1,23 @@
 # @naverpay/hidash
 
+## 0.2.0
+
+### Minor Changes
+
+-   4425908: 💥 Remove `PropertyName` typed IterateeShorthand
+
+    PR: [💥 Remove `PropertyName` typed IterateeShorthand](https://github.com/NaverPayDev/hidash/pull/228)
+
+### Patch Changes
+
+-   52a54de: Fix Issue #222: Handle null/undefined in `merge` function
+
+    PR: [Fix Issue #222: Handle null/undefined in `merge` function](https://github.com/NaverPayDev/hidash/pull/223)
+
+-   881874e: 🚀 zip
+
+    PR: [🚀 zip](https://github.com/NaverPayDev/hidash/pull/226)
+
 ## 0.1.13
 
 ### Patch Changes
