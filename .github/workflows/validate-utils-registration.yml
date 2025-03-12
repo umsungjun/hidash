@@ -35,8 +35,15 @@ jobs:
             - name: Install dependencies
               run: pnpm install --frozen-lockfile
 
-            - name: Generate Expected Config
+            - name: Generate Utils
               run: node scripts/generate-utils.mjs
+
+            - name: Debug diff
+              run: |
+                  echo "=== index.ts diff ==="
+                  git diff -- index.ts
+                  echo "=== package.json diff ==="
+                  git diff -- package.json
 
             - name: Check and Comment Changes
               uses: actions/github-script@v7
@@ -47,6 +54,15 @@ jobs:
 
                       const indexDiff = execSync(`git diff origin/${baseRef} index.ts`).toString();
                       const packageDiff = execSync(`git diff origin/${baseRef} package.json`).toString();
+
+                      if (indexDiff.trim()) {
+                            console.log('=== index.ts diff ===');
+                            console.log(indexDiff);
+                        }
+                        if (pkgDiff.trim()) {
+                            console.log('=== package.json diff ===');
+                            console.log(pkgDiff);
+                        }
 
                       const hasChanges = indexDiff || packageDiff;
                       const prNumber = context.payload.pull_request.number;
