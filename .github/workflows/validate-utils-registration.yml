@@ -37,54 +37,39 @@ jobs:
               run: pnpm install --frozen-lockfile
 
             - name: Generate Utils
-              run: pnpm exec node scripts/generate-utils.mjs
+              run: node scripts/generate-utils.mjs
 
-            - name: Debug diff
+            - name: Debug local diff after generate
               run: |
                   echo "=== index.ts diff ==="
-                  git diff origin/${{ github.event.pull_request.base.ref }} -- index.ts
+                  git diff -- index.ts
                   echo "=== package.json diff ==="
-                  git diff origin/${{ github.event.pull_request.base.ref }} -- package.json
+                  git diff -- package.json
 
-            - name: Check and Comment Changes
+            - name: Check for leftover changes
+              run: |
+                  git diff --exit-code index.ts package.json
+
+            - name: Post failure comment
+              if: failure()
               uses: actions/github-script@v7
               with:
                   script: |
-                      const { execSync } = require('child_process');
-                      const fs = require('fs');
-
                       const prNumber = context.payload.pull_request.number;
-                      const baseRef = context.payload.pull_request.base.ref;
-
-                      let basePkgExports;
-                      try {
-                        const basePkgJson = execSync(`git show origin/${baseRef}:package.json`).toString();
-                        basePkgExports = JSON.parse(basePkgJson).exports;
-                      } catch (err) {
-                        basePkgExports = {};
-                      }
-
-                      const localPkgJson = fs.readFileSync('package.json', 'utf-8');
-                      const localPkg = JSON.parse(localPkgJson);
-                      const localPkgExports = localPkg.exports || {};
-
-                      const exportsChanged = (JSON.stringify(basePkgExports) !== JSON.stringify(localPkgExports));
-
-                      let indexDiff = '';
-                      try {
-                        indexDiff = execSync(`git diff origin/${baseRef} -- index.ts`).toString().trim();
-                      } catch (err) {
-                        // ignore
-                      }
-                      const indexChanged = Boolean(indexDiff);
-
-                      const hasChanges = exportsChanged || indexChanged;
-
                       const { data: allComments } = await github.rest.issues.listComments({
                         owner: context.repo.owner,
                         repo: context.repo.repo,
                         issue_number: prNumber,
                       });
+
+                      const warningMsg = "### ⚠️ Module Registration Issue Detected\n\n"
+                        + "It looks like there are unregistered or mismatched modules in `package.json` exports or `index.ts`. "
+                        + "Please run the following commands locally to update and commit:\n\n"
+                        + "```bash\n"
+                        + "pnpm generate\n"
+                        + "git commit -am \"fix: update utils\"\n"
+                        + "git push\n"
+                        + "```\n";
 
                       const existingBotComment = allComments.find(comment =>
                         (
@@ -93,49 +78,54 @@ jobs:
                         )
                       );
 
-                      if (hasChanges) {
-                        const message = "### ⚠️ Module Registration Issue Detected\n\n"
-                          + "It looks like there are unregistered or mismatched modules in `package.json` exports or `index.ts`. "
-                          + "Please run the following commands locally to update and commit:\n\n"
-                          + "```bash\n"
-                          + "pnpm generate\n"
-                          + "git commit -am \"fix: update utils\"\n"
-                          + "git push\n"
-                          + "```\n";
-
-                        if (existingBotComment) {
-                          await github.rest.issues.updateComment({
-                            owner: context.repo.owner,
-                            repo: context.repo.repo,
-                            comment_id: existingBotComment.id,
-                            body: message,
-                          });
-                        } else {
-                          await github.rest.issues.createComment({
-                            owner: context.repo.owner,
-                            repo: context.repo.repo,
-                            issue_number: prNumber,
-                            body: message,
-                          });
-                        }
-
-                        process.exit(1);
+                      if (existingBotComment) {
+                        await github.rest.issues.updateComment({
+                          owner: context.repo.owner,
+                          repo: context.repo.repo,
+                          comment_id: existingBotComment.id,
+                          body: warningMsg,
+                        });
                       } else {
-                        const successMessage = "✅ All utility modules are properly registered in `index.ts` and `package.json` exports!";
-
-                        if (existingBotComment) {
-                          await github.rest.issues.updateComment({
-                            owner: context.repo.owner,
-                            repo: context.repo.repo,
-                            comment_id: existingBotComment.id,
-                            body: successMessage,
-                          });
-                        } else {
-                          await github.rest.issues.createComment({
-                            owner: context.repo.owner,
-                            repo: context.repo.repo,
-                            issue_number: prNumber,
-                            body: successMessage,
-                          });
-                        }
+                        await github.rest.issues.createComment({
+                          owner: context.repo.owner,
+                          repo: context.repo.repo,
+                          issue_number: prNumber,
+                          body: warningMsg,
+                        });
                       }
+
+            - name: Post success comment
+              if: success()
+              uses: actions/github-script@v7
+              with:
+                  script: |
+                      const prNumber = context.payload.pull_request.number;
+                      const { data: allComments } = await github.rest.issues.listComments({
+                        owner: context.repo.owner,
+                        repo: context.repo.repo,
+                        issue_number: prNumber,
+                      });
+
+                      const successMsg = "✅ All utility modules are properly registered in `index.ts` and `package.json` exports!";
+
+                      const existingBotComment = allComments.find(comment =>
+                        (
+                          comment.body.includes('Module Registration Issue Detected') ||
+                          comment.body.includes('All utility modules are properly registered')
+                        )
+                      );
+
+                      if (existingBotComment) {
+                        await github.rest.issues.updateComment({
+                          owner: context.repo.owner,
+                          repo: context.repo.repo,
+                          comment_id: existingBotComment.id,
+                          body: successMsg,
+                        });
+                      } else {
+                        await github.rest.issues.createComment({
+                          owner: context.repo.owner,
+                          repo: context.repo.repo,
+                          issue_number: prNumber,
+                          body: successMsg,
+                        });
