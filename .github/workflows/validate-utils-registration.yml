@@ -61,7 +61,7 @@ jobs:
                         }
                         if (pkgDiff.trim()) {
                             console.log('=== package.json diff ===');
-                            console.log(pkgDiff);
+                            console.log(packageDiff);
                         }
 
                       const hasChanges = indexDiff || packageDiff;
