@@ -24,14 +24,14 @@ jobs:
             - name: Fetch base branch
               run: git fetch origin ${{ github.event.pull_request.base.ref }}
 
+            - name: Setup pnpm
+              uses: pnpm/action-setup@v4
+
             - name: Use Node.js
               uses: actions/setup-node@v4
               with:
                   node-version: '20'
                   cache: 'pnpm'
-
-            - name: Setup pnpm
-              uses: pnpm/action-setup@v4
 
             - name: Install dependencies
               run: pnpm install --frozen-lockfile
