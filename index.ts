@@ -71,6 +71,7 @@ const moduleMap = {
     uniq: './src/uniq.ts',
     uniqBy: './src/uniqBy.ts',
     uniqWith: './src/uniqWith.ts',
+    unzip: './src/unzip.ts',
     values: './src/values.ts',
     zip: './src/zip.ts',
 } as const

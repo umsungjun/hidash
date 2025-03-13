@@ -714,6 +714,16 @@
                 "default": "./uniqWith.js"
             }
         },
+        "./unzip": {
+            "import": {
+                "types": "./unzip.d.mts",
+                "default": "./unzip.mjs"
+            },
+            "require": {
+                "types": "./unzip.d.ts",
+                "default": "./unzip.js"
+            }
+        },
         "./values": {
             "import": {
                 "types": "./values.d.mts",
