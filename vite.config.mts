@@ -12,6 +12,9 @@ export default createViteConfig({
             dist: 'dist',
         },
     ],
+    publint: {
+        severity: 'off',
+    },
     includeRequiredPolyfill: [
         'es.array.push', // https://bugs.chromium.org/p/v8/issues/detail?id=12681
         'es.array.includes', // https://bugzilla.mozilla.org/show_bug.cgi?id=1767541
