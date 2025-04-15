@@ -65,7 +65,7 @@ function isIterateeCall(value: number, index: number | undefined, object: Record
     return false
 }
 
-export const range = (start: number, end?: number, step?: number) => {
+export const range = (start: number, end?: number, step?: number): number[] => {
     if (step && typeof step !== 'number' && isIterateeCall(start, end, step)) {
         // eslint-disable-next-line no-param-reassign
         end = step = undefined
