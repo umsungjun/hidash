@@ -1,5 +1,17 @@
 # @naverpay/hidash
 
+## 0.2.3
+
+### Patch Changes
+
+-   eb39189: pite 최신화
+
+    PR: [pite 최신화](https://github.com/NaverPayDev/hidash/pull/217)
+
+-   259fa78: isNill type fix
+
+    PR: [isNill type fix](https://github.com/NaverPayDev/hidash/pull/242)
+
 ## 0.2.2
 
 ### Patch Changes
