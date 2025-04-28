@@ -14,7 +14,6 @@
         "internal/*.d.mts"
     ],
     "exports": {
-        "./package.json": "./package.json",
         "./assign": {
             "import": {
                 "types": "./assign.d.mts",

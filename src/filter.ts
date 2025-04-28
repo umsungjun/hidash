@@ -1,5 +1,3 @@
-import _filter from 'lodash/filter'
-
 import {isArrayLike} from './internal/array'
 import {baseIteratee} from './internal/baseIteratee'
 import {
