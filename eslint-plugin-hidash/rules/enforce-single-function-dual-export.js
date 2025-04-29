@@ -84,7 +84,7 @@ module.exports = {
                     return
                 }
 
-                // Need default export
+                // need default export
                 if (!defaultExport) {
                     context.report({
                         node: context.getSourceCode().ast,
