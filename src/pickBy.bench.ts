@@ -4,55 +4,55 @@ import {bench, describe} from 'vitest'
 import pickBy from './pickBy'
 
 const testCases = [
-    // Simple large objects (키와 값이 숫자)
+    // simple large objects
     [
         Object.fromEntries(
             Array(1000)
                 .fill(0)
                 .map((_, i) => [`key${i}`, i]),
         ),
-        (v) => v > 500, // 500보다 큰 값만 남기는 테스트
+        (v) => v > 500, // test that leave only values greater than 500
     ],
-    // Sparse large objects (일부 값이 undefined)
+    // sparse large objects
     [
         Object.fromEntries(
             Array(1000)
                 .fill(undefined)
                 .map((_, i) => [`key${i}`, i % 2 === 0 ? i : undefined]),
         ),
-        (v) => v !== undefined, // undefined가 아닌 값만 남기는 테스트
+        (v) => v !== undefined, // test that leave only values not undefined
     ],
-    // Boolean 값만 필터링
+    // filter booleans
     [
         Object.fromEntries(
             Array(1000)
                 .fill(0)
                 .map((_, i) => [`key${i}`, i % 2 === 0]),
         ),
-        (v) => typeof v === 'boolean' && v === true, // true인 값만 남기는 테스트
+        (v) => typeof v === 'boolean' && v === true, // test that leave only true
     ],
-    // 중첩된 객체
+    // nested objects
     [
         {
             a: {b: {c: Array(1000).fill({nested: true})}},
             d: {e: {f: Array(1000).fill({nested: false})}},
         },
-        (v) => v.nested === true, // nested가 true인 값만 남기는 테스트
+        (v) => v.nested === true, // test that leaves only values where nested is true
     ],
-    // 숫자값만 필터링
+    // filter only numbers
     [
         {a: 1, b: 2, c: 3, d: 4},
-        (v) => typeof v === 'number' && v % 2 === 0, // 짝수인 값만 남기기
+        (v) => typeof v === 'number' && v % 2 === 0, // test to leave only even values
     ],
-    // 빈 객체 처리
+    // empty object case
     [
         {},
-        (v) => !!v, // truthy한 값만 남기기, 빈 객체에 대해서도 처리
+        (v) => !!v, // test to leave only truthy values, also test if it is dealing with an empty object
     ],
-    // 특정 값만 필터링
+    // filter specific values
     [
         {a: null, b: 0, c: false, d: true},
-        (v) => v === true, // true인 값만 남기기
+        (v) => v === true, // test that leave only true
     ],
 ] as const
 

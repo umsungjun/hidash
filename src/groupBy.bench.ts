@@ -51,7 +51,7 @@ const complexTestCases = [
     },
 ] as const
 
-// 패턴(객체, [key,value]) 기반 iteratee 테스트 케이스 추가
+// Add pattern (object, [key, value]) based iteratee test case
 const patternTestCases = [
     {
         data: [

@@ -3,7 +3,7 @@ import {bench, describe} from 'vitest'
 
 import toNumber from './toNumber'
 
-// 테스트 케이스: 다양한 데이터 유형을 포함
+// includes various data types and edge cases
 const testCases = [
     null,
     undefined,

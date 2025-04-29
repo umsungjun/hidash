@@ -75,7 +75,7 @@ module.exports = {
             },
 
             'Program:exit'() {
-                // named exports가 정확히 하나여야 함
+                // named exports must be exactly one
                 if (namedExports.size !== 1) {
                     context.report({
                         node: context.getSourceCode().ast,
@@ -84,7 +84,7 @@ module.exports = {
                     return
                 }
 
-                // default export가 반드시 있어야 함
+                // Need default export
                 if (!defaultExport) {
                     context.report({
                         node: context.getSourceCode().ast,
@@ -93,7 +93,7 @@ module.exports = {
                     return
                 }
 
-                // named export와 default export가 같은 함수여야 함
+                // named export and default export must be the same function
                 const namedExport = Array.from(namedExports)[0]
                 if (defaultExport !== namedExport) {
                     context.report({

@@ -1,5 +1,5 @@
 /**
- * @description https://unpkg.com/lodash.sum lodash.sum is only compatible with number arrays
+ * @see https://unpkg.com/lodash.sum lodash.sum is only compatible with number arrays
  */
 export function sum(elements: number[]): number {
     let result = 0

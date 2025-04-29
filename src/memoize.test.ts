@@ -13,22 +13,22 @@ describe('memoize function', () => {
 
         const memoizedAdd = memoize(add)
 
-        // 첫 번째 호출의 결과가 정확한지 확인
+        // verify that the result of the first call is correct
         expect(memoizedAdd(1, 2)).toBe(3)
 
-        // 함수가 한 번 호출되었는지 확인
+        // verify that the function is called once
         expect(callCount).toBe(1)
 
-        // 같은 인자로 두 번째 호출 시 캐시된 결과를 반환하는지 확인
+        // verify that the second call with the same factor returns cached results
         expect(memoizedAdd(1, 2)).toBe(3)
 
-        // 캐시된 결과를 사용하므로 callCount가 증가하지 않았는지 확인
+        // use cached results to ensure callCount is not increased
         expect(callCount).toBe(1)
 
-        // 새로운 인자로 호출 시 새로운 결과를 반환하는지 확인
+        // verify that a new argument returns a new result on a call
         expect(memoizedAdd(2, 3)).toBe(5)
 
-        // 새로운 계산으로 인해 callCount가 증가했는지 확인
+        // check if callCount has increased due to new calculation
         expect(callCount).toBe(2)
     })
 
@@ -37,9 +37,9 @@ describe('memoize function', () => {
         const memoizedFn = memoize(fn)
 
         memoizedFn(1, 2)
-        memoizedFn(1, 3) // 첫 번째 인수가 같으므로 캐시된 결과를 사용해야 함
+        memoizedFn(1, 3) // use cached results because the first argument is the same
 
-        // 첫 번째 인자만 같아도 캐시를 사용하므로 함수는 한 번만 호출되어야 함
+        // the function must be called only once because the first argument is the same but uses cache
         expect(fn).toHaveBeenCalledTimes(1)
     })
 
@@ -48,19 +48,19 @@ describe('memoize function', () => {
         const resolver = (a: {x: number}, b: {y: number}) => `${a.x},${b.y}`
         const memoizedFn = memoize(fn, resolver)
 
-        // 첫 번째 호출의 결과가 정확한지 확인
+        // verify that the result of the first call is correct
         expect(memoizedFn({x: 1}, {y: 2})).toBe(3)
 
-        // 같은 인자로 두 번째 호출 시 캐시된 결과를 반환하는지 확인
+        // verify that the second call with the same argument returns cached results
         expect(memoizedFn({x: 1}, {y: 2})).toBe(3)
 
-        // 같은 인자로 두 번 호출했지만 함수는 한 번만 실행되었는지 확인
+        // verify that the function was executed only once, although it was called twice with the same argument
         expect(fn).toHaveBeenCalledTimes(1)
 
-        // 새로운 인자로 호출 시 새로운 결과를 반환하는지 확인
+        // verify that a new argument returns a new result on a call
         expect(memoizedFn({x: 2}, {y: 1})).toBe(3)
 
-        // 새로운 인자로 호출했으므로 함수가 두 번째로 실행되었는지 확인
+        // make sure the function is executed a second time because it was called with a new argument
         expect(fn).toHaveBeenCalledTimes(2)
     })
 
@@ -85,13 +85,13 @@ describe('memoize function', () => {
         const memoizedFn = memoize(obj.fn, obj.resolver)
         obj.memoizedFn = memoizedFn
 
-        // 첫 번째 호출의 결과가 정확한지 확인 (3 * 2 = 6)
+        // verify that the result of the first call is correct (3 * 2 = 6)
         expect(obj.memoizedFn(3)).toBe(6)
 
-        // 같은 인자로 두 번째 호출 시 캐시된 결과를 반환하는지 확인
+        // verify that the second call with the same argument returns cached results
         expect(obj.memoizedFn(3)).toBe(6)
 
-        // 새로운 인자로 호출 시 새로운 결과를 반환하는지 확인 (4 * 2 = 8)
+        // verify that a new argument returns a new result on a call (4 * 2 = 8)
         expect(obj.memoizedFn(4)).toBe(8)
     })
 
@@ -101,17 +101,17 @@ describe('memoize function', () => {
 
         memoizedFn(2)
 
-        // 캐시된 값이 정확한지 확인 (2 * 2 = 4)
+        // verify that cached values are correct (2 * 2 = 4)
         const cachedValue = memoizedFn.cache.get(2)
         expect(cachedValue).toBe(4)
     })
 
     test('throws TypeError for non-function arguments', () => {
-        // 함수가 아닌 값을 전달했을 때 TypeError를 던지는지 확인
+        // verify that TypeError is thrown when a non-function value is delivered
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         expect(() => memoize(42 as any)).toThrow(TypeError)
 
-        // resolver가 함수가 아닐 때 TypeError를 던지는지 확인
+        // verify that resolver throws TypeError when it is not a function
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         expect(() => memoize(noop, 'not a function' as any)).toThrow(TypeError)
     })
@@ -125,13 +125,13 @@ describe('memoize function', () => {
 
         const memoizedFn = memoize(fn)
 
-        // 첫 번째 호출의 결과가 정확한지 확인
+        // verify that the result of the first call is correct
         expect(memoizedFn()).toBe('result')
 
-        // 두 번째 호출 시 캐시된 결과를 반환하는지 확인
+        // verify that the second call returns cached results
         expect(memoizedFn()).toBe('result')
 
-        // 함수가 한 번만 호출되었는지 확인
+        // verify that the function is called only once
         expect(callCount).toBe(1)
     })
 
@@ -139,13 +139,13 @@ describe('memoize function', () => {
         const fn = vi.fn(() => undefined)
         const memoizedFn = memoize(fn)
 
-        // 첫 번째 호출 시 undefined를 반환하는지 확인
+        // verify that the undefined is returned on the first call
         expect(memoizedFn()).toBeUndefined()
 
-        // 두 번째 호출 시 캐시된 undefined를 반환하는지 확인
+        // verify that the second call returns cached undefined
         expect(memoizedFn()).toBeUndefined()
 
-        // 함수가 한 번만 호출되었는지 확인 (undefined도 캐시되어야 함)
+        // verify that the function is called only once (undefined must also be cached)
         expect(fn).toHaveBeenCalledTimes(1)
     })
 })

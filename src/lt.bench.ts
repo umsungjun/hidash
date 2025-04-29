@@ -4,16 +4,16 @@ import {bench, describe} from 'vitest'
 import lt from './lt'
 
 const testCases = [
-    {value: 1, other: 0}, // 숫자 비교
-    {value: -1, other: -2}, // 음수 비교
-    {value: 0, other: 0}, // 같은 숫자 비교
-    {value: 3.14, other: 2.71}, // 소수 비교
-    {value: '5', other: '3'}, // 문자열 숫자 비교
-    {value: 'a', other: 'b'}, // 문자열 비교
-    {value: '123', other: 456}, // 문자열과 숫자 혼합
-    {value: null, other: undefined}, // null과 undefined
-    {value: {}, other: []}, // 객체와 배열 비교
-    {value: NaN, other: Infinity}, // 특수값 비교
+    {value: 1, other: 0}, // comparison of numbers
+    {value: -1, other: -2}, // negative comparison
+    {value: 0, other: 0}, // comparison of the same numbers
+    {value: 3.14, other: 2.71}, // prime number comparison
+    {value: '5', other: '3'}, // numeric strings comparison
+    {value: 'a', other: 'b'}, // string comparison
+    {value: '123', other: 456}, // mixing string and numbers
+    {value: null, other: undefined}, // null and undefined
+    {value: {}, other: []}, // comparison of objects and arrays
+    {value: NaN, other: Infinity}, // comparison of special values
 ]
 
 const ITERATIONS = 10000
