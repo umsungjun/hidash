@@ -89,7 +89,7 @@ Please read our contributing guidelines before submitting PRs.
 
 ## License
 
-MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+MIT License - see the [LICENSE.md](LICENSE) file for details.
 
 ---
 
