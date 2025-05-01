@@ -1,7 +1,7 @@
 export function trim(input: unknown = '', chars?: string, guard?: unknown): string {
     const str = input == null ? '' : String(input)
 
-    // 기본 공백 제거
+    // remove leading and trailing spaces
     if (str && (guard != null || chars === undefined)) {
         return str.trim()
     }

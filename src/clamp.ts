@@ -1,5 +1,5 @@
 /**
- * @description https://unpkg.com/lodash.clamp@4.0.3/index.js
+ * @see https://unpkg.com/lodash.clamp@4.0.3/index.js
  */
 export function clamp(number: number, bounds?: number, upperBound?: number): number {
     const [lowerBound, finalUpperBound] = upperBound === undefined ? [undefined, bounds] : [bounds, upperBound]

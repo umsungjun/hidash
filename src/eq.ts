@@ -1,5 +1,5 @@
 /**
- * @description https://unpkg.com/lodash@4.17.21/eq.js
+ * @see https://unpkg.com/lodash@4.17.21/eq.js
  */
 export function eq(value: unknown, other: unknown): boolean {
     // eslint-disable-next-line no-self-compare

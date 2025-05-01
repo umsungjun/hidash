@@ -11,7 +11,7 @@ const mixedObjects = [...emptyObjects, ...filledObjects].sort(() => Math.random(
 
 const testCases = [
     largeArray,
-    Object.entries(Object.fromEntries(largeArray.map((item, index) => [`key${index}`, index]))), // Object.entries로 변환
+    Object.entries(Object.fromEntries(largeArray.map((item, index) => [`key${index}`, index]))), // convert to Object.entries
     emptyObjects,
     [...largeArray, ...emptyObjects],
     mixedObjects,

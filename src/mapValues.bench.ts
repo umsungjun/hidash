@@ -4,12 +4,12 @@ import {bench, describe} from 'vitest'
 import {mapValues} from './mapValues'
 
 const testCases = [
-    // 기본 객체 케이스
+    // default object case
     [{a: 1, b: 2, c: 3}, (n: number) => n * 2],
     [{x: 'hello', y: 'world'}, (s: string) => s.toUpperCase()],
     [{foo: true, bar: false}, Boolean],
 
-    // 중첩 객체 케이스
+    // nested object case
     [
         {
             user1: {name: 'John', age: 25},
@@ -25,15 +25,15 @@ const testCases = [
         (v: {b: {c: number}}) => v.b.c,
     ],
 
-    // 배열 케이스
+    // array case
     [['a', 'b', 'c'], String],
     [[1, 2, 3], (n: number) => n * n],
 
-    // null/undefined 값 포함 케이스
+    // case with null or undefined value
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [{a: null, b: undefined, c: 1}, (v: any) => v],
 
-    // 큰 객체 케이스
+    // large object case
     [
         Object.fromEntries(
             Array(100)
@@ -43,26 +43,26 @@ const testCases = [
         (n: number) => n + 1,
     ],
 
-    // array-like 객체 케이스
+    // array-like object case
     [{0: 'a', 1: 'b', length: 2}, String],
 
-    // 빈 객체/배열 케이스
+    // empty array or object case
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [{}, (v: any) => v],
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [[], (v: any) => v],
 
-    // null/undefined 케이스
+    // null or undefined case
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [null, (v: any) => v],
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [undefined, (v: any) => v],
 
-    // 원시 타입 생성자 케이스
+    // primitive type constructor case
     [{a: '1', b: '2'}, Number],
     [{x: 1, y: 0}, Boolean],
 
-    // 다양한 값 타입 케이스
+    // various type cases
     [
         {
             string: 'hello',
@@ -77,7 +77,7 @@ const testCases = [
         (v: any) => v,
     ],
 
-    // 대량의 작은 객체들
+    // a large number of small objects
     ...Array(50)
         .fill(0)
         .map((_, i) => [

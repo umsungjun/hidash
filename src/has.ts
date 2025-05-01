@@ -57,7 +57,7 @@ function hasPath(object: unknown, path: PropertyPath): boolean {
 }
 
 /**
- * @description https://unpkg.com/browse/lodash.has@4.5.2/index.js
+ * @see https://unpkg.com/browse/lodash.has@4.5.2/index.js
  */
 export function has(object: unknown, path: PropertyPath): boolean {
     if (path == null || (Array.isArray(path) && !path.length)) {

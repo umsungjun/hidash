@@ -17,7 +17,9 @@ export function toString(value: unknown): string {
         }
         return (
             value
-                // 이상한 lodash...
+                /**
+                 * @see lodash why this way?
+                 */
                 .map((item) => (item === null ? 'null' : item === undefined ? 'undefined' : toString(item)))
                 .join(',')
         )

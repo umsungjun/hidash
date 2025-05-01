@@ -79,8 +79,8 @@ describe('shuffle function', () => {
         const shuffled2 = shuffle(original)
         const shuffled3 = shuffle(original)
 
-        // 세 번의 셔플 결과가 모두 다른지 확인
-        // (매우 낮은 확률로 실패할 수 있음)
+        // check that all three shuffle results are different
+        // (There is a very low chance of failure here, but it's extremely unlikely)
         expect(
             shuffled1.join(',') !== shuffled2.join(',') ||
                 shuffled2.join(',') !== shuffled3.join(',') ||
@@ -106,7 +106,7 @@ describe('shuffle function', () => {
         const original = [{id: 1}, {id: 2}]
         const shuffled = shuffle(original)
 
-        expect(shuffled).not.toBe(original) // 참조가 다른지 확인
+        expect(shuffled).not.toBe(original) // check if the references are different
         expect(shuffled.length).toBe(original.length)
         original.forEach((item) => {
             expect(shuffled).toContainEqual(item)
