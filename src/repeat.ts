@@ -1,3 +1,12 @@
+/**
+ *
+ * @description
+ * Repeats a string `n` times using an efficient algorithm.
+ *
+ * @param {string} str The string to repeat
+ * @param {number} n The number of times to repeat the string
+ * @returns {string} The string that repeats `str` by `n`
+ */
 export function repeat(str: string, n: number): string {
     // Early type checking avoids unnecessary processing
     if (typeof n !== 'number') {
