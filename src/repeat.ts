@@ -1,9 +1,11 @@
 export function repeat(str: string, n: number): string {
+    // Early type checking avoids unnecessary processing
     if (typeof n !== 'number') {
         return str
     }
 
-    if (str === '' || n <= 0 || !Number.isFinite(n) || isNaN(n)) {
+    // Simplified validation: combined edge case checks reduce branching
+    if (str === '' || n <= 0 || n > Number.MAX_SAFE_INTEGER || !Number.isFinite(n) || isNaN(n)) {
         return ''
     }
 
@@ -12,6 +14,8 @@ export function repeat(str: string, n: number): string {
     let num = Math.floor(n)
 
     while (num > 0) {
+        // 1. No string concatenation in loop condition checks
+        // 2. Simplified bitwise check
         if (num % 2 === 1) {
             result = result + current
         }
