@@ -7,6 +7,8 @@ import type {ListIterateeCustom} from './internal/baseIteratee.type'
  * Finds the **last index** of an element in an array that satisfies a given predicate.
  * If no element satisfies the predicate, it returns `-1`.
  *
+ * Opposed to `findIndex`, this function starts searching from the end of the array.
+ *
  * @param {Array<T>} array The array to search
  * @param {ListIterateeCustom<T, unknown>} [predicate] The function invoked per iteration
  * @param {number} [fromIndex] The index to search from (default: `array.length - 1`)

@@ -2,6 +2,18 @@ import {baseIteratee} from './internal/baseIteratee'
 
 import type {ListIterateeCustom} from './internal/baseIteratee.type'
 
+/**
+ * @description
+ * Finds the **index** of the first element in an array that satisfies a given predicate.
+ * If no element satisfies the predicate, it returns `-1`.
+ *
+ * Opposed to `findLastIndex`, this function starts searching from the beginning of the array.
+ *
+ * @param {Array<T>} array The array to search
+ * @param {ListIterateeCustom<T, unknown>} [predicate] The function invoked per iteration
+ * @param {number} [fromIndex] The index to search from (default: `0`)
+ * @returns {number} The index of the first element that satisfies the predicate, or `-1` if none found
+ */
 export function findIndex<T>(array: T[], predicate?: ListIterateeCustom<T, unknown>, fromIndex?: number) {
     const length = array.length
 
