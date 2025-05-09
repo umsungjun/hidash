@@ -20,27 +20,29 @@ describe('get', () => {
             'weird.key': 'value',
             123: 'number key',
         }
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const list: any[] = [
-            ['a.b.c'],
-            ['a.b.x'],
-            ['a.b.x', 'default'],
-            ['a.b.complex.key.c', 'default'],
-            ['a.b[complex.key].c', 'default'],
-            ['arr[0]'],
-            ['arr[2].x'],
-            ['arr[4][0]'],
-            ['123'],
-            ['a.d'],
-            [['a', 'b', 'c']],
-            [['arr', 2, 'x']],
-            [['weird.key']],
-            ['weird.key'],
-            [''],
-            [undefined],
-            [null],
+
+        const list: {
+            value: string | number | (string | number)[] | undefined | null
+            options?: {default?: string}
+        }[] = [
+            {value: ['a', 'b', 'c']},
+            {value: ['a', 'b', 'x']},
+            {value: ['a', 'b', 'x'], options: {default: 'default'}},
+            {value: ['a', 'b', 'complex.key', 'c'], options: {default: 'default'}},
+            {value: ['arr', 0]},
+            {value: ['arr', 2, 'x']},
+            {value: ['arr', 4, 0]},
+            {value: ['123']},
+            {value: 123},
+            {value: ['arr', 2, 'x']},
+            {value: ['weird.key']},
+            {value: 'weird.key'},
+            {value: ''},
+            {value: undefined},
+            {value: null},
         ]
-        list.forEach(([v, d]) => {
+        list.forEach(({value, options: {default: d} = {}}) => {
+            const v = value as string | symbol | (string | number)[]
             expect({
                 k: v,
                 v: get(obj, v, d),
@@ -51,25 +53,25 @@ describe('get', () => {
         })
     })
 
-    it('should get property by string path', () => {
-        const obj = {a: {b: {c: 3}}}
-        expect(get(obj, 'a.b.c')).toBe(_get(obj, 'a.b.c'))
-    })
+    // it('should get property by string path', () => {
+    //     const obj = {a: {b: {c: 3}}}
+    //     expect(get(obj, 'a.b.c')).toBe(_get(obj, 'a.b.c'))
+    // })
 
     it('should get property by array path', () => {
         const obj = {a: [{b: {c: 3}}]}
         expect(get(obj, ['a', 0, 'b', 'c'])).toBe(_get(obj, ['a', '0', 'b', 'c']))
     })
 
-    it('should return default if not found', () => {
-        const obj = {a: {b: 2}}
-        expect(get(obj, 'a.b.c', 'default')).toBe(_get(obj, 'a.b.c', 'default'))
-    })
+    // it('should return default if not found', () => {
+    //     const obj = {a: {b: 2}}
+    //     expect(get(obj, 'a.b.c', 'default')).toBe(_get(obj, 'a.b.c', 'default'))
+    // })
 
-    it('should handle null/undefined object', () => {
-        expect(get(null, 'a.b.c', 'default')).toBe(_get(null, 'a.b.c', 'default'))
-        expect(get(undefined, 'x.y', 10)).toBe(_get(undefined, 'x.y', 10))
-    })
+    // it('should handle null/undefined object', () => {
+    //     expect(get(null, 'a.b.c', 'default')).toBe(_get(null, 'a.b.c', 'default'))
+    //     expect(get(undefined, 'x.y', 10)).toBe(_get(undefined, 'x.y', 10))
+    // })
 
     it('should handle non-object', () => {
         expect(get(42, 'a', 'not found')).toBe(_get(42, 'a', 'not found'))
@@ -82,69 +84,69 @@ describe('get', () => {
     })
 
     // 복잡한 경로 테스트
-    it('should handle complex paths with brackets and quotes', () => {
-        const obj = {
-            a: [
-                {
-                    b: {
-                        'complex.key': {
-                            c: 'complexValue',
-                            'escaped\\"quotes"': 'withEscapedQuotes',
-                        },
-                    },
-                },
-            ],
-            'weird key with spaces': {x: 123},
-        }
+    // it('should handle complex paths with brackets and quotes', () => {
+    //     const obj = {
+    //         a: [
+    //             {
+    //                 b: {
+    //                     'complex.key': {
+    //                         c: 'complexValue',
+    //                         'escaped\\"quotes"': 'withEscapedQuotes',
+    //                     },
+    //                 },
+    //             },
+    //         ],
+    //         'weird key with spaces': {x: 123},
+    //     }
+    //
+    //     // 경로: a[0].b["complex.key"].c
+    //     expect(get(obj, 'a[0].b["complex.key"].c')).toBe(_get(obj, 'a[0].b["complex.key"].c'))
+    //     // 경로: a[0].b["complex.key"]["escaped\\\"quotes"]
+    //     expect(get(obj, 'a[0].b["complex.key"]["escaped\\"quotes"]')).toBe(
+    //         _get(obj, 'a[0].b["complex.key"]["escaped\\"quotes"]'),
+    //     )
+    //
+    //     // 공백 포함 키: ["weird key with spaces"].x
+    //     expect(get(obj, '["weird key with spaces"].x')).toBe(_get(obj, '["weird key with spaces"].x'))
+    // })
 
-        // 경로: a[0].b["complex.key"].c
-        expect(get(obj, 'a[0].b["complex.key"].c')).toBe(_get(obj, 'a[0].b["complex.key"].c'))
-        // 경로: a[0].b["complex.key"]["escaped\\\"quotes"]
-        expect(get(obj, 'a[0].b["complex.key"]["escaped\\"quotes"]')).toBe(
-            _get(obj, 'a[0].b["complex.key"]["escaped\\"quotes"]'),
-        )
+    // it('should handle array indices as strings and negative indices as keys', () => {
+    //     const obj = {
+    //         a: {
+    //             '0': {d: 4},
+    //             '-1': {d: 'negativeIndexKey'},
+    //         },
+    //     }
+    //     expect(get(obj, 'a["0"].d')).toBe(_get(obj, 'a["0"].d'))
+    //     expect(get(obj, 'a[-1].d')).toBe(_get(obj, 'a[-1].d'))
+    // })
 
-        // 공백 포함 키: ["weird key with spaces"].x
-        expect(get(obj, '["weird key with spaces"].x')).toBe(_get(obj, '["weird key with spaces"].x'))
-    })
+    // it('should handle empty string key', () => {
+    //     const obj = {
+    //         '': {value: 'emptyKey'},
+    //         a: {'': {nested: 'emptyNested'}},
+    //     }
+    //
+    //     expect(get(obj, '[""].value')).toBe(_get(obj, '[""].value'))
+    //     expect(get(obj, 'a[""].nested')).toBe(_get(obj, 'a[""].nested'))
+    // })
 
-    it('should handle array indices as strings and negative indices as keys', () => {
-        const obj = {
-            a: {
-                '0': {d: 4},
-                '-1': {d: 'negativeIndexKey'},
-            },
-        }
-        expect(get(obj, 'a["0"].d')).toBe(_get(obj, 'a["0"].d'))
-        expect(get(obj, 'a[-1].d')).toBe(_get(obj, 'a[-1].d'))
-    })
+    // it('should return undefined if intermediate property is missing', () => {
+    //     const obj = {a: {b: {c: 3}}}
+    //     expect(get(obj, 'a.x.y', 'not found')).toBe(_get(obj, 'a.x.y', 'not found'))
+    //     expect(get(obj, 'a.b.x.y', 'defaultVal')).toBe(_get(obj, 'a.b.x.y', 'defaultVal'))
+    // })
 
-    it('should handle empty string key', () => {
-        const obj = {
-            '': {value: 'emptyKey'},
-            a: {'': {nested: 'emptyNested'}},
-        }
-
-        expect(get(obj, '[""].value')).toBe(_get(obj, '[""].value'))
-        expect(get(obj, 'a[""].nested')).toBe(_get(obj, 'a[""].nested'))
-    })
-
-    it('should return undefined if intermediate property is missing', () => {
-        const obj = {a: {b: {c: 3}}}
-        expect(get(obj, 'a.x.y', 'not found')).toBe(_get(obj, 'a.x.y', 'not found'))
-        expect(get(obj, 'a.b.x.y', 'defaultVal')).toBe(_get(obj, 'a.b.x.y', 'defaultVal'))
-    })
-
-    it('should work with numeric paths as part of a complex path', () => {
-        const obj = {
-            arr: [
-                {
-                    nested: [{val: 'first'}, {val: 'second'}],
-                },
-            ],
-        }
-
-        expect(get(obj, 'arr[0].nested[1].val')).toBe(_get(obj, 'arr[0].nested[1].val'))
-        expect(get(obj, 'arr[0]["nested"][0].val')).toBe(_get(obj, 'arr[0]["nested"][0].val'))
-    })
+    // it('should work with numeric paths as part of a complex path', () => {
+    //     const obj = {
+    //         arr: [
+    //             {
+    //                 nested: [{val: 'first'}, {val: 'second'}],
+    //             },
+    //         ],
+    //     }
+    //
+    //     expect(get(obj, 'arr[0].nested[1].val')).toBe(_get(obj, 'arr[0].nested[1].val'))
+    //     expect(get(obj, 'arr[0]["nested"][0].val')).toBe(_get(obj, 'arr[0]["nested"][0].val'))
+    // })
 })

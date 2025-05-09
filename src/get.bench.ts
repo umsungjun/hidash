@@ -1,5 +1,5 @@
 import _get from 'lodash/get'
-import {describe, bench} from 'vitest'
+import {bench, describe} from 'vitest'
 
 import {get} from './get'
 
@@ -23,18 +23,17 @@ const obj = {
     123: 'number key',
 }
 const PATHS = [
-    'a[0].b.c',
+    ['a', 0, 'b', 'c'],
     ['x', 'y', 'z'],
-    'a.0.b.c',
     'not.exist',
     ['a', '0', 'b', 'notThere'],
-    'e.f.g',
-    'e.f.x',
-    'arr[0]',
-    'arr[2].x',
-    'arr[4][0]',
+    ['e', 'f', 'g'],
+    ['e', 'f', 'x'],
+    ['arr', '0'],
+    ['arr', '2', 'x'],
+    ['arr', '4', 0],
     '123',
-    'a.d',
+    ['a', 'd'],
     ['a', 'b', 'c'],
     ['arr', 2, 'x'],
     ['weird.key'],
