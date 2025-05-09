@@ -19,6 +19,7 @@ const moduleMap = {
     first: './src/first.ts',
     flatten: './src/flatten.ts',
     flow: './src/flow.ts',
+    get: './src/get.ts',
     groupBy: './src/groupBy.ts',
     gt: './src/gt.ts',
     has: './src/has.ts',
