@@ -53,14 +53,14 @@ export function mapValues(obj: string | null | undefined): NumericDictionary<str
 export function mapValues<T>(obj: Dictionary<T> | NumericDictionary<T> | null | undefined): Dictionary<T>
 export function mapValues<T extends object>(obj: T): T
 export function mapValues<T extends object>(obj: T | null | undefined): Partial<T>
-// 실제 구현
+// actual implementation
 export function mapValues<T extends Record<string, unknown> | unknown[], R, I>(
     object: T | null | undefined,
     iteratee?: BoxedPrimitive | I | null | undefined,
 ): T extends unknown[]
     ? Record<string, R | T[number] | ReturnType<BoxedPrimitive>>
     : {[K in keyof T]: R | T[keyof T] | ReturnType<BoxedPrimitive>} {
-    // null이나 undefined인 경우 빈 객체 반환
+    // return empty objects if null or undefined
     if (object === null || object === undefined) {
         return {} as T extends unknown[]
             ? Record<string, R | T[number] | ReturnType<BoxedPrimitive>>

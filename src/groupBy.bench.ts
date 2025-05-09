@@ -44,14 +44,14 @@ const complexTestCases = [
     {
         data: Array.from({length: 1000}, (_, i) => ({
             id: i,
-            category: String.fromCharCode(65 + (i % 26)), // A-Z 반복
+            category: String.fromCharCode(65 + (i % 26)), // repeat A to Z
             value: i * 10,
         })),
         iteratee: (item: {id: number; category: string; value: number}) => item.category,
     },
 ] as const
 
-// 패턴(객체, [key,value]) 기반 iteratee 테스트 케이스 추가
+// Add pattern (object, [key, value]) based iteratee test case
 const patternTestCases = [
     {
         data: [

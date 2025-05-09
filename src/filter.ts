@@ -1,5 +1,3 @@
-import _filter from 'lodash/filter'
-
 import {isArrayLike} from './internal/array'
 import {baseIteratee} from './internal/baseIteratee'
 import {
@@ -16,6 +14,17 @@ import {isUndefined} from './isUndefined'
 
 import type {List} from './internal/types'
 
+/**
+ * @description
+ * Creates an array of elements from a collection that satisfy a given predicate.
+ * If no predicate is provided, it returns all elements in the collection.
+ *
+ * This function is similar to `Array.prototype.filter` but works with various types of collections.
+ *
+ * @param {List<T> | object} [collection] The collection to iterate over
+ * @param {ListIterateeCustom<T, boolean> | ObjectIterateeCustom<T, boolean>} [predicate] The function invoked per iteration
+ * @returns {T[]} An array of elements that satisfy the predicate
+ */
 export function filter<T extends Record<string, unknown>>(
     collection: T | null | undefined,
     predicate?: ObjectIterateeCustom<T, boolean>,

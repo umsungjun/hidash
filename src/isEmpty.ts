@@ -3,7 +3,7 @@ import {isArrayLike} from './internal/array'
 import type {EmptyObjectOf} from './internal/types'
 
 /**
- * @description hhttps://unpkg.com/browse/lodash.isempty@4.4.0/index.js
+ * @see https://unpkg.com/browse/lodash.isempty@4.4.0/index.js
  */
 export function isEmpty(value: string): value is ''
 export function isEmpty(value: Map<unknown, unknown> | Set<unknown> | ArrayLike<unknown> | null | undefined): boolean

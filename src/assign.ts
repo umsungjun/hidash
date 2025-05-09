@@ -1,6 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import isNull from './isNull'
 
+/**
+ * @description
+ * Assigns the values of all enumerable properties from one or more source objects to a target object.
+ *
+ * @param {object} target The target object to assign properties to
+ * @param {...object} sources The source objects to assign properties from
+ * @returns {object} The target object with assigned properties
+ */
 export function assign<TObject, TSource>(target: TObject, source: TSource): TObject & TSource
 export function assign<TObject, TSource1, TSource2>(
     target: TObject,

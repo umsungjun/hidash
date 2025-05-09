@@ -2,7 +2,7 @@ import {isArrayLike} from './internal/array'
 import {MAP_TAG, SET_TAG} from './internal/to-string-tags'
 
 /**
- * @description https://unpkg.com/lodash.size@4.2.0/index.js
+ * @see https://unpkg.com/lodash.size@4.2.0/index.js
  */
 export function size(collection: unknown): number {
     if (collection == null) {

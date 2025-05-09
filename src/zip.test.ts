@@ -64,8 +64,10 @@ describe('zip', () => {
         const result = zip([Symbol('a'), Symbol('b')], [1, 2])
         const expected = _zip([Symbol('a'), Symbol('b')], [1, 2])
 
-        // Symbol은 고유한 식별자를 생성하므로, 같은 설명을 가진 두 개의 Symbol이라도 서로 다른 값으로 간주
-        // 따라서 설명으로 비교
+        /**
+         * Since Symbols generate unique identifiers, even two Symbols with the same description are considered to be different values,
+         * so compare them with description field.
+         */
         expect(result.map(([sym, num]) => [sym?.description, num])).toEqual(
             expected.map(([sym, num]) => [sym?.description, num]),
         )

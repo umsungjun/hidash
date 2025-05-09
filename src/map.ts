@@ -36,7 +36,8 @@ function baseMap<T, R>(array: ArrayLike<T> | null | undefined, iteratee: ListIte
 
 export function map<T, R>(collection: ArrayLike<T> | null | undefined, iteratee: ListIterator<T, R>): R[] {
     const mapper = isArray(collection) ? arrayMap : baseMap
-    return mapper(collection, baseIteratee(iteratee)) // 타입 일치 보장
+    // ensure type matching
+    return mapper(collection, baseIteratee(iteratee))
 }
 
 export default map

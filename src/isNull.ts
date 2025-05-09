@@ -1,5 +1,6 @@
 /**
- * @description https://unpkg.com/lodash@4.17.21/isNull.js
+ * @see https://unpkg.com/lodash@4.17.21/isNull.js
+ *
  * @param value
  * @returns boolean
  */

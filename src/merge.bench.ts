@@ -3,28 +3,28 @@ import {bench, describe} from 'vitest'
 
 import {merge} from './merge'
 
-// 테스트 케이스를 단순화하고 각 테스트마다 새로운 객체를 생성
+// simplifies test cases and creates new objects for each test
 function getTestCases() {
     return [
-        // 기본 객체 병합
+        // merge default objects
         [
             {a: 1, b: 2},
             {c: 3, d: 4},
         ],
 
-        // 중첩 객체
+        // nested objects
         [{a: {b: {c: 1}}}, {a: {b: {d: 2}}}],
 
-        // 배열 병합
+        // merge arrays
         [{arr: [1, 2, {x: 1}]}, {arr: [3, 4, {y: 2}]}],
 
-        // 다중 소스 (단순화)
+        // multi-source (simplification)
         [{a: 1}, {b: 2}, {c: 3}],
 
-        // 특수 객체
+        // special objects
         [{date: new Date(2023, 0, 1)}, {date: new Date(2024, 0, 1)}],
 
-        // 중간 크기 객체
+        // medium-sized objects
         [
             Object.fromEntries(
                 Array(10)
@@ -38,22 +38,22 @@ function getTestCases() {
             ),
         ],
 
-        // 얕은 중첩 구조
+        // shallow superposition structure
         [
             {a: {b: 1}, c: {d: 2}},
             {a: {e: 3}, c: {f: 4}},
         ],
 
-        // 작은 배열
+        // a small arrangement
         [{arr: [1, 2, 3]}, {arr: [4, 5, 6]}],
 
-        // undefined 값 처리
+        // undefined handling
         [
             {a: 1, b: 2},
             {a: undefined, c: 3},
         ],
 
-        // 기본 타입 혼합
+        // basic type mix
         [
             {num: 1, str: 'test'},
             {num: 2, bool: true},

@@ -1,5 +1,17 @@
 # @naverpay/hidash
 
+## 0.2.3
+
+### Patch Changes
+
+-   eb39189: Update pite
+
+    PR: [Update pite](https://github.com/NaverPayDev/hidash/pull/217)
+
+-   259fa78: isNill type fix
+
+    PR: [isNill type fix](https://github.com/NaverPayDev/hidash/pull/242)
+
 ## 0.2.2
 
 ### Patch Changes
@@ -94,13 +106,13 @@
 
     PR: [apply baseIteratee in every](https://github.com/NaverPayDev/hidash/pull/190)
 
--   521fcd6: 🔧 `omit` 내부 타입을 PropertyPath 로 분리
+-   521fcd6: 🔧 Separate `omit` inner types into PropertyPath
 
-    PR: [🔧PropertyPath 로 분리](https://github.com/NaverPayDev/hidash/pull/193)
+    PR: [🔧Separate types into PropertyPath](https://github.com/NaverPayDev/hidash/pull/193)
 
--   b5fc9ff: pite 적용 테스트
+-   b5fc9ff: pite test
 
-    PR: [pite 적용 테스트](https://github.com/NaverPayDev/hidash/pull/187)
+    PR: [pite test](https://github.com/NaverPayDev/hidash/pull/187)
 
 -   c4cb8f0: 🚀 range
 

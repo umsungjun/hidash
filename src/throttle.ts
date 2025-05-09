@@ -1,7 +1,7 @@
 interface ThrottleOptions {
-    leading?: boolean // 첫 번째 호출을 즉시 실행할지 여부
-    maxWait?: number // 최대 대기 시간
-    trailing?: boolean // 마지막 호출을 실행할지 여부
+    leading?: boolean // whether to execute the first call immediately
+    maxWait?: number // maximum waiting time
+    trailing?: boolean // whether to execute the last call
 }
 
 export const throttle = <Return, Arguments extends unknown[]>(

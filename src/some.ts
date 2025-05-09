@@ -6,6 +6,17 @@ import keys from './keys'
 import type {ListIterateeCustom, ObjectIterateeCustom} from './internal/baseIteratee.type'
 import type {List} from './internal/types'
 
+/**
+ * @description
+ * Checks if **any** element in a collection satisfies a given predicate.
+ * If no predicate is provided, it checks if the collection is empty.
+ *
+ * This function is similar to `Array.prototype.some` but works with various types of collections.
+ *
+ * @param {List<T> | object} [collection] The collection to iterate over
+ * @param {ListIterateeCustom<T, boolean> | ObjectIterateeCustom<T, boolean>} [predicate] The function invoked per iteration
+ * @returns {boolean} `true` if any element satisfies the predicate, `false` otherwise
+ */
 export function some<T>(collection: List<T> | null | undefined, predicate?: ListIterateeCustom<T, boolean>): boolean
 export function some<T extends object>(
     collection: T | null | undefined,

@@ -1,11 +1,11 @@
 interface DebounceOptions {
-    leading?: boolean // 첫 번째 호출을 즉시 실행할지 여부
-    maxWait?: number // 최대 대기 시간
-    trailing?: boolean // 마지막 호출을 실행할지 여부
+    leading?: boolean // Whether to run the first call immediately
+    maxWait?: number // Maximum wait time
+    trailing?: boolean // Whether to make the last call
 }
 
 /**
- * @description https://unpkg.com/lodash.debounce@4.0.8/index.js
+ * @see https://unpkg.com/lodash.debounce@4.0.8/index.js
  */
 export function debounce<Args extends unknown[]>(
     func: (...args: Args) => unknown,

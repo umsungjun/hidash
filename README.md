@@ -1,6 +1,6 @@
 # @naverpay/hidash
 
-[![CI](https://github.com/NaverPayDev/hidash/actions/workflows/ci.yaml/badge.svg)](https://github.com/NaverPayDev/hidash/actions/workflows/matrix.yaml)
+[![CI](https://github.com/NaverPayDev/hidash/actions/workflows/matrix.yaml/badge.svg)](https://github.com/NaverPayDev/hidash/actions/workflows/matrix.yaml)
 
 A modern, performance-focused alternative to Lodash.
 
@@ -89,7 +89,7 @@ Please read our contributing guidelines before submitting PRs.
 
 ## License
 
-MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+MIT License - see the [LICENSE.md](LICENSE) file for details.
 
 ---
 
