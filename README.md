@@ -87,6 +87,49 @@ Feel free to submit PRs for:
 
 Please read our contributing guidelines before submitting PRs.
 
+### Commenting Guidelines
+
+To ensure code readability and maintainability, please follow these guidelines when adding comments to the codebase:
+
+#### 1. Function Header Comments (Required)
+
+- **Description:** Clearly and concisely describe the purpose and behavior of the function.
+- **Params:** List and explain all parameters.
+- **Returns:** Describe the return value(s).
+
+**Example:**
+
+```js
+/**
+ * @description
+ * Returns a new array with the results of calling a provided function on every element in the collection.
+ * 
+ * @param {Array|Object} collection - The collection to iterate over.
+ * @param {Function} iteratee - The function invoked per iteration.
+ * @returns {Array} The new mapped array.
+ */
+```
+
+#### 2. Internal Comments (Optional)
+
+- Add internal comments only when necessary, such as for:
+  - Explaining complex logic
+  - Highlighting performance improvements
+  - Noting non-obvious implementation details
+- Keep these comments concise and focused.
+
+#### 3. Consistency with lodash
+
+- Most function names are identical to lodash.
+- However, **@naverpay/hidash** may introduce enhancements (e.g., improved type safety, interface changes).
+- Please clearly document any differences or improvements from lodash in the relevant function’s header comment.
+
+#### 4. General Best Practices
+
+- Keep comments up to date with code changes.
+- Avoid redundant or obvious comments.
+- Use English for all comments.
+
 ## License
 
 MIT License - see the [LICENSE.md](LICENSE) file for details.
