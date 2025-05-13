@@ -3,7 +3,7 @@ import {bench, describe} from 'vitest'
 
 import {get} from './get'
 
-const ITERATIONS = 10000
+const ITERATIONS = 1000
 
 const obj = {
     a: [{b: {c: 3}}],
