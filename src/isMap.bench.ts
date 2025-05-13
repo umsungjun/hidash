@@ -5,7 +5,7 @@ import {isMap} from './isMap'
 
 const testCases = [new Map(), {}, [], new Set(), null, undefined, 21, 'string', false, Symbol('symbol')]
 
-const ITERATIONS = 10000
+const ITERATIONS = 1000
 
 describe('isMap performance', () => {
     bench('hidash', () => {
