@@ -1,5 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export function get<T>(obj: unknown, path: string | symbol | (string | number)[], defaultValue?: T): T | undefined {
+/**
+ * @description
+ * Gets the property value at path of object.
+ * DefaultValue is used if it is not found at path.
+ * excluded patterns 'a.b.c' and 'are[4][0]'
+ *
+ * @param {Object|Array} object - object to get.
+ * @param {String} path - path of the property to get.
+ * @param defaultValue - DefaultValue is used if it is not found at path.
+ *
+ * @returns Returns the value at path of object.
+ */
+export function get<T>(object: unknown, path: string | symbol | (string | number)[], defaultValue?: T): T | undefined {
+    const obj = object
     try {
         if (obj == null) {
             return defaultValue

@@ -65,6 +65,15 @@ function makeCheck<T>(predicate?: Predicate<T>): (item: T) => boolean {
     return (item) => isMatch(item, predicate)
 }
 
+/**
+ * @description
+ * Iterates over elements of collection, return first matched element
+ *
+ * @param {Array|Object} collection collection to find.
+ * @param {Function} predicate function invoked per iteration.
+ *
+ * @return Returns the matched element.
+ */
 export function find<T = unknown>(collection: T[] | object, predicate?: Predicate<T>): T | undefined {
     if (collection == null) {
         return undefined
