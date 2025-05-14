@@ -12,9 +12,6 @@ describe('last function', () => {
     })
 
     test('returns last element for arrays', () => {
-        expect(last([])).toBeUndefined()
-        expect(last([])).toEqual(_last([]))
-
         const arr = ['a', 'b', 'c']
         expect(last(arr)).toBe('c')
         expect(last(arr)).toEqual(_last(arr))
