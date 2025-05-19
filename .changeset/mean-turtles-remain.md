@@ -2,6 +2,6 @@
 "@naverpay/hidash": minor
 ---
 
-add get
+Add get, find functions
 
-PR: [add get](https://github.com/NaverPayDev/hidash/pull/243)
+PR: [add get, find](https://github.com/NaverPayDev/hidash/pull/243)
