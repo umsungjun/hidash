@@ -16,7 +16,7 @@ importers:
         version: 0.0.4
       '@naverpay/eslint-config':
         specifier: ^1.0.7
-        version: 1.0.7(z4j6sboathag3hccuuuuni3wba)
+        version: 1.0.7(3c33d136bc103592f74a8b8729952e23)
       '@naverpay/markdown-lint':
         specifier: ^0.0.3
         version: 0.0.3
@@ -25,7 +25,7 @@ importers:
         version: 2.2.0(@babel/core@7.26.0)(rollup@4.34.8)(tsup@8.3.6(@microsoft/api-extractor@7.50.0(@types/node@20.17.6))(postcss@8.5.2)(typescript@5.8.2))(typescript@5.8.2)(vite@6.1.1(@types/node@20.17.6)(sass-embedded@1.85.0))
       '@naverpay/prettier-config':
         specifier: ^1.0.0
-        version: 1.0.0(prettier@2.8.8)
+        version: 1.0.0(prettier@3.5.3)
       '@types/lodash':
         specifier: ^4.17.13
         version: 4.17.13
@@ -47,6 +47,9 @@ importers:
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
+      prettier:
+        specifier: ^3.5.3
+        version: 3.5.3
       rimraf:
         specifier: ^5.0.10
         version: 5.0.10
@@ -2449,6 +2452,11 @@ packages:
     engines: {node: '>=10.13.0'}
     hasBin: true
 
+  prettier@3.5.3:
+    resolution: {integrity: sha512-QQtaxnoDJeAkDvDKWCLiwIXkTgRhwYDEQCghU9Z6q03iyek/rxRh/2lC3HB7P8sWT2xC/y5JDctPLBIGzHKbhw==}
+    engines: {node: '>=14'}
+    hasBin: true
+
   prop-types@15.8.1:
     resolution: {integrity: sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==}
 
@@ -3794,7 +3802,7 @@ snapshots:
 
   '@naverpay/editorconfig@0.0.4': {}
 
-  '@naverpay/eslint-config@1.0.7(z4j6sboathag3hccuuuuni3wba)':
+  '@naverpay/eslint-config@1.0.7(3c33d136bc103592f74a8b8729952e23)':
     dependencies:
       '@babel/core': 7.26.0
       '@babel/eslint-parser': 7.25.9(@babel/core@7.26.0)(eslint@8.57.1)
@@ -3861,9 +3869,9 @@ snapshots:
       - supports-color
       - typescript
 
-  '@naverpay/prettier-config@1.0.0(prettier@2.8.8)':
+  '@naverpay/prettier-config@1.0.0(prettier@3.5.3)':
     dependencies:
-      prettier: 2.8.8
+      prettier: 3.5.3
 
   '@naverpay/publint@0.0.6':
     dependencies:
@@ -5940,6 +5948,8 @@ snapshots:
   prelude-ls@1.2.1: {}
 
   prettier@2.8.8: {}
+
+  prettier@3.5.3: {}
 
   prop-types@15.8.1:
     dependencies:

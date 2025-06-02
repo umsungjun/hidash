@@ -45,8 +45,8 @@ function baseMerge(target: any, source: any): any {
                     valueType === DATE_TAG || valueType === REGEXP_TAG
                         ? cloneSpecialObject(value, valueType)
                         : isObject(value)
-                        ? baseMerge(isObject(target[i]) ? target[i] : {}, value)
-                        : value
+                          ? baseMerge(isObject(target[i]) ? target[i] : {}, value)
+                          : value
             }
         }
         return target
